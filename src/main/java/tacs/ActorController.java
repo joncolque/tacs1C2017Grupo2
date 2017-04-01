@@ -19,7 +19,7 @@ public class ActorController {
 		return repoActores.getAllActores();
 	}
 	
-	@RequestMapping("/actor/{id}")
+	@RequestMapping("/actores/{id}")
 	public Actor getActorById(@PathVariable("id") Long id) {
 		return repoActores.getActorById(id);
 	}
