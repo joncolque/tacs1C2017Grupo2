@@ -25,7 +25,7 @@ Detalles de actor: /actores/{id} GET
 
 Detalles de usuario: /usuarios/{id} GET
 
-Comparar 2 listas de peliculas: /movielist/compare?movie1={pelicula1}&movie2={pelicula2}
+Comparar 2 listas de peliculas: /movielist/compare?user1={usuario1}&user2={usuario2}
 
 
 
