@@ -16,6 +16,10 @@ public class Actor {
 		fechaNac = unaFecha;
 	}
 	
+	public Actor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public long getId() {
 		return id;
 	}

@@ -32,5 +32,12 @@ public class RepoActores {
 	public Actor getActorById(long unId) {
 		return actores.get((int)unId);
 	}
-
+	
+	public void deleteActor(long unID){
+		actores.remove(unID);
+	}
+	
+	public void actualizarActor(Actor actor){
+		
+	}
 }
