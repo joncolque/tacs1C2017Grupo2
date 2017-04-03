@@ -60,34 +60,5 @@ public class ActorController {
 		repoActores.deleteActor(id);
 		return new Response(200,"Actor borrado correctamente.");
 	}
-	//-----------
-//	@RequestMapping(method = RequestMethod.GET, path = "/actores")
-//	public List<Actor> actores (){
-//		return repoActores.getAllActores();
-//	}
-//	
-//	@RequestMapping(method = RequestMethod.GET, path = "/actores/{id}")
-//	public Actor actor(@PathVariable Integer id) throws NoSuchRequestHandlingMethodException{
-//		try{
-//			Actor actor = repoActores.getActorById(id);
-//			return actor;
-//		} catch (IndexOutOfBoundsException e) { throw new
-//			NoSuchRequestHandlingMethodException("actores", ActoresController.class);
-//		}
-//	}
-//	
-//	@RequestMapping(method = RequestMethod.POST, path = "/actores")
-//	public Actor agregar(@RequestParam(value="nombre") String nombre){
-//		return repoActores.agregarActor(nombre);
-//	}
-//	
-//	@RequestMapping(method = RequestMethod.DELETE, path = "actores/{id}")
-//	public void borrar(@PathVariable Integer id) throws NoSuchRequestHandlingMethodException{
-//		try{
-//			repoActores.eliminarActor(id);
-//		}catch (IndexOutOfBoundsException e) {
-//			throw new NoSuchRequestHandlingMethodException("actores",ActoresController.class);
-//		}
-//	}
 	
 }
