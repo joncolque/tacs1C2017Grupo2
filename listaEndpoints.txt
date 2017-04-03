@@ -1,4 +1,4 @@
-Crear usuario y contraseña: /usuarios POST
+Crear usuario y contraseña: /usuarios POST [	LISTO	]
 
 Loggear en la pagina: /user/login GET
 |-> Check de login: /user/auth POST  [	LISTO	]
