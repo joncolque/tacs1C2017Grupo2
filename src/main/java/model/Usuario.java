@@ -13,7 +13,7 @@ public class Usuario {
 
 	public Usuario(long unId, String unUser, String unaPass) {
 		id = unId;
-		username = unUser.toUpperCase();
+		username = unUser;
 		password = unaPass;
 		listaPeliculas = new ArrayList<Pelicula>();
 	}
@@ -28,7 +28,7 @@ public class Usuario {
 		return username;
 	}
 	public void setUsername(String username) {
-		this.username = username.toUpperCase();
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;

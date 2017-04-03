@@ -29,7 +29,7 @@ public class RepoUsuarios {
 	}
 	
 	public  Usuario buscarUsuario(String nombre, String pass) throws Exception{
-		List<Usuario> auxUsers = usuarios.stream().filter(usuario -> usuario.getUsername().equals(nombre.toUpperCase()) && usuario.getPassword().equals(pass)).collect(Collectors.toList());
+		List<Usuario> auxUsers = usuarios.stream().filter(usuario -> usuario.getUsername().toUpperCase().equals(nombre.toUpperCase()) && usuario.getPassword().equals(pass)).collect(Collectors.toList());
 		
 		if(auxUsers.isEmpty()){
 			throw new Exception("Usuario Incorrecto");
