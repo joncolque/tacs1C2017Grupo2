@@ -40,12 +40,12 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Rol getRole() {
+	public Rol getRol() {
 		return rol;
 	}
 
-	public void setRole(Rol role) {
-		this.rol = role;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	public List<Pelicula> getListaPeliculas() {
 		return listaPeliculas;

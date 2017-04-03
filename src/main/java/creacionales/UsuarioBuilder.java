@@ -17,8 +17,8 @@ public class UsuarioBuilder {
 		return this;
 	}
 
-	public UsuarioBuilder role(Rol role) {
-		usuario.setRole(role);
+	public UsuarioBuilder rol(Rol rol) {
+		usuario.setRol(rol);
 		return this;
 	}
 	
