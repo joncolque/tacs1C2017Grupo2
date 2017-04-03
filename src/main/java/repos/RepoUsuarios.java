@@ -13,7 +13,7 @@ public class RepoUsuarios {
 
 	private static RepoUsuarios instance;
 	private static List<Usuario> usuarios = new ArrayList<Usuario>();
-	private static int counter = 0;
+	private static int counter = 1;
 	
 	public static RepoUsuarios getInstance() {
 		if (instance == null) {
@@ -21,10 +21,10 @@ public class RepoUsuarios {
 		}
 		return instance;
 	}
-
+	
 	public void addUsuario(Usuario unUsuario) {
 		unUsuario.setId(counter);
-		usuarios.add(unUsuario);
+		usuarios.add(unUsuario);		
 		counter++;
 	}
 	

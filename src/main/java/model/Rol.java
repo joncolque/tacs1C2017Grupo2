@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Role {
+public class Rol {
 
 	private String name;
 	private List<Usuario> users;
@@ -20,7 +20,7 @@ public class Role {
 	public void setUsers(List<Usuario> users) {
 		this.users = users;
 	}
-	public Role(String name) {
+	public Rol(String name) {
 		this.name = name;
 		this.users = new ArrayList<Usuario>();
 	}

@@ -9,7 +9,7 @@ public class Usuario {
 	private String username;
 	private String password; //nota va a ser un salted hash a futuro?
 	private List<Pelicula> listaPeliculas;
-	private Role role;
+	private Rol rol;
 
 	public Usuario(long unId, String unUser, String unaPass) {
 		id = unId;
@@ -18,6 +18,10 @@ public class Usuario {
 		listaPeliculas = new ArrayList<Pelicula>();
 	}
 	
+	public Usuario() {
+		listaPeliculas = new ArrayList<Pelicula>();
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -36,12 +40,12 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Role getRole() {
-		return role;
+	public Rol getRole() {
+		return rol;
 	}
 
-	public void setRoles(Role roles) {
-		this.role = roles;
+	public void setRole(Rol role) {
+		this.rol = role;
 	}
 	public List<Pelicula> getListaPeliculas() {
 		return listaPeliculas;
