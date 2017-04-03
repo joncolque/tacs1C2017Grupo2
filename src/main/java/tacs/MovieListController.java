@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import model.Actor;
 import model.Pelicula;
 import model.Response;
+import repos.RepoActores;
 import repos.RepoPeliculas;
 
 @RestController
@@ -48,5 +50,12 @@ public class MovieListController {
 		
 		return peliculasEnComun;
 	}
-	
+
+	@RequestMapping(method = RequestMethod.GET, path = "/ranking/{idlistMovies}")
+	public List<Actor> rakingActores(@PathVariable (value = "idlistMovies") Long idlistMovies){
+		List<Actor> rankingActores = new ArrayList<Actor>();
+		rankingActores = RepoActores.getInstance().getAllActores();
+		
+		return rankingActores;
+	}	
 }

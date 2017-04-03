@@ -17,7 +17,7 @@ Marcar actor como favorito: /actoresfavoritos PUT
 
 Lista de actores favoritos: /actoresfavoritos GET
 
-Ranking de favoritos(admin): /actoresfavoritostotal GET
+Ranking de favoritos(admin): /movielist/ranking/{idList} GET	[	LISTO	]
 
 Detalles de pelicula: /peliculas/{pelicula} GET
 
