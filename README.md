@@ -2,9 +2,9 @@
 
 Pasos para ejecutar en consola:
 
-	1- Ubicarse en el directorio del proyecto git.
-	2- Escribir _mvn clean install_
-	3- Escribir _mvn spring-boot:run_
-	4- El servidor REST se encuentra en _http://localhost:8080_
+1. Ubicarse en el directorio del proyecto git.
+2. Escribir *mvn clean install*
+3. Escribir *mvn spring-boot:run*
+4. El servidor REST se encuentra en *http://localhost:8080*
 
 Lista de endpoints: Se adjunta una coleccion v2 de PostMan con todos los requests correspondientes.
