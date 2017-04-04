@@ -1,7 +1,7 @@
 Crear usuario y contraseña: /usuarios POST	[	LISTO	]
 
 Loggear en la pagina: /user/login GET
-|-> Check de login: /user/auth POST  [	LISTO	]
+|-> Check de login: /user/auth PUT  [	LISTO	]
 
 Loggout: /user/logout PUT	[	LISTO	]
 
@@ -28,6 +28,10 @@ Detalles de actor: /actores/{id} GET
 Detalles de usuario: /usuarios/{id} GET
 
 Comparar 2 listas de peliculas: /movielist/compare?user1={usuario1}&user2={usuario2}	[	LISTO	]
+
+Como usuario quiero ver si hay películas donde esté más de uno de mis actores favoritos.
+
+Como administrador quiero ver el ranking de actores favoritos de todos mis usuarios (los actores que han sido más veces elegidos como favoritos)
 
 
 
