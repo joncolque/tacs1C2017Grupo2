@@ -5,13 +5,17 @@ package model;
 public class Pelicula {
 	private long id;
 	private String nombre;
-	private String Nacionalidad;
+	private String nacionalidad;
 	private int anioEstreno;
 
 	public Pelicula(String nombre, String nacionalidad, int anioEstreno) {
 		this.nombre = nombre;
-		Nacionalidad = nacionalidad;
+		this.nacionalidad = nacionalidad;
 		this.anioEstreno = anioEstreno;
+	}
+	
+	public Pelicula(){
+		
 	}
 	public long getId() {
 		return id;
@@ -26,10 +30,10 @@ public class Pelicula {
 		this.nombre = nombre;
 	}
 	public String getNacionalidad() {
-		return Nacionalidad;
+		return nacionalidad;
 	}
 	public void setNacionalidad(String nacionalidad) {
-		Nacionalidad = nacionalidad;
+		this.nacionalidad = nacionalidad;
 	}
 	public int getanioEstreno() {
 		return anioEstreno;

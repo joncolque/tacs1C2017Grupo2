@@ -12,10 +12,11 @@ import repos.RepoUsuarios;
 
 
 @RestController
+@RequestMapping("/user")
 public class LoginController {
 
 	
-	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Response ingresar(@RequestParam(value = "name", required = true) String name,@RequestParam(value = "pass", required = true) String pass) {
 		try{
 			Usuario user = RepoUsuarios.getInstance().buscarUsuario(name, pass);
@@ -25,8 +26,9 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(path = "/logout", method = RequestMethod.PUT)
+	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
 	public Response salir(@RequestParam(value = "id", required = true) Long id){
 		return new Response(200, "Logout, Exitosamente!");
 	}
+	
 }

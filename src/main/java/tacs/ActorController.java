@@ -1,5 +1,6 @@
 package tacs;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,25 +13,26 @@ import model.Response;
 import repos.RepoActores;
 
 @RestController
+@RequestMapping("/actores")
 public class ActorController {
 	
 	private RepoActores repoActores = RepoActores.getInstance();
 	
-	// Lista de actores
-	@RequestMapping(value="/actores", method = RequestMethod.GET)
-	public List<Actor> getActores() {
+	// Lista de actores de un usuario
+	@RequestMapping(value="/{usuario}", method = RequestMethod.GET)
+	public List<Actor> getActores(@PathVariable("usuario") Long usuario) {
 		return repoActores.getAllActores();
 	}
 	
-	// Obtener un actor
-	@RequestMapping(value="/actores/{usuario}/{id}", method = RequestMethod.GET)
-	public Actor getActorById(@PathVariable("usuario") Long usuario, @PathVariable("id") Long id) {
-		return repoActores.getActorById(id);
+	// Obtener detalle de un actor de un usuario
+	@RequestMapping(value="/{usuario}/{actor}", method = RequestMethod.GET)
+	public Actor getActorById(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) {
+		return repoActores.getActorById(actor);
 	}
 	
-	// Agregar un Actor
-	@RequestMapping(value="/actores", method = RequestMethod.POST)
-	public Response createActor(@RequestBody Actor actorNuevo) throws Exception {
+	// Agregar un Actor de un usuario
+	@RequestMapping(value="/{usuario}", method = RequestMethod.POST)
+	public Response createActor(@PathVariable("usuario") Long usuario, @RequestBody Actor actorNuevo) throws Exception {
 		Actor actor = new Actor();
 		actor.setEdad(actorNuevo.getEdad());
 		actor.setNombre(actorNuevo.getNombre());
@@ -40,9 +42,9 @@ public class ActorController {
 		return new Response(200, "Actor creado exitosamente!"); 
 	}
 	
-	// Actualizar un actor
-	@RequestMapping(value="/actores", method=RequestMethod.PUT)
-	public Response addMovieToList(@RequestBody Actor actorModificar) throws Exception {
+	// Actualizar un actor de un usuario
+	@RequestMapping(value="/{usuario}", method=RequestMethod.PUT)
+	public Response addMovieToList(@PathVariable("usuario") Long usuario, @RequestBody Actor actorModificar) throws Exception {
 		Actor actor = repoActores.getActorById(actorModificar.getId());
 		repoActores.deleteActor(actorModificar.getId());
 		actor.setId(actorModificar.getId());
@@ -55,10 +57,30 @@ public class ActorController {
 	}
 	
 	// borrar un actor
-	@RequestMapping(value="/actores/{id}", method = RequestMethod.DELETE)
-	public Response deleteActor(@PathVariable("id") Long id) throws Exception{
-		repoActores.deleteActor(id);
+	@RequestMapping(value="/{usuario}/{actor}", method = RequestMethod.DELETE)
+	public Response deleteActor(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) throws Exception{
+		repoActores.deleteActor(actor);
 		return new Response(200,"Actor borrado correctamente.");
 	}
+	
+	// Marcar como favorito a un actor
+	@RequestMapping(value = "/{usuario}/favorito/{actor}", method = RequestMethod.PUT)
+	public Response addActorFavorito(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) {
+		return new Response(200, "Marcar como Actor Favorito");
+	}
+	
+	// Desmarcar como favorito a un actor
+	@RequestMapping(value = "/{usuario}/favorito/{actor}", method = RequestMethod.DELETE)
+	public Response removeActorFavorito(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) {
+		return new Response(200, "Desmarcar como Actor Favorito");
+	}
+
+	// Lista de actores favoritos
+	@RequestMapping(value = "/{usuario}/actoresFavoritos", method = RequestMethod.GET)
+	public List<Actor> getActoresFavoritos(){
+		List<Actor> actoresFavoritos = new ArrayList<Actor>();
+		actoresFavoritos = RepoActores.getInstance().getAllActores();
+		return actoresFavoritos;
+	}	
 	
 }
