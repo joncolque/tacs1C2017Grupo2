@@ -16,12 +16,17 @@ public class LoginController {
 
 	
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public Response validar(@RequestParam(value = "name", required = true) String name,@RequestParam(value = "pass", required = true) String pass) {
+	public Response ingresar(@RequestParam(value = "name", required = true) String name,@RequestParam(value = "pass", required = true) String pass) {
 		try{
 			Usuario user = RepoUsuarios.getInstance().buscarUsuario(name, pass);
 			return new Response(200, String.format("Usario: %s, con rol: %s logueado" , user.getUsername(),user.getRol().getName()));
 		}catch (Exception e) {
 			return new Response(404, e.getMessage());
 		}
+	}
+	
+	@RequestMapping(path = "/logout", method = RequestMethod.PUT)
+	public Response salir(@RequestParam(value = "id", required = true) Long id){
+		return new Response(200, "Logout, Exitosamente!");
 	}
 }

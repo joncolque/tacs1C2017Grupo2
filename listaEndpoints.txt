@@ -1,21 +1,23 @@
-Crear usuario y contraseña: /usuarios POST [	LISTO	]
+Crear usuario y contraseña: /usuarios POST	[	LISTO	]
 
 Loggear en la pagina: /user/login GET
 |-> Check de login: /user/auth POST  [	LISTO	]
 
-Loggout: /user/logout POST?
+Loggout: /user/logout PUT	[	LISTO	]
 
-Crear lista: /movielist/{usuario} POST
+Crear lista: /movielist/{usuario} POST	[	LISTO	]
 
-Agregar pelicula a lista: /movielist/{usuario} PUT (pelicula en body)
+Agregar pelicula a lista: /movielist/{usuario} PUT (pelicula en body)	[	LISTO	]
 
-Sacar pelicula de lista: /movielist/{usuario}/{movie} DELETE
+Sacar pelicula de lista: /movielist/{usuario}/{movie} DELETE	[	LISTO	]
 
-Consultar lista: /movielist/{usuario} GET
+Consultar lista: /movielist/{usuario} GET	[	LISTO	]
 
-Marcar actor como favorito: /actoresfavoritos PUT
+Marcar actor como favorito: /usuario/actores/{id} PUT	[	LISTO	]
 
-Lista de actores favoritos: /actoresfavoritos GET
+Desmarcar actor como favorito: /usuario/actores/{id} DELETE	[	LISTO	]
+
+Lista de actores favoritos: /actoresfavoritos GET	[	LISTO	]
 
 Ranking de favoritos(admin): /movielist/ranking/{idList} GET	[	LISTO	]
 
@@ -25,7 +27,7 @@ Detalles de actor: /actores/{id} GET
 
 Detalles de usuario: /usuarios/{id} GET
 
-Comparar 2 listas de peliculas: /movielist/compare?user1={usuario1}&user2={usuario2}
+Comparar 2 listas de peliculas: /movielist/compare?user1={usuario1}&user2={usuario2}	[	LISTO	]
 
 
 

@@ -1,5 +1,6 @@
 package tacs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import creacionales.UsuarioBuilder;
+import model.Actor;
+import model.Response;
 import model.Rol;
 import model.Usuario;
+import repos.RepoActores;
 import repos.RepoUsuarios;
 
 @RestController
@@ -33,5 +37,22 @@ public class UserController {
 		return nuevoUser;
 	}
 
+	@RequestMapping(value = "/usuario/actores/{id}", method = RequestMethod.PUT)
+	public Response addActorFavorito(@PathVariable("id") Long id) {
+		return new Response(200, "Marcar como Actor Favorito");
+	}
 	
+	@RequestMapping(value = "/usuario/actores/{id}", method = RequestMethod.DELETE)
+	public Response removeActorFavorito(@PathVariable("id") Long id) {
+		return new Response(200, "Desmarcar como Actor Favorito");
+	}
+
+	@RequestMapping(method = RequestMethod.GET, path = "/usuario/actoresFavoritos")
+	public List<Actor> getActoresFavoritos(){
+		List<Actor> actoresFavoritos = new ArrayList<Actor>();
+		actoresFavoritos = RepoActores.getInstance().getAllActores();
+		
+		return actoresFavoritos;
+	}	
+
 }
