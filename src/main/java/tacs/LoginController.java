@@ -12,7 +12,6 @@ import repos.RepoUsuarios;
 
 
 @RestController
-@RequestMapping("/user")
 public class LoginController {
 
 	
@@ -27,7 +26,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
-	public Response salir(@RequestParam(value = "id", required = true) Long id){
+	public Response salir(){
 		return new Response(200, "Logout, Exitosamente!");
 	}
 	

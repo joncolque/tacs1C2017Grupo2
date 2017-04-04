@@ -1,0 +1,277 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TACS",
+		"_postman_id": "58c335c4-3102-060f-b97f-8b33906282ce",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Actores",
+			"description": "",
+			"item": [
+				{
+					"name": "Actores",
+					"request": {
+						"url": "http://localhost:8080/actores",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Lista de actores"
+					},
+					"response": []
+				},
+				{
+					"name": "Actor by ID",
+					"request": {
+						"url": "http://localhost:8080/actores/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Me devuelve un actor segun el ID especificado"
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking de favoritos de actores",
+					"request": {
+						"url": "http://localhost:8080/actores/rankingFavoritos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listas de peliculas",
+			"description": "",
+			"item": [
+				{
+					"name": "Lista de peliculas by ID",
+					"request": {
+						"url": "http://localhost:8080/movielist/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Crear lista de peliculas",
+					"request": {
+						"url": "http://localhost:8080/movielist",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"altasPelis\",\n\t\"owner\":\"guillermo\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar pelicula a lista",
+					"request": {
+						"url": "http://localhost:8080/movielist/0",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "0"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar pelicula de lista",
+					"request": {
+						"url": "http://localhost:8080/movielist/0/0",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Comparacion entre 2 listas de peliculass",
+					"request": {
+						"url": "http://localhost:8080/movielist/compare?list1=0&list2=1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Ranking actores favoritos de un usuario en una lista",
+					"request": {
+						"url": "http://localhost:8080/movielist/0/actoresFavoritosEnLista/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"url": "http://localhost:8080/login?name=guillermo&pass=123456",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"url": "http://localhost:8080/logout",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peliculas",
+			"description": "",
+			"item": [
+				{
+					"name": "Peliculas by ID",
+					"request": {
+						"url": "http://localhost:8080/peliculas/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Devuelve la pelicula segun el ID especificado"
+					},
+					"response": []
+				},
+				{
+					"name": "Peliculas",
+					"request": {
+						"url": "http://localhost:8080/peliculas",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Devuelve la coleccion de peliculas"
+					},
+					"response": []
+				},
+				{
+					"name": "Peliculas que incluyen actores favoritos de usuario",
+					"request": {
+						"url": "http://localhost:8080/peliculas/actoresFavoritos/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "Usuario by ID",
+					"request": {
+						"url": "http://localhost:8080/usuarios/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios",
+					"request": {
+						"url": "http://localhost:8080/usuarios",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Crear usuario",
+					"request": {
+						"url": "http://localhost:8080/usuarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"guillermo\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Actores favoritos de un Usuario",
+					"request": {
+						"url": "http://localhost:8080/usuarios/0/actoresFavoritos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Des/Favoritear Actor",
+					"request": {
+						"url": "http://localhost:8080/usuarios/0/favorito/0",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
