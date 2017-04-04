@@ -1,3 +1,6 @@
+
+**** LISTA DEPRECADA, USAR COLECCION POSTMAN ****
+
 Como usuario quiero poder crear una cuenta con user y pass: [LISTO]
 
 	POST : http://localhost:8080/usuarios?name={usuario}&pass={pass}
