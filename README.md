@@ -6,3 +6,5 @@ Pasos para ejecutar en consola:
 	2- escribir mvn clean install
 	3- escribir mvn spring-boot:run
 	4- conectarse a http://localhost:8080
+
+Los endpoint estan en el archivo listaEndpoints.txt
