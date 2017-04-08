@@ -1,6 +1,8 @@
 package tacs;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,19 +16,23 @@ import repos.RepoUsuarios;
 @RestController
 public class LoginController {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Response ingresar(@RequestParam(value = "name", required = true) String name,@RequestParam(value = "pass", required = true) String pass) {
+		logger.info("ingresar()");
 		try{
 			Usuario user = RepoUsuarios.getInstance().buscarUsuario(name, pass);
 			return new Response(200, String.format("Usario: %s, con rol: %s logueado" , user.getUsername(),user.getRol().getName()));
 		}catch (Exception e) {
+			logger.error("ingresar().catch");
 			return new Response(404, e.getMessage());
 		}
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
 	public Response salir(){
+		logger.info("salir()");
 		return new Response(200, "Logout, Exitosamente!");
 	}
 	

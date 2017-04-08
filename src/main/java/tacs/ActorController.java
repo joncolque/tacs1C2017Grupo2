@@ -34,6 +34,7 @@ public class ActorController {
 	// Lista de actores de un usuario
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Actor> getActores() {
+		logger.info("getActores()");
 		return repoActores.getAllActores();
 	}
 	
@@ -60,11 +61,13 @@ public class ActorController {
 				System.out.println(result);
 				in.close();
 			} catch (IOException e) {
+				logger.error("getActorById().catch(IOException)");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		} catch (MalformedURLException e) {
+			logger.error("getActorById().catch(MalformedURLException)");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -74,6 +77,7 @@ public class ActorController {
 	// Ranking de actores favoriteados
 	@RequestMapping(value = "/rankingFavoritos", method = RequestMethod.GET)
 	public List<FavoritoActor> rankingActores(){
+		logger.info("rankingActores()");
 		List<FavoritoActor> rankingActores = new ArrayList<FavoritoActor>();
 		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(1), 5));
 		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(0), 3));
