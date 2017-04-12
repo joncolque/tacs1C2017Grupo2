@@ -14,7 +14,8 @@ public class Pelicula {
 		this.nacionalidad = nacionalidad;
 		this.anioEstreno = anioEstreno;
 	}
-	public Pelicula(String nombre, String nacionalidad, String anioEstreno, String desc) {
+	public Pelicula(long id, String nombre, String nacionalidad, String anioEstreno, String desc) {
+		this.id = id;
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
 		this.anioEstreno = anioEstreno;

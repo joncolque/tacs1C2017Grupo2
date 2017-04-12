@@ -22,7 +22,7 @@ public class MovieResult {
 	private int vote_average;
 	
 	public Pelicula toMovie() {
-		return new Pelicula(title, original_language, release_date, overview);
+		return new Pelicula(id, title, original_language, release_date, overview);
 	}
 	
 	public MovieResult() {
