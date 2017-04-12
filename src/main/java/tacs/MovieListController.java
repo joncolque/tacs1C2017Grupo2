@@ -41,7 +41,7 @@ public class MovieListController {
 	
 	// Consultar lista de peliculas
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
-	public List<Pelicula> getMovielistForUserId(@PathVariable("movielist") Long movielist) {
+	public List<Pelicula> getMovielistById(@PathVariable("movielist") Long movielist) {
 		logger.info("getMovielistForUserId()");
 		List<Pelicula> listaFavoritos = new ArrayList<Pelicula>();
 		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(1));
@@ -66,8 +66,8 @@ public class MovieListController {
 	}
 	
 	// Ranking de actores que se repiten en las peliculas de una lista
-	@RequestMapping(value="/{movielist}/actoresFavoritosEnLista/{usuarioFavoritos}", method=RequestMethod.GET)
-	public List<Actor> getRankingFromMovie(@PathVariable("movielist") Long movielist, @PathVariable("usuarioFavoritos") Long usuarioFavoritos) {
+	@RequestMapping(value="/{movielist}/actoresRepetidos/", method=RequestMethod.GET)
+	public List<Actor> getRankingFromMovie(@PathVariable("movielist") Long movielist) {
 		logger.info("getRankingFromMovie()");
 		List<Actor> actoresFavoritos = new ArrayList<Actor>();
 		actoresFavoritos.add(RepoActores.getInstance().getActorById(0));

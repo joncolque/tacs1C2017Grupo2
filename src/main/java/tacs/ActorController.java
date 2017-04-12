@@ -31,18 +31,12 @@ public class ActorController {
 	private RepoActores repoActores = RepoActores.getInstance();
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	// Lista de actores de un usuario
+	// Lista de actores
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Actor> getActores() {
 		logger.info("getActores()");
 		return repoActores.getAllActores();
 	}
-	
-	// Obtener detalle de un actor de un usuario
-//	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
-//	public Actor getActorById(@PathVariable("actor") Long actor) {
-//		return repoActores.getActorById(actor);
-//	}
 
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
 	public Actor getActorById(@PathVariable("actor") Long actor) {

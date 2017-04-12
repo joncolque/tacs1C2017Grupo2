@@ -6,17 +6,32 @@ public class Pelicula {
 	private long id;
 	private String nombre;
 	private String nacionalidad;
-	private int anioEstreno;
+	private String anioEstreno;
+	private String descripcion;
 
-	public Pelicula(String nombre, String nacionalidad, int anioEstreno) {
+	public Pelicula(String nombre, String nacionalidad, String anioEstreno) {
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
 		this.anioEstreno = anioEstreno;
+	}
+	public Pelicula(String nombre, String nacionalidad, String anioEstreno, String desc) {
+		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		this.anioEstreno = anioEstreno;
+		this.descripcion = desc;
 	}
 	
 	public Pelicula(){
 		
 	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -35,10 +50,10 @@ public class Pelicula {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-	public int getanioEstreno() {
+	public String getanioEstreno() {
 		return anioEstreno;
 	}
-	public void setanioEstreno(int anioEstreno) {
+	public void setanioEstreno(String anioEstreno) {
 		this.anioEstreno = anioEstreno;
 	}
 	

@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import apiResult.MovieListResult;
 import model.Pelicula;
+import model.Response;
 import repos.RepoPeliculas;
 
 @RestController
@@ -18,11 +21,30 @@ import repos.RepoPeliculas;
 public class MovieController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private RestTemplate api = new RestTemplate();
+	private final String baseUri = "https://api.themoviedb.org/3/";
+	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Pelicula> getPeliculas() {
 		logger.info("getPeliculas()");
+		
 		return RepoPeliculas.getInstance().getAllPeliculas();
+	}
+	
+	@RequestMapping("/tmdb")
+	public List<Pelicula> getPeliculasTmdb() {
+		List<Pelicula> listaFinal;
+		
+		try {
+			logger.info("Haciendo query a url: " + baseUri + "/movie/popular?" + apiKey);
+//			jsonAnswer = api.getForObject(baseUri + "/movie/popular?" + apiKey, String.class);
+			MovieListResult resultadoRequest = api.getForObject(baseUri + "/movie/popular?" + apiKey, MovieListResult.class);
+			listaFinal = resultadoRequest.toMovieList();
+		} catch(Exception e) {
+			listaFinal = new ArrayList<Pelicula>();
+		}
+		return listaFinal;
 	}
 	
 	@RequestMapping("/{id}")

@@ -64,4 +64,11 @@ public class UserController {
 		logger.info("addActorFavorito()");
 		return new Response(200, "Accion realizada correctamente");
 	}
+	
+	// Desmarcar como favorito a un actor
+		@RequestMapping(value = "/{usuario}/favorito/{actor}", method = RequestMethod.DELETE)
+		public Response removeActorFavorito(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) {
+			logger.info("removeActorFavorito()");
+			return new Response(200, "Accion realizada correctamente");
+		}
 }

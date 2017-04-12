@@ -75,7 +75,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"altasPelis\",\n\t\"owner\":\"guillermo\"\n}"
+							"raw": "{\n  \"nombre\":\"altasPelis\",\n  \"owner\":\"guillermo\"\n}"
 						},
 						"description": ""
 					},
@@ -124,9 +124,9 @@
 					"response": []
 				},
 				{
-					"name": "Ranking actores favoritos de un usuario en una lista",
+					"name": "Ranking actores repetidos en una lista",
 					"request": {
-						"url": "http://localhost:8080/movielist/0/actoresFavoritosEnLista/1",
+						"url": "http://localhost:8080/movielist/0/actoresRepetidos",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -200,6 +200,17 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "Peliculas populares en tmdb",
+					"request": {
+						"url": "http://localhost:8080/peliculas/tmdb",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -243,7 +254,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\":\"guillermo\",\n\t\"password\":\"123456\"\n}"
+							"raw": "{\n  \"username\":\"guillermo\",\n  \"password\":\"123456\"\n}"
 						},
 						"description": ""
 					},
