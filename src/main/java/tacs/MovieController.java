@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import apiResult.Configuration;
 import apiResult.MovieListResult;
 import model.Pelicula;
 import model.Response;

@@ -3,7 +3,9 @@ import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.client.RestTemplate;
 
+import apiResult.Configuration;
 import creacionales.UsuarioBuilder;
 import model.Actor;
 import model.Pelicula;
@@ -18,6 +20,8 @@ public class Application {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
+		
+		ConfigHolder.getInstance();
 
 		Rol adm = new Rol("Administrador");
 		Rol usr = new Rol("Usuario");
