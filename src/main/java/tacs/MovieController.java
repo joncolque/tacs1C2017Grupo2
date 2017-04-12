@@ -2,12 +2,14 @@ package tacs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,9 +28,13 @@ public class MovieController {
 	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Pelicula> getPeliculas() {
+	public List<Pelicula> getPeliculas(@RequestParam("query") Optional<String> queryString) {
 		logger.info("getPeliculas()");
-		
+		if (queryString.isPresent()) {
+			logger.info("Request url: " + baseUri + "search/movie?" + apiKey + "&query=" + queryString.get());
+			MovieListResult resultadoRequest = api.getForObject(baseUri + "search/movie?" + apiKey + "&query=" + queryString.get(), MovieListResult.class);
+			return resultadoRequest.toMovieList();
+		}
 		return RepoPeliculas.getInstance().getAllPeliculas();
 	}
 	
