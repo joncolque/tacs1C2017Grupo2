@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import apiResult.Configuration;
 import apiResult.MovieListResult;
+import apiResult.MovieResult;
 import model.Pelicula;
 import model.Response;
 import repos.RepoPeliculas;
@@ -45,7 +46,8 @@ public class MovieController {
 	@RequestMapping("/{id}")
 	public Pelicula getPeliculaById(@PathVariable("id") Long id) {
 		logger.info("getPeliculaById()");
-		return RepoPeliculas.getInstance().getPeliculaById(id);
+		MovieResult pelicula = api.getForObject(baseUri + "/movie/" + id.toString() + "?" + apiKey, MovieResult.class);
+		return pelicula.toMovie();
 	}
 	
 	// Lista de peliculas con varios actores favoritos de un usuario
