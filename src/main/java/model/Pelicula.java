@@ -8,18 +8,27 @@ public class Pelicula {
 	private String nacionalidad;
 	private String anioEstreno;
 	private String descripcion;
+	private String imagePath;
 
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 	public Pelicula(String nombre, String nacionalidad, String anioEstreno) {
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
 		this.anioEstreno = anioEstreno;
 	}
-	public Pelicula(long id, String nombre, String nacionalidad, String anioEstreno, String desc) {
+	public Pelicula(long id, String nombre, String nacionalidad, String anioEstreno, String desc, String unPath) {
 		this.id = id;
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
 		this.anioEstreno = anioEstreno;
 		this.descripcion = desc;
+		this.imagePath = unPath;
 	}
 	
 	public Pelicula(){

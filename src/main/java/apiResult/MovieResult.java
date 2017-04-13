@@ -3,6 +3,7 @@ package apiResult;
 import java.util.List;
 
 import model.Pelicula;
+import tacs.ConfigHolder;
 
 public class MovieResult {
 	
@@ -22,7 +23,8 @@ public class MovieResult {
 	private int vote_average;
 	
 	public Pelicula toMovie() {
-		return new Pelicula(id, title, original_language, release_date, overview);
+		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + poster_path;
+		return new Pelicula(id, title, original_language, release_date, overview, path);
 	}
 	
 	public MovieResult() {

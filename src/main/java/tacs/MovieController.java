@@ -28,6 +28,7 @@ public class MovieController {
 	private final String baseUri = "https://api.themoviedb.org/3/";
 	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
 	
+	//Buscar peliculas, si no se especifica un filtro trae las populares del momento
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Pelicula> getPeliculas(@RequestParam("query") Optional<String> queryString) {
 		logger.info("getPeliculas()");
@@ -36,22 +37,9 @@ public class MovieController {
 			MovieListResult resultadoRequest = api.getForObject(baseUri + "search/movie?" + apiKey + "&query=" + queryString.get(), MovieListResult.class);
 			return resultadoRequest.toMovieList();
 		}
-		return RepoPeliculas.getInstance().getAllPeliculas();
-	}
-	
-	@RequestMapping("/tmdb")
-	public List<Pelicula> getPeliculasTmdb() {
-		List<Pelicula> listaFinal;
 		
-		try {
-			logger.info("Haciendo query a url: " + baseUri + "/movie/popular?" + apiKey);
-//			jsonAnswer = api.getForObject(baseUri + "/movie/popular?" + apiKey, String.class);
-			MovieListResult resultadoRequest = api.getForObject(baseUri + "/movie/popular?" + apiKey, MovieListResult.class);
-			listaFinal = resultadoRequest.toMovieList();
-		} catch(Exception e) {
-			listaFinal = new ArrayList<Pelicula>();
-		}
-		return listaFinal;
+		MovieListResult resultadoRequest = api.getForObject(baseUri + "/movie/popular?" + apiKey, MovieListResult.class);
+		return resultadoRequest.toMovieList();
 	}
 	
 	@RequestMapping("/{id}")
