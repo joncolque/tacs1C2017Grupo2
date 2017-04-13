@@ -37,6 +37,13 @@ public class ActorController {
 		logger.info("getActores()");
 		return repoActores.getAllActores();
 	}
+	
+	// Post de prueba
+		@RequestMapping(value="/prueba", method = RequestMethod.POST)
+		public Response createActor(@RequestBody Actor actor) {
+			logger.info("createActor(actor)");
+			return new Response(200, "ok");
+		}
 
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
 	public Actor getActorById(@PathVariable("actor") Long actor) {
