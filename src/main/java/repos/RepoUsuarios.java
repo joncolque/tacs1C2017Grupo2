@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import hierarchyOfExceptions.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
 import model.Usuario;;
@@ -32,7 +33,7 @@ public class RepoUsuarios {
 		List<Usuario> auxUsers = usuarios.stream().filter(usuario -> usuario.getUsername().toUpperCase().equals(nombre.toUpperCase()) && usuario.getPassword().equals(pass)).collect(Collectors.toList());
 		
 		if(auxUsers.isEmpty()){
-			throw new Exception("Usuario Incorrecto");
+			throw new UserNotFoundException("Usuario Incorrecto");
 		}
 		
 		return auxUsers.get(0);

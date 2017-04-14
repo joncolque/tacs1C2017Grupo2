@@ -26,7 +26,7 @@ public class LoginController {
 			return new Response(200, String.format("Usario: %s, con rol: %s logueado" , user.getUsername(),user.getRol().getName()));
 		}catch (Exception e) {
 			logger.error("ingresar().catch");
-			return new Response(404, e.getMessage());
+			return new Response(401, e.getMessage());
 		}
 	}
 	
