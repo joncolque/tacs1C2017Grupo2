@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.catalina.SessionIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import apiResult.MovieListResult;
 import model.Actor;
 import model.MovieList;
 import model.Pelicula;
@@ -25,11 +28,21 @@ import repos.RepoPeliculas;
 public class MovieListController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private RestTemplate api = new RestTemplate();
+	private final String baseUri = "https://api.themoviedb.org/3/";
+	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
 	
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
 	public Response createMovielist(@RequestBody MovieList lista) {
-	logger.info("createMovieList()");
+		logger.info("createMovieList()");
+	
+		//Required
+//		String header = "application/json;charset=utf-8";
+		String sessionId = "&session_id=";
+		
+		api.postForEntity(baseUri + "list?" + apiKey + sessionId , lista, MovieList.class);
+		 
 		return new Response(201, "Lista creada exitosamente!");
 	}
 	
