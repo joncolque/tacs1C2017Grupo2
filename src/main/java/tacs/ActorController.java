@@ -43,40 +43,10 @@ public class ActorController extends AbstractController {
 	}
 
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
-	public Actor getActorById(@PathVariable("actor") long actor) {
-		logger.info("getActorById: "+actor);
-		try {
-			URL url = new URL("https://api.themoviedb.org/3/person/2?language=en-US&api_key=3eb489d424860bc6870dc6776d05f6b9");
-			try {
-				URLConnection con = url.openConnection();
-				con.connect();
-				
-				//con.getInputStream();
-				
-				InputStream stream = con.getInputStream();
-				BufferedReader in = new BufferedReader(new InputStreamReader(stream));
-				String result = in.readLine();
-				System.out.println(result);
-				in.close();
-			} catch (IOException e) {
-				logger.error("getActorById().catch(IOException)");
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (MalformedURLException e) {
-			logger.error("getActorById().catch(MalformedURLException)");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return repoActores.getActorById(actor);
-	}
-	
-	@RequestMapping(value="/1/{actor}", method = RequestMethod.GET)
-	public Actor getActorById1(@PathVariable("actor") Long idactor) throws ParseException {
-		logger.info("getActor1()");
-		ActorResult actorR = api.getForObject("https://api.themoviedb.org/3/person/2?language=en-US&api_key=3eb489d424860bc6870dc6776d05f6b9", ActorResult.class);
-		ActorCastResult actorCastR = api.getForObject("https://api.themoviedb.org/3/person/2/movie_credits?language=en-US&api_key=3eb489d424860bc6870dc6776d05f6b9", ActorCastResult.class);
+	public Actor getActorById(@PathVariable("actor") long idactor) throws ParseException {
+		logger.info("getActor()");
+		ActorResult actorR = api.getForObject(BASE_URL + "/person/"+ idactor + "?" + API_KEY, ActorResult.class);
+		ActorCastResult actorCastR = api.getForObject(BASE_URL+ "/person/"+ idactor +"/movie_credits?"+ API_KEY, ActorCastResult.class);
 		Actor actor = actorR.toActor();
 		actor.listMovie(actorCastR);
 		return actor;
