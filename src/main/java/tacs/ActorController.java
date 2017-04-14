@@ -39,7 +39,7 @@ public class ActorController {
 	}
 
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
-	public Actor getActorById(@PathVariable("actor") Long actor) {
+	public Actor getActorById(@PathVariable("actor") long actor) {
 		logger.info("getActorById: "+actor);
 		try {
 			URL url = new URL("https://api.themoviedb.org/3/person/2?language=en-US&api_key=3eb489d424860bc6870dc6776d05f6b9");

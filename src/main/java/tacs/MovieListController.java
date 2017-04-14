@@ -48,14 +48,14 @@ public class MovieListController {
 	
 	// Agregar pelicula a la lista
 	@RequestMapping(value="/{movielist}", method=RequestMethod.PUT)
-	public Response addMovieToList(@PathVariable("movielist") Long movielist, @RequestBody Long idPelicula) {
+	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody long idPelicula) {
 		logger.info("addMovieList()");
 		return new Response(200,"Pelicula agregada correctamente.");
 	}
 	
 	// Consultar lista de peliculas
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
-	public List<Pelicula> getMovielistById(@PathVariable("movielist") Long movielist) {
+	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist) {
 		logger.info("getMovielistForUserId()");
 		List<Pelicula> listaFavoritos = new ArrayList<Pelicula>();
 		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(1));
@@ -65,7 +65,7 @@ public class MovieListController {
 	
 	// Eliminar pelicula de la lista
 	@RequestMapping(value="/{movielist}/{pelicula}", method=RequestMethod.DELETE)
-	public Response deleteMovieFromUserListById(@PathVariable("movielist") Long movielist, @PathVariable("pelicula") Long pelicula) {
+	public Response deleteMovieFromUserListById(@PathVariable("movielist") long movielist, @PathVariable("pelicula") long pelicula) {
 		logger.info("deleteMovieFromUserListId()");
 		return new Response(200,"Pelicula borrada de la lista con exito.");
 	}
@@ -81,7 +81,7 @@ public class MovieListController {
 	
 	// Ranking de actores que se repiten en las peliculas de una lista
 	@RequestMapping(value="/{movielist}/actoresRepetidos/", method=RequestMethod.GET)
-	public List<Actor> getRankingFromMovie(@PathVariable("movielist") Long movielist) {
+	public List<Actor> getRankingFromMovie(@PathVariable("movielist") long movielist) {
 		logger.info("getRankingFromMovie()");
 		List<Actor> actoresFavoritos = new ArrayList<Actor>();
 		actoresFavoritos.add(RepoActores.getInstance().getActorById(0));

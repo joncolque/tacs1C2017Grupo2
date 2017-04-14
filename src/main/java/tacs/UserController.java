@@ -36,7 +36,7 @@ public class UserController {
 	
 	// Mostrar Detalle de un usuario
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public Usuario getUsuarioById(@PathVariable("id") Long id) {
+	public Usuario getUsuarioById(@PathVariable("id") long id) {
 		logger.info("getUsuarioById()");
 		return new Usuario(id, "alumnos-utn", "123456");
 	}
@@ -60,14 +60,14 @@ public class UserController {
 	
 	// Marcar como favorito a un actor
 	@RequestMapping(value = "/{usuario}/favorito/{actor}", method = RequestMethod.PUT)
-	public Response addActorFavorito(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) {
+	public Response addActorFavorito(@PathVariable("usuario") long usuario, @PathVariable("actor") long actor) {
 		logger.info("addActorFavorito()");
 		return new Response(200, "Accion realizada correctamente");
 	}
 	
 	// Desmarcar como favorito a un actor
 	@RequestMapping(value = "/{usuario}/favorito/{actor}", method = RequestMethod.DELETE)
-	public Response removeActorFavorito(@PathVariable("usuario") Long usuario, @PathVariable("actor") Long actor) {
+	public Response removeActorFavorito(@PathVariable("usuario") long usuario, @PathVariable("actor") long actor) {
 		logger.info("removeActorFavorito()");
 		return new Response(200, "Accion realizada correctamente");
 	}
