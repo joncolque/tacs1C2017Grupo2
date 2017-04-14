@@ -25,13 +25,8 @@ import repos.RepoPeliculas;
 
 @RestController
 @RequestMapping("/movielist")
-public class MovieListController {
+public class MovieListController extends AbstractController{
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private RestTemplate api = new RestTemplate();
-	private final String baseUri = "https://api.themoviedb.org/3/";
-	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
-	
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
 	public Response createMovielist(@RequestBody MovieList lista) {
@@ -41,7 +36,7 @@ public class MovieListController {
 //		String header = "application/json;charset=utf-8";
 		String sessionId = "&session_id=";
 		
-		api.postForEntity(baseUri + "list?" + apiKey + sessionId , lista, MovieList.class);
+		api.postForEntity(BASE_URL + "list?" + API_KEY + sessionId , lista, MovieList.class);
 		 
 		return new Response(201, "Lista creada exitosamente!");
 	}

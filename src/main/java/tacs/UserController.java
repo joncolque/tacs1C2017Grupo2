@@ -23,9 +23,7 @@ import repos.RepoUsuarios;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UserController {
-	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+public class UserController extends AbstractController{
 	
 	// Lista de Usuarios
 	@RequestMapping(method = RequestMethod.GET)

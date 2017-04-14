@@ -22,31 +22,28 @@ import repos.RepoPeliculas;
 
 @RestController
 @RequestMapping("/peliculas")
-public class MovieController {
+public class MovieController extends AbstractController{
 	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private RestTemplate api = new RestTemplate();
-	private final String baseUri = "https://api.themoviedb.org/3/";
-	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
+	
 	
 	//Buscar peliculas, si no se especifica un filtro trae las populares del momento
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Pelicula> getPeliculas(@RequestParam("query") Optional<String> queryString) {
 		logger.info("getPeliculas()");
 		if (queryString.isPresent()) {
-			logger.info("Request url: " + baseUri + "search/movie?" + apiKey + "&query=" + queryString.get());
-			MovieListResult resultadoRequest = api.getForObject(baseUri + "search/movie?" + apiKey + "&query=" + queryString.get(), MovieListResult.class);
+			logger.info("Request url: " + BASE_URL + "search/movie?" + API_KEY + "&query=" + queryString.get());
+			MovieListResult resultadoRequest = api.getForObject(BASE_URL + "search/movie?" + API_KEY + "&query=" + queryString.get(), MovieListResult.class);
 			return resultadoRequest.toMovieList();
 		}
 		
-		MovieListResult resultadoRequest = api.getForObject(baseUri + "/movie/popular?" + apiKey, MovieListResult.class);
+		MovieListResult resultadoRequest = api.getForObject(BASE_URL + "/movie/popular?" + API_KEY, MovieListResult.class);
 		return resultadoRequest.toMovieList();
 	}
 	
 	@RequestMapping("/{id}")
 	public Pelicula getPeliculaById(@PathVariable("id") Long id) {
 		logger.info("getPeliculaById()");
-		MovieResult pelicula = api.getForObject(baseUri + "/movie/" + id.toString() + "?" + apiKey, MovieResult.class);
+		MovieResult pelicula = api.getForObject(BASE_URL + "/movie/" + id.toString() + "?" + API_KEY, MovieResult.class);
 		return pelicula.toMovie();
 	}
 	

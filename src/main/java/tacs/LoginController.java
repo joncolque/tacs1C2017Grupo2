@@ -14,9 +14,7 @@ import repos.RepoUsuarios;
 
 
 @RestController
-public class LoginController {
-
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+public class LoginController extends AbstractController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Response ingresar(@RequestParam(value = "name", required = true) String name,@RequestParam(value = "pass", required = true) String pass) {
