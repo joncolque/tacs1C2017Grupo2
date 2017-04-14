@@ -30,7 +30,7 @@ public class MovieListController {
 	@RequestMapping(method=RequestMethod.POST)
 	public Response createMovielist(@RequestBody MovieList lista) {
 	logger.info("createMovieList()");
-		return new Response(200, "Lista creada exitosamente!");
+		return new Response(201, "Lista creada exitosamente!");
 	}
 	
 	// Agregar pelicula a la lista

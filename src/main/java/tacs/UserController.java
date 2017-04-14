@@ -43,10 +43,10 @@ public class UserController {
 	
 	// Crear nuevo usuario
 	@RequestMapping(method = RequestMethod.POST)
-	public Usuario addUser(@RequestBody Usuario user) {
+	public Response addUser(@RequestBody Usuario user) {
 		logger.info("addUser()");
 		RepoUsuarios.getInstance().addUsuario(user);
-		return user;
+		return new Response(201, "El usuario " + user.getUsername() + " ha sido creado");
 	}
 	
 	// Lista de actores favoritos
