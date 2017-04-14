@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import apiResult.ActorResult;
+import apiResult.MovieResult;
 import model.Actor;
 import model.FavoritoActor;
 import model.Response;
@@ -30,7 +34,9 @@ public class ActorController {
 	
 	private RepoActores repoActores = RepoActores.getInstance();
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+	private RestTemplate api = new RestTemplate();
+	private final String baseUri = "https://api.themoviedb.org/3/";
+	private final String apiKey = "api_key=3eb489d424860bc6870dc6776d05f6b9";
 	// Lista de actores
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Actor> getActores() {
@@ -66,6 +72,13 @@ public class ActorController {
 			e.printStackTrace();
 		}
 		return repoActores.getActorById(actor);
+	}
+	
+	@RequestMapping(value="/1/{actor}", method = RequestMethod.GET)
+	public Actor getActorById1(@PathVariable("actor") Long actor) throws ParseException {
+		logger.info("getActor1()");
+		ActorResult actorR = api.getForObject("https://api.themoviedb.org/3/person/2?language=en-US&api_key=3eb489d424860bc6870dc6776d05f6b9", ActorResult.class);
+		return actorR.toActor();
 	}
 	
 	// Ranking de actores favoriteados

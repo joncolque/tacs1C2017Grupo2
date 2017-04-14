@@ -7,9 +7,9 @@ public class Actor {
 	private String nombre;
 	private int edad;
 	private String lugarNac;
-	private Date fechaNac;
+	private String fechaNac;
 	
-	public Actor(String unNombre, int unaEdad, String unLugar, Date unaFecha) {
+	public Actor(String unNombre, int unaEdad, String unLugar, String unaFecha) {
 		nombre = unNombre;
 		edad = unaEdad;
 		lugarNac = unLugar;
@@ -44,10 +44,10 @@ public class Actor {
 	public void setLugarNac(String lugarNac) {
 		this.lugarNac = lugarNac;
 	}
-	public Date getFechaNac() {
+	public String getFechaNac() {
 		return fechaNac;
 	}
-	public void setFechaNac(Date fechaNac) {
+	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 	
