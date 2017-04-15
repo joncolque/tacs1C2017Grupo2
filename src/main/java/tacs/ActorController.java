@@ -9,8 +9,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +36,9 @@ import model.FavoritoActor;
 import model.Pelicula;
 import model.Response;
 import model.SummaryActor;
+import model.Usuario;
+import repos.RepoUsuarios;
+import util.FavComparator;
 
 @RestController
 @RequestMapping("/actores")
@@ -71,9 +77,24 @@ public class ActorController extends AbstractController {
 	public List<FavoritoActor> rankingActores(){
 		logger.info("rankingActores()");
 		List<FavoritoActor> rankingActores = new ArrayList<FavoritoActor>();
-//		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(1), 5));
-//		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(0), 3));
-//		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(2), 2));
+		List<Usuario> usuarios = RepoUsuarios.getInstance().getAllUsuarios();
+		Set<SummaryActor> actoresYaPresentes = new HashSet<SummaryActor>();
+		for(Usuario u : usuarios) {
+			for(SummaryActor a : u.getIdsActoresFavoritos()) {
+				// si ya estaba le sumo uno, sino lo agrego a la lista
+				if (actoresYaPresentes.contains(a)) {
+					for(FavoritoActor fa : rankingActores) {
+						if (fa.getActor().equals(a)) {
+							fa.masUnFav();
+						}
+					}
+				} else {
+					rankingActores.add(new FavoritoActor(a, 1));
+					actoresYaPresentes.add(a);
+				}
+			}
+		}
+		rankingActores.sort(new FavComparator());
 		return rankingActores;
 	}
 	

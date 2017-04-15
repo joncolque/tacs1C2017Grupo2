@@ -2,18 +2,18 @@ package model;
 
 public class FavoritoActor {
 	
-	private Actor actor;
+	private SummaryActor actor;
 	private int cantidadFavoritos;
 	
-	public FavoritoActor(Actor unActor, int unNumero) {
+	public FavoritoActor(SummaryActor unActor, int unNumero) {
 		actor = unActor;
 		cantidadFavoritos = unNumero;
 	}
 	
-	public Actor getActor() {
+	public SummaryActor getActor() {
 		return actor;
 	}
-	public void setActor(Actor actor) {
+	public void setActor(SummaryActor actor) {
 		this.actor = actor;
 	}
 	public int getCantidadFavoritos() {
@@ -21,6 +21,9 @@ public class FavoritoActor {
 	}
 	public void setCantidadFavoritos(int cantidadFavoritos) {
 		this.cantidadFavoritos = cantidadFavoritos;
+	}
+	public void masUnFav() {
+		cantidadFavoritos++;
 	}
 
 }

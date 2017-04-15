@@ -25,6 +25,8 @@ public class Application {
 		Rol usr = new Rol("Usuario");
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Alvaro").pass("1234").rol(adm).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Guille").pass("1234").rol(usr).build());
+		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Martin").pass("1234").rol(usr).build());
+		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Julio").pass("1234").rol(usr).build());
 	}
 }
 

@@ -25,7 +25,7 @@
 				{
 					"name": "Actor by ID",
 					"request": {
-						"url": "http://localhost:8080/actores/0",
+						"url": "http://localhost:8080/actores/10990",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -41,6 +41,17 @@
 						"header": [],
 						"body": {},
 						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Actores segun un query string",
+					"request": {
+						"url": "http://localhost:8080/actores?query=Keanu",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Lista de actores"
 					},
 					"response": []
 				}
@@ -171,7 +182,7 @@
 				{
 					"name": "Peliculas by ID",
 					"request": {
-						"url": "http://localhost:8080/peliculas/0",
+						"url": "http://localhost:8080/peliculas/11",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -205,6 +216,17 @@
 					"name": "Peliculas populares en tmdb",
 					"request": {
 						"url": "http://localhost:8080/peliculas/tmdb",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar peliculas segun un query string",
+					"request": {
+						"url": "http://localhost:8080/peliculas?query=star+wars",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -263,7 +285,7 @@
 				{
 					"name": "Actores favoritos de un Usuario",
 					"request": {
-						"url": "http://localhost:8080/usuarios/0/actoresFavoritos",
+						"url": "http://localhost:8080/usuarios/1/actoresFavoritos",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -272,10 +294,21 @@
 					"response": []
 				},
 				{
-					"name": "Des/Favoritear Actor",
+					"name": "Favoritear Actor",
 					"request": {
-						"url": "http://localhost:8080/usuarios/0/favorito/0",
+						"url": "http://localhost:8080/usuarios/4/favorito/10990",
 						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Desfavoritear Actor copy",
+					"request": {
+						"url": "http://localhost:8080/usuarios/1/favorito/1245",
+						"method": "DELETE",
 						"header": [],
 						"body": {},
 						"description": ""
