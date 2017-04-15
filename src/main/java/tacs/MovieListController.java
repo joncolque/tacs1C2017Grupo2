@@ -20,6 +20,7 @@ import model.Actor;
 import model.MovieList;
 import model.Pelicula;
 import model.Response;
+import model.Usuario;
 
 @RestController
 @RequestMapping("/movielist")
@@ -41,8 +42,13 @@ public class MovieListController extends AbstractController{
 	
 	// Agregar pelicula a la lista
 	@RequestMapping(value="/{movielist}", method=RequestMethod.PUT)
-	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody long idPelicula) {
+	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli) {
 		logger.info("addMovieList()");
+		
+		//usuario harcodeado. Cambiar por el real
+		Usuario user = new Usuario(1234, "rodolfo", "123");
+		
+		user.addPeliculaToList(movielist, peli);
 		return new Response(200,"Pelicula agregada correctamente.");
 	}
 	

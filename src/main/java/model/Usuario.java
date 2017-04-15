@@ -2,13 +2,14 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Usuario {
 	
 	private long id;
 	private String username;
 	private String password; //nota va a ser un salted hash a futuro?
-	private List<Pelicula> listaPeliculas;
+	private List<MovieList> listaMovieList;
 	private Rol rol;
 	private List<SummaryActor> actoresFavoritos;
 
@@ -16,12 +17,12 @@ public class Usuario {
 		id = unId;
 		username = unUser;
 		password = unaPass;
-		listaPeliculas = new ArrayList<Pelicula>();
+		listaMovieList = new ArrayList<MovieList>();
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 	
 	public Usuario() {
-		listaPeliculas = new ArrayList<Pelicula>();
+		listaMovieList = new ArrayList<MovieList>();
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 
@@ -50,14 +51,17 @@ public class Usuario {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-	public List<Pelicula> getListaPeliculas() {
-		return listaPeliculas;
+	public List<MovieList> getListaMovieList() {
+		return listaMovieList;
 	}
-	public void setListaPeliculas(List<Pelicula> listaPeliculas) {
-		this.listaPeliculas = listaPeliculas;
+	public MovieList getListaPeliculas(Long idLista) {
+		return listaMovieList.stream().filter(ml->ml.getId()==idLista).collect(Collectors.toList()).get(0);
 	}
-	public void addPeliculaToList(Pelicula unaPeli) {
-		this.listaPeliculas.add(unaPeli);
+	public void setListaPeliculas(List<MovieList> listaPeliculas) {
+		this.listaMovieList = listaPeliculas;
+	}
+	public void addPeliculaToList(Long idLista, Pelicula unaPeli) {
+		getListaPeliculas(idLista).addPelicula(unaPeli);
 	}
 	public List<SummaryActor> getIdsActoresFavoritos() {
 		return this.actoresFavoritos;
