@@ -37,23 +37,36 @@ public class MovieListController extends AbstractController{
 	
 	// Agregar pelicula a la lista
 	@RequestMapping(value="/{movielist}/{userid}", method=RequestMethod.PUT)
-	public void addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli, @PathVariable("userid") long userId) throws UserNotFoundException {
+	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli, @PathVariable("userid") long userId) throws UserNotFoundException {
 		logger.info("addMovieList()");
 	
+		//Cargo usuario
 		Usuario user = RepoUsuarios.getInstance().getUserById(userId);
 		
 		user.addPeliculaToList(movielist, peli);
-		
+		return new Response(200, "Pelicula agregada correctamente");
 	}
 	
 	// Consultar lista de peliculas
-	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
-	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist) {
+	@RequestMapping(value="/{movielist}/{userid}", method=RequestMethod.GET)
+	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist, @PathVariable("userid") long userId) throws UserNotFoundException {
 		logger.info("getMovielistForUserId()");
-		List<Pelicula> listaFavoritos = new ArrayList<Pelicula>();
-//		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(1));
-//		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(0));
-		return listaFavoritos;
+		
+		//Cargo usuario
+		Usuario user = RepoUsuarios.getInstance().getUserById(userId);
+
+		return user.getListaPeliculas(movielist).getListaPeliculas();
+	}
+	
+	// Consultar listas
+	@RequestMapping(value="/{userid}", method=RequestMethod.GET)
+	public List<MovieList> getList(@PathVariable("userid") long userId) throws UserNotFoundException {
+		logger.info("getMovielistForUserId()");
+		
+		//Cargo usuario
+		Usuario user = RepoUsuarios.getInstance().getUserById(userId);
+
+		return user.getListaMovieList();
 	}
 	
 	// Eliminar pelicula de la lista
