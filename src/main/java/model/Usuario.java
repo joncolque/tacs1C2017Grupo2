@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Usuario {
@@ -54,9 +55,11 @@ public class Usuario {
 	public List<MovieList> getListaMovieList() {
 		return listaMovieList;
 	}
-	public MovieList getListaPeliculas(Long idLista) {
-		return listaMovieList.stream().filter(ml->ml.getId()==idLista).collect(Collectors.toList()).get(0);
+	public MovieList getListaPeliculas(long idLista) {
+		Optional<MovieList> lista = listaMovieList.stream().filter(ml -> ml.getId()==idLista).findFirst();
+		return lista.isPresent() ? lista.get() : null;
 	}
+	
 	public void setListaPeliculas(List<MovieList> listaPeliculas) {
 		this.listaMovieList = listaPeliculas;
 	}

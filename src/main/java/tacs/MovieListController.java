@@ -38,10 +38,14 @@ public class MovieListController extends AbstractController{
 	}
 	
 	// Agregar pelicula a la lista
-	@RequestMapping(value="/{movielist}", method=RequestMethod.PUT)
-	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody long idPelicula) {
+	@RequestMapping(value="/{movielist}/{userid}", method=RequestMethod.PUT)
+	public void addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli, @PathVariable("userid") long userId) throws UserNotFoundException {
 		logger.info("addMovieList()");
-		return new Response(200,"Pelicula agregada correctamente.");
+	
+		Usuario user = RepoUsuarios.getInstance().getUserById(userId);
+		
+		user.addPeliculaToList(movielist, peli);
+		
 	}
 	
 	// Consultar lista de peliculas
