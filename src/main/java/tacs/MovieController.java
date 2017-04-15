@@ -1,5 +1,6 @@
 package tacs;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import apiResult.Configuration;
 import apiResult.MovieListResult;
 import apiResult.MovieResult;
 import model.Pelicula;
@@ -29,7 +28,6 @@ public class MovieController extends AbstractController{
 	//Buscar peliculas, si no se especifica un filtro trae las populares del momento
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Pelicula> getPeliculas(@RequestParam("query") Optional<String> queryString) {
-		logger.info("getPeliculas()");
 		if (queryString.isPresent()) {
 			logger.info("Request url: " + BASE_URL + "search/movie?" + API_KEY + "&query=" + queryString.get());
 			MovieListResult resultadoRequest = api.getForObject(BASE_URL + "search/movie?" + API_KEY + "&query=" + queryString.get(), MovieListResult.class);

@@ -9,7 +9,6 @@ import apiResult.MovieCastResult;
 public class Actor {
 	private long id;
 	private String nombre;
-	private int edad;
 	private String biography;
 	private String lugarNac;
 	private String fechaNac;
@@ -17,9 +16,8 @@ public class Actor {
 	private List<MovieCastResult> listaPeliculas;
 	
 	
-	public Actor(String unNombre,String unBiography, int unaEdad, String unLugar, String unaFecha, String unPath) {
+	public Actor(String unNombre,String unBiography, String unLugar, String unaFecha, String unPath) {
 		nombre = unNombre;
-		edad = unaEdad;
 		biography = unBiography;
 		lugarNac = unLugar;
 		fechaNac = unaFecha;
@@ -66,12 +64,7 @@ public class Actor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getEdad() {
-		return edad;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
+
 	public String getLugarNac() {
 		return lugarNac;
 	}

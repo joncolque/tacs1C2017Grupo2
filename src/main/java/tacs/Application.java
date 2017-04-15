@@ -28,9 +28,9 @@ public class Application {
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Alvaro").pass("1234").rol(adm).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Guille").pass("1234").rol(usr).build());
 		
-		RepoActores.getInstance().addActor(new Actor("Tom Cruise","Tom Cruise biography", 50, "New York, USA", new Date(30, 10, 1950).toString(), "Tom Cruise Image"));
-		RepoActores.getInstance().addActor(new Actor("Jeremy Renner","Jeremy Renner biography", 42, "New Jersey, USA", new Date(15, 8, 1958).toString(), "Jeremy Renner Image"));
-		RepoActores.getInstance().addActor(new Actor("Ricardo Darin","Ricardo Darin biography", 53, "Buenos Aires, ARG", new Date(3, 3, 1947).toString(), "Ricardo Darin Image"));
+		RepoActores.getInstance().addActor(new Actor("Tom Cruise","Tom Cruise biography", "New York, USA", new Date(30, 10, 1950).toString(), "Tom Cruise Image"));
+		RepoActores.getInstance().addActor(new Actor("Jeremy Renner","Jeremy Renner biography", "New Jersey, USA", new Date(15, 8, 1958).toString(), "Jeremy Renner Image"));
+		RepoActores.getInstance().addActor(new Actor("Ricardo Darin","Ricardo Darin biography",  "Buenos Aires, ARG", new Date(3, 3, 1947).toString(), "Ricardo Darin Image"));
 		
 		
 		RepoPeliculas.getInstance().addPelicula(new Pelicula("Noé", "USA", "2014"));

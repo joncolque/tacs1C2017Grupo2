@@ -6,6 +6,9 @@ import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import model.Actor;
 import model.Pelicula;
 import tacs.ConfigHolder;
@@ -23,6 +26,7 @@ public class ActorResult {
 	private String place_of_birth;
 	private int popularity;
 	private String profile_path;
+	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
 	// GETTERS and SETTERS
@@ -119,27 +123,8 @@ public class ActorResult {
 		
 	}
 	
-	public Actor toActor() throws ParseException{
+	public Actor toActor(){
 		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
-		return new Actor(name, biography, getEdad(), place_of_birth, birthday, path);
-	}
-
-	private int getEdad() throws ParseException {
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-		Date fechaNac = formater.parse(birthday);
-	    calendar.setTime(fechaNac);
-	    int anioNac = calendar.get(Calendar.YEAR);
-	    
-		if(deathday.isEmpty()){
-			calendar = Calendar.getInstance();
-			int anioActual = calendar.get(Calendar.YEAR);
-		    return anioActual - anioNac;
-		}else{
-			Date fechaMu = formater.parse(deathday);
-		    calendar.setTime(fechaMu);
-			int anioMu = calendar.get(Calendar.YEAR);
-			return anioMu - anioNac;
-		}
+		return new Actor(name, biography, place_of_birth, birthday, path);
 	}
 }
