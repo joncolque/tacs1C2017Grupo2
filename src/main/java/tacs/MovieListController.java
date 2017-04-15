@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import apiResult.MovieListResult;
+import hierarchyOfExceptions.UserNotFoundException;
 import model.Actor;
 import model.MovieList;
 import model.Pelicula;
 import model.Response;
+import model.Usuario;
+import repos.RepoUsuarios;
 
 @RestController
 @RequestMapping("/movielist")
@@ -27,16 +30,17 @@ public class MovieListController extends AbstractController{
 
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
-	public Response createMovielist(@RequestBody MovieList lista) {
+	public void createMovielist(@RequestBody MovieList lista) throws UserNotFoundException {
 		logger.info("createMovieList()");
+		Usuario user = RepoUsuarios.getInstance().getUserById(lista.getUserId());
 	
-		//Required
-//		String header = "application/json;charset=utf-8";
-		String sessionId = "&session_id=";
+//		//Required
+////		String header = "application/json;charset=utf-8";
+//		String sessionId = "&session_id=";
+//		
+//		api.postForEntity(BASE_URL + "list?" + API_KEY + sessionId , lista, MovieList.class);
+
 		
-		api.postForEntity(BASE_URL + "list?" + API_KEY + sessionId , lista, MovieList.class);
-		 
-		return new Response(201, "Lista creada exitosamente!");
 	}
 	
 	// Agregar pelicula a la lista
