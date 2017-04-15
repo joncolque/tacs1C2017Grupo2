@@ -64,11 +64,7 @@ public class UserController extends AbstractController{
 			logger.error("Usuario inexistente");
 			return null;
 		}
-
-		for (long a : user.getIdsActoresFavoritos()) {
-			actoresFavoritos.add(controladorActores.getSumActorById(a));
-		}
-		return actoresFavoritos;
+		return user.getIdsActoresFavoritos();
 	}		
 	
 	// Marcar como favorito a un actor
@@ -77,7 +73,7 @@ public class UserController extends AbstractController{
 		logger.info("addActorFavorito()");
 		
 		try {
-			RepoUsuarios.getInstance().getUserById(usuario).addIdActorFavorito(actor);
+			RepoUsuarios.getInstance().getUserById(usuario).addIdActorFavorito(controladorActores.getSumActorById(actor));
 		} catch(UserNotFoundException e) {
 			logger.error(e.getMessage());
 			return new Response(404, "Usuario inexistente");
@@ -91,7 +87,7 @@ public class UserController extends AbstractController{
 	public Response removeActorFavorito(@PathVariable("usuario") long usuario, @PathVariable("actor") long actor) {
 		logger.info("removeActorFavorito()");
 		try {
-			RepoUsuarios.getInstance().getUserById(usuario).removeIdActorFavorito(actor);
+			RepoUsuarios.getInstance().getUserById(usuario).removeIdActorFavorito(controladorActores.getSumActorById(actor));
 		} catch(UserNotFoundException e) {
 			logger.error(e.getMessage());
 			return new Response(404, "Usuario inexistente");

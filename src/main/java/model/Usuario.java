@@ -10,19 +10,19 @@ public class Usuario {
 	private String password; //nota va a ser un salted hash a futuro?
 	private List<Pelicula> listaPeliculas;
 	private Rol rol;
-	private List<Long> actoresFavoritos;
+	private List<SummaryActor> actoresFavoritos;
 
 	public Usuario(long unId, String unUser, String unaPass) {
 		id = unId;
 		username = unUser;
 		password = unaPass;
 		listaPeliculas = new ArrayList<Pelicula>();
-		actoresFavoritos = new ArrayList<Long>();
+		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 	
 	public Usuario() {
 		listaPeliculas = new ArrayList<Pelicula>();
-		actoresFavoritos = new ArrayList<Long>();
+		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 
 	public long getId() {
@@ -59,15 +59,15 @@ public class Usuario {
 	public void addPeliculaToList(Pelicula unaPeli) {
 		this.listaPeliculas.add(unaPeli);
 	}
-	public List<Long> getIdsActoresFavoritos() {
+	public List<SummaryActor> getIdsActoresFavoritos() {
 		return this.actoresFavoritos;
 	}
-	public void addIdActorFavorito(Long unId) {
+	public void addIdActorFavorito(SummaryActor unId) {
 		this.actoresFavoritos.add(unId);
 	}
-	public void removeIdActorFavorito(Long unId) {
-		for (long actor : actoresFavoritos) {
-			if (actor == unId) {
+	public void removeIdActorFavorito(SummaryActor unId) {
+		for (SummaryActor actor : actoresFavoritos) {
+			if (actor.equals(unId)) {
 				actoresFavoritos.remove(actor);
 			}
 		}
