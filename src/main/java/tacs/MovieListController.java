@@ -30,11 +30,9 @@ public class MovieListController extends AbstractController{
 	@RequestMapping(method=RequestMethod.POST)
 	public void createMovielist(@RequestBody MovieList aMovieList) throws UserNotFoundException {
 		logger.info("createMovieList()");
-		logger.info("***"+aMovieList.toString()+ aMovieList.getNombre()+aMovieList.getOwnerId().toString());
-		
-		Usuario user = RepoUsuarios.getInstance().getUserById(aMovieList.getOwnerId());
-
-		user.addMovieList(aMovieList);
+		aMovieList.setId();
+		logger.info("***"+aMovieList.toString()+ aMovieList.getNombre()+aMovieList.getOwnerId().toString(),aMovieList.getId().toString());
+		RepoUsuarios.getInstance().getUserById(aMovieList.getOwnerId()).addMovieList(aMovieList);
 	}
 	
 	// Agregar pelicula a la lista
