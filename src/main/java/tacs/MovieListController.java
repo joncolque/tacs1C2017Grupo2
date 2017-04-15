@@ -2,6 +2,10 @@ package tacs;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.Gson;
 
 import ch.qos.logback.core.util.SystemInfo;
 import hierarchyOfExceptions.UserNotFoundException;
@@ -21,6 +26,7 @@ import model.Pelicula;
 import model.Response;
 import model.Usuario;
 import repos.RepoUsuarios;
+import util.LongsWrapper;
 
 @RestController
 @RequestMapping("/movielist")
@@ -57,11 +63,22 @@ public class MovieListController extends AbstractController{
 	}
 	
 	// Eliminar pelicula de la lista
-	@RequestMapping(value="/{movielist}/{pelicula}", method=RequestMethod.DELETE)
-	public Response deleteMovieFromUserListById(@PathVariable("movielist") long movielist, @PathVariable("pelicula") long pelicula) {
-		logger.info("deleteMovieFromUserListId()");
-		return new Response(200,"Pelicula borrada de la lista con exito.");
+//	@RequestMapping(value="/{movielist}/{pelicula}", method=RequestMethod.DELETE)
+////	public Response deleteMovieFromUserListById(@PathVariable("movielist") long movielist, @PathVariable("pelicula") long pelicula) {
+////		logger.info("deleteMovieFromUserListId()");
+////		return new Response(200,"Pelicula borrada de la lista con exito.");
+////	}
+	
+	// Eliminar peliculas de la lista
+	@RequestMapping(value="/{movieListId}", method=RequestMethod.DELETE)
+	public void deleteMovieFromUserListById(@PathVariable("movieListId") long movieListId, @RequestBody LongsWrapper idMovies) {
+		logger.info("deleteMoviesFromUserListbyId()");
+		
+//		idMovies.getIds().stream().forEach(mId ->
+//		RepoUsuarios.getInstance().getUserById(userId).getListaPeliculas(movieListId).getListaPeliculas().removeIf(mv -> mv.getId()==mId);
+		
 	}
+
 	
 	// comparar dos listas de peliculas
 	@RequestMapping(value="/compare", method=RequestMethod.GET)
