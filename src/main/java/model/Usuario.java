@@ -12,7 +12,7 @@ public class Usuario {
 	private Long id;
 	private String username;
 	private String password; //nota va a ser un salted hash a futuro?
-	private List<MovieList> listaMovieList;
+	//private List<MovieList> listaMovieList;
 	private Rol rol;
 	private List<SummaryActor> actoresFavoritos;
 
@@ -20,12 +20,12 @@ public class Usuario {
 		id = unId;
 		username = unUser;
 		password = unaPass;
-		listaMovieList = new ArrayList<MovieList>();
+		//listaMovieList = new ArrayList<MovieList>();
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 	
 	public Usuario() {
-		listaMovieList = new ArrayList<MovieList>();
+		//listaMovieList = new ArrayList<MovieList>();
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 
@@ -54,20 +54,19 @@ public class Usuario {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-	public List<MovieList> getListaMovieList() {
-		return listaMovieList;
-	}
-	public MovieList getListaPeliculas(long idLista) {
-		Optional<MovieList> lista = listaMovieList.stream().filter(ml -> ml.getId()==idLista).findFirst();
-		return lista.isPresent() ? lista.get() : null;
-	}
+//	public List<MovieList> getListaMovieList() {
+//		return listaMovieList;
+//	}
 	
-	public void setListaPeliculas(List<MovieList> listaPeliculas) {
-		this.listaMovieList = listaPeliculas;
-	}
-	public void addPeliculaToList(Long idLista, Pelicula unaPeli) {
-		getListaPeliculas(idLista).addPelicula(unaPeli);
-	}
+//	public void setListaPeliculas(List<MovieList> listaPeliculas) {
+//		this.listaMovieList = listaPeliculas;
+//	}
+//	public void addPeliculaToList(Long idLista, Pelicula unaPeli) {
+//		getListaPeliculas(idLista).addPelicula(unaPeli);
+//	}
+//	public void addMovieList(MovieList unMovieList){
+//	listaMovieList.add(unMovieList);
+//}
 	public List<SummaryActor> getIdsActoresFavoritos() {
 		return this.actoresFavoritos;
 	}
@@ -81,8 +80,6 @@ public class Usuario {
 			}
 		}
 	}
-	public void addMovieList(MovieList unMovieList){
-		listaMovieList.add(unMovieList);
-	}
+
 
 }
