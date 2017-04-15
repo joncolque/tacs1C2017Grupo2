@@ -9,17 +9,17 @@ public class MovieList {
 	
 	private Long id;
 	private String nombre;
-	private String owner; //Usuario
+	private long ownerId; //Usuario
 	private List<Pelicula> listaPeliculas;
 	
 	public MovieList() {
 		listaPeliculas = new ArrayList<Pelicula>();
 	}
 	
-	public MovieList(String unNombre, String unUsuario) {
+	public MovieList(String unNombre, long unUserId) {
 		id = 0l;
 		nombre = unNombre;
-		owner = unUsuario;
+		ownerId = unUserId;
 //		try {
 //			owner = RepoUsuarios.getInstance().buscarUsuario(unUsuario);
 //		} catch(Exception e) {
@@ -44,6 +44,14 @@ public class MovieList {
 	public List<Pelicula> getListaPeliculas() {
 		return listaPeliculas;
 	}
+	public long getUserId() {
+		return ownerId;
+	}
+
+	public void setUserId(long userId) {
+		this.ownerId = userId;
+	}
+
 	public void addPelicula(Pelicula p) {
 		listaPeliculas.add(p);
 	}
