@@ -25,6 +25,7 @@ import model.MovieList;
 import model.Pelicula;
 import model.Response;
 import model.Usuario;
+import repos.RepoMoviesLists;
 import repos.RepoUsuarios;
 import util.LongsWrapper;
 
@@ -34,32 +35,34 @@ public class MovieListController extends AbstractController{
 
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
-	public void createMovielist(@RequestBody MovieList aMovieList) throws UserNotFoundException {
+	public void createMovielist(@RequestBody MovieList aMovieList){
 		logger.info("createMovieList()");
-		aMovieList.setId();
-		logger.info("***"+aMovieList.toString()+ aMovieList.getNombre()+aMovieList.getOwnerId().toString(),aMovieList.getId().toString());
-		RepoUsuarios.getInstance().getUserById(aMovieList.getOwnerId()).addMovieList(aMovieList);
+		RepoMoviesLists.getInstance().addMovieList(aMovieList);
 	}
 	
 	// Agregar pelicula a la lista
-	@RequestMapping(value="/{movielist}/{userid}", method=RequestMethod.PUT)
-	public void addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli, @PathVariable("userid") long userId) throws UserNotFoundException {
+	@RequestMapping(value="/{movielist}", method=RequestMethod.PUT)
+	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli){
 		logger.info("addMovieList()");
-	
-		Usuario user = RepoUsuarios.getInstance().getUserById(userId);
+		RepoMoviesLists.getInstance().getMovieList(movielist).addPelicula(peli);
 		
-		user.addPeliculaToList(movielist, peli);
-		
+		return new Response(200, "Pelicula agregada correctamente");
 	}
 	
 	// Consultar lista de peliculas
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
-	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist) {
-		logger.info("getMovielistForUserId()");
-		List<Pelicula> listaFavoritos = new ArrayList<Pelicula>();
-//		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(1));
-//		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(0));
-		return listaFavoritos;
+	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist){
+		logger.info("getMoviesForMoviesListId()");
+		
+		return RepoMoviesLists.getInstance().getMovieList(movielist).getListaPeliculas();
+	}
+	
+	// Consultar listas
+	@RequestMapping(method=RequestMethod.GET)
+	public List<MovieList> getList(){
+		logger.info("getAllMoviesLists()");
+
+		return RepoMoviesLists.getInstance().getAllMovieLists();
 	}
 	
 	// Eliminar pelicula de la lista
@@ -80,12 +83,13 @@ public class MovieListController extends AbstractController{
 	}
 
 	
-	// comparar dos listas de peliculas
+	// Comparar dos listas de peliculas
 	@RequestMapping(value="/compare", method=RequestMethod.GET)
 	public List<Pelicula> getMovielistComparison(@RequestParam("list1") long list1, @RequestParam("list2") long list2) {
 		logger.info("getMovielistComparison()");
 		List<Pelicula> peliculasEnComun = new ArrayList<Pelicula>();
 //		peliculasEnComun.add(RepoPeliculas.getInstance().getPeliculaById(1));
+		
 		return peliculasEnComun;
 	}
 	
