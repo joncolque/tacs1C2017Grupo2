@@ -86,7 +86,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nombre\":\"altasPelis\",\n  \"ownerId\":2\n}"
+							"raw": "{\n  \"nombre\":\"altasPelis\",\n  \"ownerId\":\n}"
 						},
 						"description": ""
 					},
@@ -119,6 +119,21 @@
 						"method": "DELETE",
 						"header": [],
 						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				
+				{
+					"name": "Borrar peliculas de lista",
+					"request": {
+						"url": "http://localhost:8080/{userId}/{movieListId}",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n  \"idMovie\":\"id\"}]"
+						},
 						"description": ""
 					},
 					"response": []

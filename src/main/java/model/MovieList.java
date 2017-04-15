@@ -9,31 +9,23 @@ public class MovieList {
 	private String nombre;
 	private Long ownerId; //Usuario
 	private List<Pelicula> listaPeliculas;
-	private static int counter = 1;	
-	
-	public static int getCounter() {
-		return counter;
-	}
-
 
 	public MovieList() {
 		listaPeliculas = new ArrayList<Pelicula>();
 	}
 	
-	public MovieList(String unNombre, long unUserId) {
-		this.id = (long) counter;
+	public MovieList(String unNombre, Long unUserId) {
 		nombre = unNombre;
 		ownerId = unUserId;
 		listaPeliculas = new ArrayList<Pelicula>();
-		counter++;
 	}
 	
 	public Long getId() {
 		return id;
 	}
-	public void setId() {
-		this.id = (long) counter;
-		counter++;
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -54,6 +46,12 @@ public class MovieList {
 
 	public void addPelicula(Pelicula p) {
 		listaPeliculas.add(p);
+	}
+	
+	public List<Pelicula> interseccion(List<Pelicula> lista1){
+		
+		
+		return lista1;
 	}
 
 }
