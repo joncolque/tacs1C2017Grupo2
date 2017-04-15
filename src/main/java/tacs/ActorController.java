@@ -27,19 +27,16 @@ import apiResult.ActorListResult;
 import apiResult.ActorResult;
 import apiResult.MovieListResult;
 import apiResult.MovieResult;
+import apiResult.SummaryActorResult;
 import model.Actor;
 import model.FavoritoActor;
 import model.Pelicula;
 import model.Response;
 import model.SummaryActor;
-import repos.RepoActores;
-import repos.RepoPeliculas;
 
 @RestController
 @RequestMapping("/actores")
 public class ActorController extends AbstractController {
-	
-	private RepoActores repoActores = RepoActores.getInstance();
 
 	// Lista de actores
 	@RequestMapping(method = RequestMethod.GET)
@@ -56,7 +53,7 @@ public class ActorController extends AbstractController {
 	}
 
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
-	public Actor getActorById(@PathVariable("actor") long idactor) throws ParseException {
+	public Actor getActorById(@PathVariable("actor") long idactor){
 		logger.info("getActor()");
 		ActorResult actorR = api.getForObject(BASE_URL + "person/"+ idactor + "?" + API_KEY, ActorResult.class);
 		ActorCastResult actorCastR = api.getForObject(BASE_URL+ "person/"+ idactor +"/movie_credits?"+ API_KEY, ActorCastResult.class);
@@ -65,14 +62,18 @@ public class ActorController extends AbstractController {
 		return actor;
 	}
 	
+	public SummaryActor getSumActorById(long idActor) {
+		return api.getForObject(BASE_URL + "person/"+ idActor + "?" + API_KEY, SummaryActorResult.class).toSumActor();
+	}
+	
 	// Ranking de actores favoriteados
 	@RequestMapping(value = "/rankingFavoritos", method = RequestMethod.GET)
 	public List<FavoritoActor> rankingActores(){
 		logger.info("rankingActores()");
 		List<FavoritoActor> rankingActores = new ArrayList<FavoritoActor>();
-		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(1), 5));
-		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(0), 3));
-		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(2), 2));
+//		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(1), 5));
+//		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(0), 3));
+//		rankingActores.add(new FavoritoActor(RepoActores.getInstance().getActorById(2), 2));
 		return rankingActores;
 	}
 	

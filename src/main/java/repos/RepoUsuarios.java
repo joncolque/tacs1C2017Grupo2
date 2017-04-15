@@ -49,6 +49,16 @@ public class RepoUsuarios {
 		return auxUsers.get(0);
 	}
 	
+	public Usuario getUserById(long id) throws UserNotFoundException {
+		for(Usuario u : usuarios) {
+			if (u.getId() == (id)) {
+				return u;
+			}
+		}
+		
+		throw new UserNotFoundException("Usuario invalido.");
+	}
+	
 	public List<Usuario> getAllUsuarios() {
 		return usuarios;
 	}	

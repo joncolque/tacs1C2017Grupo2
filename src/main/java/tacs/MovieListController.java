@@ -20,8 +20,6 @@ import model.Actor;
 import model.MovieList;
 import model.Pelicula;
 import model.Response;
-import repos.RepoActores;
-import repos.RepoPeliculas;
 
 @RestController
 @RequestMapping("/movielist")
@@ -53,8 +51,8 @@ public class MovieListController extends AbstractController{
 	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist) {
 		logger.info("getMovielistForUserId()");
 		List<Pelicula> listaFavoritos = new ArrayList<Pelicula>();
-		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(1));
-		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(0));
+//		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(1));
+//		listaFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(0));
 		return listaFavoritos;
 	}
 	
@@ -70,7 +68,7 @@ public class MovieListController extends AbstractController{
 	public List<Pelicula> getMovielistComparison(@RequestParam("list1") long list1, @RequestParam("list2") long list2) {
 		logger.info("getMovielistComparison()");
 		List<Pelicula> peliculasEnComun = new ArrayList<Pelicula>();
-		peliculasEnComun.add(RepoPeliculas.getInstance().getPeliculaById(1));
+//		peliculasEnComun.add(RepoPeliculas.getInstance().getPeliculaById(1));
 		return peliculasEnComun;
 	}
 	
@@ -79,7 +77,7 @@ public class MovieListController extends AbstractController{
 	public List<Actor> getRankingFromMovie(@PathVariable("movielist") long movielist) {
 		logger.info("getRankingFromMovie()");
 		List<Actor> actoresFavoritos = new ArrayList<Actor>();
-		actoresFavoritos.add(RepoActores.getInstance().getActorById(0));
+//		actoresFavoritos.add(RepoActores.getInstance().getActorById(0));
 		return actoresFavoritos;
 	}
 }

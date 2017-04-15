@@ -17,7 +17,6 @@ import apiResult.MovieListResult;
 import apiResult.MovieResult;
 import model.Pelicula;
 import model.Response;
-import repos.RepoPeliculas;
 
 @RestController
 @RequestMapping("/peliculas")
@@ -50,7 +49,7 @@ public class MovieController extends AbstractController{
 	public List<Pelicula> getMovie(@PathVariable("usuario") Long usuario) {
 		logger.info("getMovie()");
 		List<Pelicula> peliculasFavoritos = new ArrayList<Pelicula>();
-		peliculasFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(0));
+		//peliculasFavoritos.add(RepoPeliculas.getInstance().getPeliculaById(0));
 		return peliculasFavoritos;
 	}
 

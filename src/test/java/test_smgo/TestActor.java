@@ -22,7 +22,6 @@ import static org.hamcrest.core.Is.is;
 
 
 import model.Actor;
-import repos.RepoActores;
 
 public class TestActor extends TestActores{
 
