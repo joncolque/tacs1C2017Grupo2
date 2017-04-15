@@ -23,6 +23,7 @@ import model.Pelicula;
 import model.Response;
 import model.Usuario;
 import repos.RepoUsuarios;
+import model.Usuario;
 
 @RestController
 @RequestMapping("/movielist")
