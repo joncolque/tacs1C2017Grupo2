@@ -9,7 +9,7 @@ public class MovieList {
 	
 	private Long id;
 	private String nombre;
-	private long ownerId; //Usuario
+	private Long ownerId; //Usuario
 	private List<Pelicula> listaPeliculas;
 	
 	public MovieList() {
@@ -44,7 +44,7 @@ public class MovieList {
 	public List<Pelicula> getListaPeliculas() {
 		return listaPeliculas;
 	}
-	public long getUserId() {
+	public Long getOwnerId() {
 		return ownerId;
 	}
 

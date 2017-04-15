@@ -39,9 +39,10 @@ public class UserController extends AbstractController{
 	
 	// Mostrar Detalle de un usuario
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public Usuario getUsuarioById(@PathVariable("id") long id) {
+	public Usuario getUsuarioById(@PathVariable("id") long id) throws UserNotFoundException {
 		logger.info("getUsuarioById()");
-		return new Usuario(id, "alumnos-utn", "123456");
+		Usuario user = RepoUsuarios.getInstance().getUserById(id);
+		return user;
 	}
 	
 	// Crear nuevo usuario

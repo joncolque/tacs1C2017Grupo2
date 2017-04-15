@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Usuario {
 	
-	private long id;
+	private Long id;
 	private String username;
 	private String password; //nota va a ser un salted hash a futuro?
 	private List<MovieList> listaMovieList;
@@ -75,5 +75,8 @@ public class Usuario {
 				actoresFavoritos.remove(actor);
 			}
 		}
+	}
+	public void addMovieList(MovieList unMovieList){
+		listaMovieList.add(unMovieList);
 	}
 }

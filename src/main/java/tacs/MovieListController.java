@@ -2,20 +2,18 @@ package tacs;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import org.apache.catalina.SessionIdGenerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import apiResult.MovieListResult;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import ch.qos.logback.core.util.SystemInfo;
 import hierarchyOfExceptions.UserNotFoundException;
 import model.Actor;
 import model.MovieList;
@@ -23,7 +21,6 @@ import model.Pelicula;
 import model.Response;
 import model.Usuario;
 import repos.RepoUsuarios;
-import model.Usuario;
 
 @RestController
 @RequestMapping("/movielist")
@@ -31,17 +28,13 @@ public class MovieListController extends AbstractController{
 
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
-	public void createMovielist(@RequestBody MovieList lista) throws UserNotFoundException {
+	public void createMovielist(@RequestBody MovieList aMovieList) throws UserNotFoundException {
 		logger.info("createMovieList()");
-		Usuario user = RepoUsuarios.getInstance().getUserById(lista.getUserId());
-	
-//		//Required
-////		String header = "application/json;charset=utf-8";
-//		String sessionId = "&session_id=";
-//		
-//		api.postForEntity(BASE_URL + "list?" + API_KEY + sessionId , lista, MovieList.class);
-
+		logger.info("***"+aMovieList.toString()+ aMovieList.getNombre()+aMovieList.getOwnerId().toString());
 		
+		Usuario user = RepoUsuarios.getInstance().getUserById(aMovieList.getOwnerId());
+
+		user.addMovieList(aMovieList);
 	}
 	
 	// Agregar pelicula a la lista
