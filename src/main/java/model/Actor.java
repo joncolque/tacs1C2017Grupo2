@@ -13,18 +13,29 @@ public class Actor {
 	private String biography;
 	private String lugarNac;
 	private String fechaNac;
+	private String imagePath;
 	private List<MovieCastResult> listaPeliculas;
 	
-	public Actor(String unNombre,String unBiography, int unaEdad, String unLugar, String unaFecha) {
+	
+	public Actor(String unNombre,String unBiography, int unaEdad, String unLugar, String unaFecha, String unPath) {
 		nombre = unNombre;
 		edad = unaEdad;
 		biography = unBiography;
 		lugarNac = unLugar;
 		fechaNac = unaFecha;
+		imagePath = unPath;
 	}
 	
 	public Actor() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public String getBiography() {

@@ -45,8 +45,8 @@ public class ActorController extends AbstractController {
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
 	public Actor getActorById(@PathVariable("actor") long idactor) throws ParseException {
 		logger.info("getActor()");
-		ActorResult actorR = api.getForObject(BASE_URL + "/person/"+ idactor + "?" + API_KEY, ActorResult.class);
-		ActorCastResult actorCastR = api.getForObject(BASE_URL+ "/person/"+ idactor +"/movie_credits?"+ API_KEY, ActorCastResult.class);
+		ActorResult actorR = api.getForObject(BASE_URL + "person/"+ idactor + "?" + API_KEY, ActorResult.class);
+		ActorCastResult actorCastR = api.getForObject(BASE_URL+ "person/"+ idactor +"/movie_credits?"+ API_KEY, ActorCastResult.class);
 		Actor actor = actorR.toActor();
 		actor.listMovie(actorCastR);
 		return actor;

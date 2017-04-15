@@ -121,7 +121,7 @@ public class ActorResult {
 	
 	public Actor toActor() throws ParseException{
 		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
-		return new Actor(name, biography, getEdad(), place_of_birth, birthday);
+		return new Actor(name, biography, getEdad(), place_of_birth, birthday, path);
 	}
 
 	private int getEdad() throws ParseException {
