@@ -1,24 +1,17 @@
 package tacs;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import creacionales.UsuarioBuilder;
 import hierarchyOfExceptions.UserNotFoundException;
-import model.Actor;
 import model.Response;
-import model.Rol;
 import model.SummaryActor;
 import model.Usuario;
 import repos.RepoUsuarios;
@@ -39,10 +32,10 @@ public class UserController extends AbstractController{
 	
 	// Mostrar Detalle de un usuario
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public Usuario getUsuarioById(@PathVariable("id") long id) throws UserNotFoundException {
+	public FullDataUsuario getUsuarioById(@PathVariable("id") long id) throws UserNotFoundException {
 		logger.info("getUsuarioById()");
-		Usuario user = RepoUsuarios.getInstance().getUserById(id);
-		return user;
+		FullDataUsuario userfull = new FullDataUsuario(RepoUsuarios.getInstance().getUserById(id));
+		return userfull;
 	}
 	
 	// Crear nuevo usuario

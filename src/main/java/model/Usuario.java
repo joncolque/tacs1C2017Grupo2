@@ -12,7 +12,6 @@ public class Usuario {
 	private Long id;
 	private String username;
 	private String password; //nota va a ser un salted hash a futuro?
-	private List<MovieList> listaMovieList;
 	private Rol rol;
 	private List<SummaryActor> actoresFavoritos;
 
@@ -20,12 +19,10 @@ public class Usuario {
 		id = unId;
 		username = unUser;
 		password = unaPass;
-		listaMovieList = new ArrayList<MovieList>();
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 	
 	public Usuario() {
-		listaMovieList = new ArrayList<MovieList>();
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 
@@ -64,9 +61,9 @@ public class Usuario {
 //	public void addPeliculaToList(Long idLista, Pelicula unaPeli) {
 //		getListaPeliculas(idLista).addPelicula(unaPeli);
 //	}
-	public void addMovieList(MovieList unMovieList){
-		listaMovieList.add(unMovieList);
-	}
+//	public void addMovieList(MovieList unMovieList){
+//		listaMovieList.add(unMovieList);
+//	}
 	public List<SummaryActor> getIdsActoresFavoritos() {
 		return this.actoresFavoritos;
 	}
@@ -81,9 +78,8 @@ public class Usuario {
 		}
 	}
 
-	public List<MovieList> getListaMovieList() {
-		return this.listaMovieList;
-	}
 
-
+//	public List<SummaryActor> getActoresFavoritos() {
+//		return actoresFavoritos;
+//	}
 }

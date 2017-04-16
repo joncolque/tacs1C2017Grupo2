@@ -38,7 +38,6 @@ public class MovieListController extends AbstractController{
 			MovieResult pelicula = api.getForObject(BASE_URL + "/movie/" + movieId.toString() + "?" + API_KEY, MovieResult.class);
 			MovieList movieList = RepoMoviesLists.getInstance().getMovieList(movielistId);
 			movieList.addPelicula(pelicula.toMovie());
-			RepoUsuarios.getInstance().getUserById(movieList.getOwnerId()).addMovieList(movieList);
 			logger.info("addMovieList()");
 		}catch (Exception e){
 			logger.error("Usuario inexistente");
