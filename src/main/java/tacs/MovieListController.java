@@ -3,6 +3,7 @@ package tacs;
 import java.util.ArrayList;
 import java.util.List;
 
+import apiResult.MovieResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import model.MovieList;
 import model.Pelicula;
 import model.Response;
 import repos.RepoMoviesLists;
+import repos.RepoUsuarios;
 import util.LongsWrapper;
 
 @RestController
@@ -28,13 +30,19 @@ public class MovieListController extends AbstractController{
 		logger.info("createMovieList()");
 		RepoMoviesLists.getInstance().addMovieList(aMovieList);
 	}
-	
-	// Agregar pelicula a la lista
-	@RequestMapping(value="/{movielist}", method=RequestMethod.PUT)
-	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli){
-		logger.info("addMovieList()");
-		RepoMoviesLists.getInstance().getMovieList(movielist).addPelicula(peli);
 
+	// Agregar pelicula a la lista
+	@RequestMapping(value="/{movielistId}/{movieId}", method=RequestMethod.PUT)
+	public Response addMovieToList(@PathVariable("movielistId") long movielistId, @PathVariable Long movieId){ //@RequestBody Pelicula peli){
+		try {
+			MovieResult pelicula = api.getForObject(BASE_URL + "/movie/" + movieId.toString() + "?" + API_KEY, MovieResult.class);
+			MovieList movieList = RepoMoviesLists.getInstance().getMovieList(movielistId);
+			movieList.addPelicula(pelicula.toMovie());
+			RepoUsuarios.getInstance().getUserById(movieList.getOwnerId()).addMovieList(movieList);
+			logger.info("addMovieList()");
+		}catch (Exception e){
+			logger.error("Usuario inexistente");
+		}
 		return new Response(200, "Pelicula agregada correctamente");
 	}
 	
