@@ -77,8 +77,8 @@ public class MovieListController extends AbstractController{
 	public void deleteMovieFromUserListById(@PathVariable("movieListId") long movieListId, @RequestBody LongsWrapper idMovies) {
 		logger.info("deleteMoviesFromUserListbyId()");
 		
-//		idMovies.getIds().stream().forEach(mId ->
-//		RepoUsuarios.getInstance().getUserById(userId).getListaPeliculas(movieListId).getListaPeliculas().removeIf(mv -> mv.getId()==mId);
+		idMovies.getIds().stream().forEach(mId ->
+		RepoMoviesLists.getInstance().getMovieList(movieListId).getListaPeliculas().removeIf(mv -> mv.getId()==mId));
 		
 	}
 
