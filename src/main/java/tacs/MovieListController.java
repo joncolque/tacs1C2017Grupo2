@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import apiResult.MovieResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,11 +42,17 @@ public class MovieListController extends AbstractController{
 	}
 	
 	// Agregar pelicula a la lista
-	@RequestMapping(value="/{movielist}", method=RequestMethod.PUT)
-	public Response addMovieToList(@PathVariable("movielist") long movielist, @RequestBody Pelicula peli){
-		logger.info("addMovieList()");
-		RepoMoviesLists.getInstance().getMovieList(movielist).addPelicula(peli);
-		
+	@RequestMapping(value="/{movielistId}/{movieId}", method=RequestMethod.PUT)
+	public Response addMovieToList(@PathVariable("movielistId") long movielistId, @PathVariable Long movieId){ //@RequestBody Pelicula peli){
+		try {
+			MovieResult pelicula = api.getForObject(BASE_URL + "/movie/" + movieId.toString() + "?" + API_KEY, MovieResult.class);
+			MovieList movieList = RepoMoviesLists.getInstance().getMovieList(movielistId);
+			movieList.addPelicula(pelicula.toMovie());
+			RepoUsuarios.getInstance().getUserById(movieList.getOwnerId()).addMovieList(movieList);
+			logger.info("addMovieList()");
+		}catch (Exception e){
+			logger.error("Usuario inexistente");
+		}
 		return new Response(200, "Pelicula agregada correctamente");
 	}
 	

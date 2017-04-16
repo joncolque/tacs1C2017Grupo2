@@ -31,6 +31,7 @@ public class Application {
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Guille").pass("1234").rol(usr).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Martin").pass("1234").rol(usr).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Julio").pass("1234").rol(usr).build());
+		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Jon").pass("1234").rol(usr).build());
 		
 		RepoMoviesLists.getInstance().addMovieList(new MovieList("Lista A", 2l));
 		RepoMoviesLists.getInstance().addMovieList(new MovieList("Lista B", 2l));
