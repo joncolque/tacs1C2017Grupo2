@@ -1,7 +1,9 @@
 package tacs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import apiResult.MovieResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import model.Actor;
 import model.MovieList;
 import model.Pelicula;
+import model.Ranking;
 import model.Response;
 import repos.RepoMoviesLists;
 import repos.RepoUsuarios;
 import util.LongsWrapper;
+import util.Sort;
 
 @RestController
 @RequestMapping("/movielist")
@@ -46,13 +48,14 @@ public class MovieListController extends AbstractController{
 		return new Response(200, "Pelicula agregada correctamente");
 	}
 	
-	// Consultar lista de peliculas
+	// Consultar MovieList
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
-	public List<Pelicula> getMovielistById(@PathVariable("movielist") long movielist){
+	public MovieList getMovielistById(@PathVariable("movielist") long movielist){
 		logger.info("getMoviesForMoviesListId()");
 		
-		return RepoMoviesLists.getInstance().getMovieList(movielist).getListaPeliculas();
+		return RepoMoviesLists.getInstance().getMovieList(movielist);
 	}
+
 	
 	// Consultar listas
 	@RequestMapping(method=RequestMethod.GET)
@@ -83,11 +86,22 @@ public class MovieListController extends AbstractController{
 	}
 	
 	// Ranking de actores que se repiten en las peliculas de una lista
-	@RequestMapping(value="/{movielist}/actoresRepetidos/", method=RequestMethod.GET)
-	public List<Actor> getRankingFromMovie(@PathVariable("movielist") long movielist) {
+	@RequestMapping(value="/actoresRepetidos/{movieListId}", method=RequestMethod.GET)
+	public Map<String,Integer> getRankingFromActorsByMovies(@PathVariable("movieListId") long movieListId) {
 		logger.info("getRankingFromMovie()");
-		List<Actor> actoresFavoritos = new ArrayList<Actor>();
-//		actoresFavoritos.add(RepoActores.getInstance().getActorById(0));
-		return actoresFavoritos;
+
+		List<Pelicula> ml = RepoMoviesLists.getInstance().getMovieList(movieListId).getListaPeliculas();
+		Ranking rk = new Ranking();
+		ml.forEach(p-> {
+			rk.processRankingFromActorByMovieList(Connection.getActorsMovie(Long.toString(p.getId())));
+		} );
+		
+		Map<String,Integer> ran = new HashMap<String,Integer>();
+		
+		rk.getRankingFromActorsByMovies().forEach((k,v)-> {
+			ran.put(v.getName(),v.getCount());
+		});
+
+		return Sort.sortByValue(ran);
 	}
 }
