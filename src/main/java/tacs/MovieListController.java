@@ -77,11 +77,9 @@ public class MovieListController extends AbstractController{
 	// Comparar dos listas de peliculas
 	@RequestMapping(value="/compare", method=RequestMethod.GET)
 	public List<Pelicula> getMovielistComparison(@RequestParam("list1") long list1, @RequestParam("list2") long list2) {
-		logger.info("getMovielistComparison()");
-		List<Pelicula> peliculasEnComun = new ArrayList<Pelicula>();
-//		peliculasEnComun.add(RepoPeliculas.getInstance().getPeliculaById(1));
+		logger.info("getMovielistComparison()" + "Listas: " +list1 + " - "+ list2);
 		
-		return peliculasEnComun;
+		return RepoMoviesLists.getInstance().getMovieList(list1).interseccion(RepoMoviesLists.getInstance().getMovieList(list2));
 	}
 	
 	// Ranking de actores que se repiten en las peliculas de una lista

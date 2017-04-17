@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MovieList {
@@ -48,10 +49,24 @@ public class MovieList {
 		listaPeliculas.add(p);
 	}
 	
-	public List<Pelicula> interseccion(List<Pelicula> lista1){
+	//Devuelve una lista de peliculas que se encuentran en el objeto actual y el recibido por parametro
+	public List<Pelicula> interseccion(MovieList movielist){
+		List<Pelicula> interseccion = new ArrayList<Pelicula>();
 		
+		boolean esta = false;
 		
-		return lista1;
+		for (Pelicula peli : listaPeliculas) {
+			Iterator<Pelicula> itPelis = movielist.getListaPeliculas().iterator(); 
+			while (itPelis.hasNext() && !esta) {
+				Pelicula peliAux = (Pelicula) itPelis.next();
+				if (peli.getId() == peliAux.getId()){
+					esta=true;
+					interseccion.add(peli);
+				}
+			}
+			esta=false;
+		}
+		return interseccion;
 	}
 
 }
