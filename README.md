@@ -17,6 +17,7 @@ Para realizar el login de un usuario, se debe ingresar a traves del browser.
 *http://localhost:8080/home*
 
 Cuentas:
+
 	user: Alvaro
 	password: 1234
 	
