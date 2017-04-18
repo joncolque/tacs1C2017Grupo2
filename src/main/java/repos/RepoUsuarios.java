@@ -39,12 +39,12 @@ public class RepoUsuarios {
 		return auxUsers.get(0);
 	}
 	
-	public  Usuario buscarUsuario(String nombre) throws Exception{
+	public  Usuario buscarUsuario(String nombre){
 		List<Usuario> auxUsers = usuarios.stream().filter(usuario -> usuario.getUsername().toUpperCase().equals(nombre.toUpperCase())).collect(Collectors.toList());
 		
-		if(auxUsers.isEmpty()){
-			throw new Exception("Usuario Incorrecto");
-		}
+//		if(auxUsers.isEmpty()){
+//			throw new Exception("Usuario Incorrecto");
+//		}
 		
 		return auxUsers.get(0);
 	}
