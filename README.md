@@ -12,14 +12,22 @@ Se adjunta "listaEndpoints.txt", que contiene los path.
 Se adjunta una coleccion v2 de PostMan con todos los requests correspondientes.
 
 Observacion Login:
-Para realizar el login de un usuario o adminitrador, se debe ingresar a traves del browser.
+Para realizar el login de un usuario, se debe ingresar a traves del browser.
 	
 *http://localhost:8080/home*
 
-usuario
-	userName: user
-	password: password
-
-admin
-	userName: admin
+Cuentas:
+	user: Alvaro
+	password: 1234
+	
+	user: Guille
+	password: 1234
+	
+	user: Martin
+	password: 1234
+	
+	user: Julio
+	password: 1234
+	
+	user: Jon
 	password: 1234
