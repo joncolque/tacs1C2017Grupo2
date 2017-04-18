@@ -18,8 +18,10 @@ import apiResult.ActorCastResult;
 import apiResult.MovieActor;
 import apiResult.MovieCastResult;
 import apiResult.MovieCredits;
+import apiResult.MovieDetailResult;
 import apiResult.MovieListResult;
 import apiResult.MovieResult;
+import model.MovieDetail;
 import model.Pelicula;
 import model.Response;
 import repos.RepoMoviesLists;
@@ -44,7 +46,12 @@ public class MovieController extends AbstractController{
 	}
 	
 	@RequestMapping("/{id}")
-	public Pelicula getPeliculaById(@PathVariable("id") Long id) {
+	public MovieDetail getFullMovieById(@PathVariable("id") Long id) {
+		return api.getForObject(BASE_URL + "/movie/" + id.toString() + "?" + API_KEY + "&append_to_response=credits,reviews", MovieDetailResult.class).toFullMovie();
+	}
+	
+	
+	public Pelicula getPeliculaById(Long id) {
 		logger.info("getPeliculaById()");
 		MovieResult pelicula = api.getForObject(BASE_URL + "/movie/" + id.toString() + "?" + API_KEY, MovieResult.class);
 		return pelicula.toMovie();

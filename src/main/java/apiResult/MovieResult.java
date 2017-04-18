@@ -7,20 +7,20 @@ import tacs.ConfigHolder;
 
 public class MovieResult {
 	
-	private String poster_path;
-	private boolean adult;
-	private String overview;
-	private String release_date;
-	private List<Integer> genre_ids;
-	private int id;
-	private String original_title;
-	private String original_language;
-	private String title;
-	private String backdrop_path;
-	private int popularity;
-	private int vote_count;
-	private boolean video;
-	private int vote_average;
+	protected String poster_path;
+	protected boolean adult;
+	protected String overview;
+	protected String release_date;
+	protected List<Integer> genre_ids;
+	protected int id;
+	protected String original_title;
+	protected String original_language;
+	protected String title;
+	protected String backdrop_path;
+	protected int popularity;
+	protected int vote_count;
+	protected boolean video;
+	protected int vote_average;
 	
 	public Pelicula toMovie() {
 		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + poster_path;

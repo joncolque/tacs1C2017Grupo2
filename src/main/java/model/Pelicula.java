@@ -3,12 +3,13 @@ package model;
 
 
 public class Pelicula {
-	private long id;
-	private String nombre;
-	private String nacionalidad;
-	private String anioEstreno;
-	private String descripcion;
-	private String imagePath;
+	
+	protected long id;
+	protected String nombre;
+	protected String nacionalidad;
+	protected String anioEstreno;
+	protected String descripcion;
+	protected String imagePath;
 
 	public String getImagePath() {
 		return imagePath;
