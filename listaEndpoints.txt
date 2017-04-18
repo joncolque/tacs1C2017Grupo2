@@ -1,103 +1,70 @@
+Lista de endpoints:
 
-**** LISTA DEPRECADA, USAR COLECCION POSTMAN ****
+Cabecera: 
 
-Como usuario quiero poder crear una cuenta con user y pass: [LISTO]
+	http://localhost:8080
 
-	POST : http://localhost:8080/usuarios?name={usuario}&pass={pass}
-
-Como usuario quiero hacer log in en la página: [LISTO]
-
-	POST : http://localhost:8080/user/login?name={usuario}&pass={pass}
-
-Check de login: 
-
-	PUT : http://localhost:8080/user/auth
-
-Como usuario quiero hacer log out en la página: [LISTO]
-
-	PUT : http://localhost:8080/user/logout?id={id}
+User Controller:
 	
-Como usuario quiero buscar por nombre (películas y actores):[LISTO]
-
-	GET : http://localhost:8080/usuarios/buscar/{pelicula}/{actor}
-
-    Buscar una pelicula:[LISTO]
+	Lista de Usuarios (GET):
+	/usuarios
 	
-		GET : http://localhost:8080/usuarios/buscar/pelicula/{pelicula}
+	Mostrar Detalle de un usuario (GET):
+	/usuarios/{id}
 	
-	Buscar un Actor:[LISTO]
+	Crear nuevo usuario (POST):
+	/usuarios
+	
+	Lista de actores favoritos (GET):
+	/usuarios/{usuario}/actoresFavoritos
+	
+	Marcar como favorito a un actor (PUT):
+	/usuarios/{usuario}/favorito/{actor}
+	
+	Desmarcar como favorito a un actor (DELETE):
+	/usuarios/{usuario}/favorito/{actor}
+	
+Actor Controller
 
-		GET : http://localhost:8080/usuarios/buscar/actor/{actor}
+	Lista de actores (GET):
+	/actores
+	
+	Obtener datos de un actor (GET): 
+	/actores/{actor}
+	
+	Ranking de actores favoriteados (GET):
+	/actores/rankingFavoritos
+	
+Movie Controller
+
+	Buscar peliculas, si no se especifica un filtro trae las populares del momento (GET):
+	/peliculas
+	
+	Obtener datos de una pelicula (GET):
+	peliculas/{id}
+	
+	Lista de peliculas con varios actores favoritos de un usuario (GET):
+	peliculas/actoresFavoritos/{usuario}
+	
+MovieList Controller
+
+	Crear lista (POST):
+	/movielist
+	
+	Agregar pelicula a la lista (PUT):
+	/movielist/{movielistId}/{movieId}"
+	
+	Consultar MovieList (GET):
+	/movielist/{movielist}
 		
-Como usuario quiero crear una lista de películas con un nombre: [LISTO]
-
-	POST : http://localhost:8080/movielist/{usuario}
-
-    Agregar películas a la lista: [LISTO]
-
-		PUT : http://localhost:8080/movielist/{usuario}
-  
-	Eliminar películas de la lista: [LISTO]
-
-		DELETE : http://localhost:8080/movielist/{usuario}/{movie}
-    
-	Consultar la lista: [LISTO]
-
-		GET : http://localhost:8080/movielist/{usuario}
-
-Como usuario quiero ver la intersección de películas entre 2 listas: [LISTO]
-
-	POST : http://localhost:8080/movielist/{usuario}/intersection
-	
-	JSON : 
-	{"peli1":[{"id":1,"nombre":"The Matrix","nacionalidad":"USA","anioEstreno":1999},{"id":0,"nombre":"Noé","nacionalidad":"USA","anioEstreno":2014}],
-	"peli2":[{"id":1,"nombre":"The Matrix","nacionalidad":"USA","anioEstreno":1999}]}
-	
-Como usuario quiero marcar un actor como favorito: [LISTO] 
-
-	PUT : http://localhost:8080/actores/{usuario}/favorito/{actor}
-
-Como usuario quiero marcar un actor como favorito: [LISTO]
-
-	DELETE : http://localhost:8080/actores/{usuario}/favorito/{actor}
-
-Como usuario quiero ver quienes son mis actores favoritos:	[LISTO]
-
-	GET : http://localhost:8080/actores/{usuario}/actoresFavoritos
-
-Como usuario quiero un ranking de actores que se repitan en las películas de una lista: [LISTO]
-
-	GET : http://localhost:8080/movielist/{usuario}/ranking/actoresFavoritosDePeliculas
+	Consultar listas (GET):
+	/movielist
 		
-Como administrador quiero ver el ranking de actores favoritos de todos mis usuarios (los actores que han sido más veces elegidos como favoritos)): [LISTO]
-
-	GET : http://localhost:8080/movielist/{administrador}/ranking/{idList}
-
-Como usuario quiero poder ver el detalle de una película: [LISTO]
-
-	GET : http://localhost:8080/movielist/{usuario}/{pelicula}
-
-Como usuario quiero poder ver el detalle de un actor: [LISTO]
-
-	GET : http://localhost:8080/actores/{usuario}/{actor}
-
-Como administrador quiero poder ver los siguientes datos de un usuario: [LISTO]
-
-	GET : http://localhost:8080/usuarios/{usuario}
-
-Como administrador quiero seleccionar 2 listas de usuarios diferentes y mostrar la intersección de películas: [LISTO]
-
-	GET : http://localhost:8080/movielist/compare?user1={usuario1}&user2={usuario2}
-
-Como usuario quiero ver si hay películas donde esté más de uno de mis actores favoritos: [LISTO]
-
-	GET : http://localhost:8080/movielist/{usuario}/actoresFavoritos
-
-
-
-
-
-
-
-
-
+	Eliminar varias peliculas de la lista (DELETE):
+	/movielist/{movieListId}
+	
+	Comparar dos listas de peliculas (GET):
+	/movielist/compare
+	
+	Ranking de actores que se repiten en las peliculas de una lista (GET):
+	/movielist/actoresRepetidos/{movieListId}
