@@ -23,7 +23,7 @@ import util.LongsWrapper;
 import util.Sort;
 
 @RestController
-@RequestMapping("/movielist")
+@RequestMapping("/movielists")
 public class MovieListController extends AbstractController{
 
 	// Crear lista

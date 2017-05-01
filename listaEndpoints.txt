@@ -49,22 +49,22 @@ Movie Controller
 MovieList Controller
 
 	Crear lista (POST):
-	/movielist
+	/movielists
 	
 	Agregar pelicula a la lista (PUT):
-	/movielist/{movielistId}/{movieId}"
+	/movielists/{movielistId}/{movieId}"
 	
 	Consultar MovieList (GET):
-	/movielist/{movielist}
+	/movielists/{movielist}
 		
 	Consultar listas (GET):
-	/movielist
+	/movielists
 		
 	Eliminar varias peliculas de la lista (DELETE):
-	/movielist/{movieListId}
+	/movielists/{movieListId}
 	
 	Comparar dos listas de peliculas (GET):
-	/movielist/compare
+	/movielists/compare
 	
 	Ranking de actores que se repiten en las peliculas de una lista (GET):
-	/movielist/actoresRepetidos/{movieListId}
+	/movielists/actoresRepetidos/{movieListId}
