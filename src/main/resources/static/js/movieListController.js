@@ -1,5 +1,5 @@
-var app = angular.module('app', []);
-app.controller('movieListPostController', function($scope, $http, $location) {
+var listsapp = angular.module('listsapp', []);
+listsapp.controller('movieListPostController', function($scope, $http, $location) {
     $scope.submitForm = function(){
         var url = $location.absUrl() + "movielists";
          
@@ -25,7 +25,7 @@ app.controller('movieListPostController', function($scope, $http, $location) {
     }
 });
  
-app.controller('movieListGetController', function($scope, $http, $location) {
+listsapp.controller('movieListGetController', function($scope, $http, $location) {
     $scope.getfunction = function(){
         var url = $location.absUrl() + "movielists";
          
