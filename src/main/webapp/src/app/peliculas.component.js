@@ -27,7 +27,6 @@ PeliculasComponent = __decorate([
     core_1.Component({
         selector: 'listaPeliculas',
         template: "\n    <h1>Peliculas: </h1>\n    <ul class=\"movies\">\n      <li *ngFor=\"let movie of movies\">\n        <movie-detail [movie]=\"movie\"></movie-detail>\n      </li>\n    </ul>\n  ",
-        providers: [pelicula_service_1.PeliculaService]
     }),
     __metadata("design:paramtypes", [pelicula_service_1.PeliculaService])
 ], PeliculasComponent);

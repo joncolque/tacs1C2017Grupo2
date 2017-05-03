@@ -13,7 +13,6 @@ import { PeliculaService } from './pelicula.service';
       </li>
     </ul>
   `,
-  providers: [PeliculaService]
 })
 export class PeliculasComponent implements OnInit {
   //movies = PELICULAS;
