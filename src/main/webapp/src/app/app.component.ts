@@ -1,31 +1,16 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Pelicula } from './pelicula';
+import { PeliculasComponent } from './peliculas.component';
 import { MovieDetailComponent} from './movie-detail.component';
 import { PeliculaService } from './pelicula.service';
 
 @Component({
-  selector: 'listaPeliculas',
+  selector: 'my-app',
   template: `
-    <h1>Peliculas: </h1>
-    <ul class="movies">
-      <li *ngFor="let movie of movies">
-        <movie-detail [movie]="movie"></movie-detail>
-      </li>
-    </ul>
+    <listaPeliculas></listaPeliculas>
   `,
   providers: [PeliculaService]
 })
-export class AppComponent implements OnInit {
-  //movies = PELICULAS;
-  movies: Pelicula[];
+export class AppComponent {
 
-  getPeliculas(): void {
-    this.peliculaService.getMovies().then(movies => this.movies = movies);
-  }
-
-  ngOnInit(): void {
-    this.getPeliculas();
-  }
-
-  constructor(private peliculaService: PeliculaService) { }
 }

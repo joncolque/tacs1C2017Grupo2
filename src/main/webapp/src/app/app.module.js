@@ -10,6 +10,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var movie_detail_component_1 = require("./movie-detail.component");
+var peliculas_component_1 = require("./peliculas.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +24,8 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            movie_detail_component_1.MovieDetailComponent
+            movie_detail_component_1.MovieDetailComponent,
+            peliculas_component_1.PeliculasComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })
