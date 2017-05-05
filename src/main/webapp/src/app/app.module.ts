@@ -6,8 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { PeliculaService } from './pelicula.service';
 import { AppComponent }  from './app.component';
-import { MovieDetailComponent } from './movie-detail.component';
-import { PeliculasComponent } from './peliculas.component';
+import { MovieDetailComponent } from './components/movie-detail.component';
+import { PeliculasComponent } from './components/peliculas.component';
 
 @NgModule({
   imports:      [

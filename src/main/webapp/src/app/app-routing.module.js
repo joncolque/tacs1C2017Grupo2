@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var movie_detail_component_1 = require("./movie-detail.component");
-var peliculas_component_1 = require("./peliculas.component");
+var movie_detail_component_1 = require("./components/movie-detail.component");
+var peliculas_component_1 = require("./components/peliculas.component");
 var routes = [
     {
         path: '',

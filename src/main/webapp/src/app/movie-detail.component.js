@@ -25,7 +25,7 @@ __decorate([
 MovieDetailComponent = __decorate([
     core_1.Component({
         selector: 'movie-detail',
-        template: "\n    <h2><a href=\"#\" (click)=\"onSelect(movie)\">{{movie.nombre}}</a> ({{movie.anioEstreno}})</h2>\n    <span>{{movie.descripcion}}</span>\n  "
+        template: "\n    <img src=\"{{movie.imagePath}}\"/>\n    <h2><a href=\"#\" (click)=\"onSelect(movie)\">{{movie.nombre}}</a> ({{movie.anioEstreno}})</h2>\n    <span>{{movie.descripcion}}</span>\n  "
     })
 ], MovieDetailComponent);
 exports.MovieDetailComponent = MovieDetailComponent;

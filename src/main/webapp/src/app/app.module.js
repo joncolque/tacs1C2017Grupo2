@@ -12,8 +12,8 @@ var http_1 = require("@angular/http");
 var app_routing_module_1 = require("./app-routing.module");
 var pelicula_service_1 = require("./pelicula.service");
 var app_component_1 = require("./app.component");
-var movie_detail_component_1 = require("./movie-detail.component");
-var peliculas_component_1 = require("./peliculas.component");
+var movie_detail_component_1 = require("./components/movie-detail.component");
+var peliculas_component_1 = require("./components/peliculas.component");
 var AppModule = (function () {
     function AppModule() {
     }

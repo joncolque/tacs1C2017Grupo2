@@ -39,9 +39,4 @@ PeliculaService = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], PeliculaService);
 exports.PeliculaService = PeliculaService;
-var PELICULAS = [
-    { id: 1, nombre: "Matrix", nacionalidad: "en", anioEstreno: "1993", descripcion: "Pelicula sobre un loco con poderes", imagePath: "" },
-    { id: 2, nombre: "Matrix 2", nacionalidad: "en", anioEstreno: "1994", descripcion: "Pelicula sobre un loco con poderes 2", imagePath: "" },
-    { id: 3, nombre: "Matrix 3", nacionalidad: "en", anioEstreno: "1995", descripcion: "Pelicula sobre un loco con poderes 3", imagePath: "" }
-];
 //# sourceMappingURL=pelicula.service.js.map

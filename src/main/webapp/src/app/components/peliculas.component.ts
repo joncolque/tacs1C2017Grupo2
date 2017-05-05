@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
-import { Pelicula } from './model/pelicula';
+import { Pelicula } from './../model/pelicula';
 import { MovieDetailComponent} from './movie-detail.component';
-import { PeliculaService } from './pelicula.service';
+import { PeliculaService } from './../pelicula.service';
 
 @Component({
   selector: 'listaPeliculas',
@@ -9,7 +9,9 @@ import { PeliculaService } from './pelicula.service';
     <h1>Peliculas: </h1>
     <ul class="movies">
       <li *ngFor="let movie of movies">
-        <movie-detail [movie]="movie"></movie-detail>
+        <img src="{{movie.imagePath}}"/>
+        <h2><a [routerLink]="['/pelicula', movie.id]">{{movie.nombre}}</a> ({{movie.anioEstreno}})</h2>
+        <span>{{movie.descripcion}}</span>
       </li>
     </ul>
   `,
