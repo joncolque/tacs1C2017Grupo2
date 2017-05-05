@@ -22,6 +22,14 @@ export class PeliculaService {
       .catch(this.handleError);
   }
 
+  getMoviesByString(query: string): Promise<Pelicula[]> {
+    let url= `http://localhost:8080/peliculas?query=${query}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json() as Pelicula[])
+      .catch(this.handleError);
+  }
+
   handleError(error: any): Promise<any> {
     console.error('Error retrieving movies', error);
     return Promise.reject(error.message || error);

@@ -28,6 +28,13 @@ var PeliculaService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    PeliculaService.prototype.getMoviesByString = function (query) {
+        var url = "http://localhost:8080/peliculas?query=" + query;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     PeliculaService.prototype.handleError = function (error) {
         console.error('Error retrieving movies', error);
         return Promise.reject(error.message || error);

@@ -16,7 +16,15 @@ var PeliculasComponent = (function () {
     }
     PeliculasComponent.prototype.getPeliculas = function () {
         var _this = this;
-        this.peliculaService.getMovies().then(function (movies) { return _this.movies = movies; });
+        this.peliculaService.getMovies().then(function (movies) { _this.movies = movies; _this.baseMovies = movies; });
+    };
+    PeliculasComponent.prototype.searchClick = function () {
+        var _this = this;
+        this.peliculaService.getMoviesByString(this.searchString).then(function (movies) { return _this.movies = movies; });
+    };
+    PeliculasComponent.prototype.searchReset = function () {
+        this.movies = this.baseMovies;
+        this.searchString = "";
     };
     PeliculasComponent.prototype.ngOnInit = function () {
         this.getPeliculas();
@@ -26,7 +34,7 @@ var PeliculasComponent = (function () {
 PeliculasComponent = __decorate([
     core_1.Component({
         selector: 'listaPeliculas',
-        template: "\n    <h1>Peliculas: </h1>\n    <ul class=\"movies\">\n      <li *ngFor=\"let movie of movies\">\n        <img src=\"{{movie.imagePath}}\"/>\n        <h2><a [routerLink]=\"['/pelicula', movie.id]\">{{movie.nombre}}</a> ({{movie.anioEstreno}})</h2>\n        <span>{{movie.descripcion}}</span>\n      </li>\n    </ul>\n  ",
+        template: "\n    <h1>Peliculas: </h1>\n    <input [(ngModel)]=\"searchString\"/><button (click)=\"searchClick()\" type=\"button\">Buscar</button>\n    <button (click)=\"searchReset()\" type=\"button\">Limpiar busqueda</button>\n\n    <ul class=\"movies\">\n      <li *ngFor=\"let movie of movies\">\n        <img src=\"{{movie.imagePath}}\"/>\n        <h2><a [routerLink]=\"['/pelicula', movie.id]\">{{movie.nombre}}</a> ({{movie.anioEstreno}})</h2>\n        <span>{{movie.descripcion}}</span>\n      </li>\n    </ul>\n  ",
     }),
     __metadata("design:paramtypes", [pelicula_service_1.PeliculaService])
 ], PeliculasComponent);
