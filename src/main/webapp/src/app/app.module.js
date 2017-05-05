@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
+var app_routing_module_1 = require("./app-routing.module");
+var pelicula_service_1 = require("./pelicula.service");
 var app_component_1 = require("./app.component");
 var movie_detail_component_1 = require("./movie-detail.component");
 var peliculas_component_1 = require("./peliculas.component");
@@ -20,12 +23,17 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            http_1.HttpModule,
+            app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent,
             movie_detail_component_1.MovieDetailComponent,
             peliculas_component_1.PeliculasComponent
+        ],
+        providers: [
+            pelicula_service_1.PeliculaService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

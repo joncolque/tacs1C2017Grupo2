@@ -6,7 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var pelicula_service_1 = require("./pelicula.service");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -15,8 +14,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n    <listaPeliculas></listaPeliculas>\n  ",
-        providers: [pelicula_service_1.PeliculaService]
+        template: "\n    <h1>Show Must Go On</h1>\n    <nav>\n      <a routerLink=\"/\">Inicio</a>\n      <a routerLink=\"/listaPeliculas\">Listas de peliculas</a>\n    </nav>\n    <router-outlet></router-outlet>\n  "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

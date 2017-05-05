@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,7 @@ import repos.RepoUsuarios;
 import util.General;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/peliculas")
 public class MovieController extends AbstractController{
 	
