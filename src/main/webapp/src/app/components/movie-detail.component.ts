@@ -14,11 +14,24 @@ import { PeliculaService } from './../pelicula.service';
       <span>{{movie.descripcion}}</span>
 
       <h3>Actores:</h3>
-      <ul class="actores">
+        <table class="centered">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Personaje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ul class="actores">
         <li *ngFor="let actor of movie.cast">
-          <span>{{actor.name}} en el personaje de {{actor.character}}</span>
+        <tr>
+          <td>{{actor.name}}</td>
+          <td>{{actor.character}}</td>
+        </tr>
         </li>
-      </ul>
+        </ul>
+        </tbody>
+        </table>
 
       <h3>Reseñas:</h3>
       <ul class="resenas">

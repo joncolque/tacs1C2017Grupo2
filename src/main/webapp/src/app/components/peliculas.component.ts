@@ -7,14 +7,27 @@ import { PeliculaService } from './../pelicula.service';
   selector: 'listaPeliculas',
   template: `
     <h1>Peliculas: </h1>
-    <input [(ngModel)]="searchString"/><button (click)="searchClick()" type="button">Buscar</button>
-    <button (click)="searchReset()" type="button">Limpiar busqueda</button>
+    <div class="row">
+      <input [(ngModel)]="searchString" placeholder="Ingrese texto a buscar..."/>
+      <button (click)="searchClick()" class="btn waves-effect black-text">Buscar</button>
+      <button (click)="searchReset()" class="btn waves-effect black-text">Limpiar busqueda</button>
+    </div>
 
-    <ul class="movies">
+    <ul class="movies black-text">
       <li *ngFor="let movie of movies">
-        <img src="{{movie.imagePath}}"/>
-        <h2><a [routerLink]="['/pelicula', movie.id]">{{movie.nombre}}</a> ({{movie.anioEstreno}})</h2>
-        <span>{{movie.descripcion}}</span>
+      <div class="row">
+        <div class="card horizontal teal lighten-2">
+          <div class="card-image">
+          <img src="{{movie.imagePath}}"/><br/>
+          </div>
+          <div class="card-stacked">
+          <div class="card-content">
+            <span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/pelicula', movie.id]">{{movie.nombre}}</a> ({{movie.anioEstreno}})</span>
+            <span class="valign-wrapper">{{movie.descripcion}}</span>
+          </div>
+          </div>
+        </div>
+      </div>
       </li>
     </ul>
   `,
