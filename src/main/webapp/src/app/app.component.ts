@@ -18,6 +18,7 @@ import { PeliculaService } from './pelicula.service';
     </div>
     </nav>
     </div>
+    
     <router-outlet></router-outlet>
   `
 })

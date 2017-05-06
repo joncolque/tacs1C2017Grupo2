@@ -8,12 +8,16 @@ import { PeliculaService } from './../pelicula.service';
 @Component({
   selector:'movie-detail',
   template:`
-    <div *ngIf="movie">
-      <h2>{{movie.nombre}} ({{movie.anioEstreno}})</h2>
-      <img src="{{movie.imagePath}}"/><br/>
-      <span>{{movie.descripcion}}</span>
+    <div *ngIf="movie" class="center-align">
+      <div class="card-panel teal lighten-2 black-text">
+        <h2>{{movie.nombre}} ({{movie.anioEstreno}})</h2>
+        <img src="{{movie.imagePath}}"/><br/>
+        <span>{{movie.descripcion}}</span>
+      </div>
 
-      <h3>Actores:</h3>
+      <div class="card-panel teal lighten-2 black-text">
+        <h3>Actores:</h3>
+        <div class="container">
         <table class="centered">
         <thead>
         <tr>
@@ -22,17 +26,16 @@ import { PeliculaService } from './../pelicula.service';
         </tr>
         </thead>
         <tbody>
-        <ul class="actores">
-        <li *ngFor="let actor of movie.cast">
-        <tr>
+        <tr *ngFor="let actor of movie.cast">
           <td>{{actor.name}}</td>
           <td>{{actor.character}}</td>
         </tr>
-        </li>
-        </ul>
         </tbody>
         </table>
+        </div>
+      </div>
 
+      <div class="card-panel teal lighten-2 black-text">
       <h3>Reseñas:</h3>
       <ul class="resenas">
       <li *ngFor="let review of movie.reviews">
@@ -40,6 +43,7 @@ import { PeliculaService } from './../pelicula.service';
         <span>{{review.content}}</span>
       </li>
       </ul>
+      </div>
     </div>
   `
 })
