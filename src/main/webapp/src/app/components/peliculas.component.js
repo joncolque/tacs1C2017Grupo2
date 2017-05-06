@@ -34,7 +34,7 @@ var PeliculasComponent = (function () {
 PeliculasComponent = __decorate([
     core_1.Component({
         selector: 'listaPeliculas',
-        template: "\n    <h1>Peliculas: </h1>\n    <div class=\"row\">\n      <input [(ngModel)]=\"searchString\" placeholder=\"Ingrese texto a buscar...\"/>\n      <button (click)=\"searchClick()\" class=\"btn waves-effect black-text\">Buscar</button>\n      <button (click)=\"searchReset()\" class=\"btn waves-effect black-text\">Limpiar busqueda</button>\n    </div>\n\n    <ul class=\"movies black-text\">\n      <li *ngFor=\"let movie of movies\">\n      <div class=\"row\">\n        <div class=\"card horizontal teal lighten-2\">\n          <div class=\"card-image\">\n          <img src=\"{{movie.imagePath}}\"/><br/>\n          </div>\n          <div class=\"card-stacked\">\n          <div class=\"card-content\">\n            <span class=\"card-title center-align\"><a class=\"blue-text text-darken-4\" [routerLink]=\"['/pelicula', movie.id]\">{{movie.nombre}}</a> ({{movie.anioEstreno}})</span>\n            <span class=\"valign-wrapper\">{{movie.descripcion}}</span>\n          </div>\n          </div>\n        </div>\n      </div>\n      </li>\n    </ul>\n  ",
+        templateUrl: './partials/peliculas.component.html',
     }),
     __metadata("design:paramtypes", [pelicula_service_1.PeliculaService])
 ], PeliculasComponent);
