@@ -9,6 +9,7 @@ import { ActorService } from './actor.service';
 import { AppComponent }  from './app.component';
 import { MovieDetailComponent } from './components/movie-detail.component';
 import { PeliculasComponent } from './components/peliculas.component';
+import { ActorComponent } from './components/actor.component';
 
 @NgModule({
   imports:      [
@@ -20,7 +21,8 @@ import { PeliculasComponent } from './components/peliculas.component';
   declarations: [
     AppComponent,
     MovieDetailComponent,
-    PeliculasComponent
+    PeliculasComponent,
+    ActorComponent
   ],
   providers: [
     PeliculaService,

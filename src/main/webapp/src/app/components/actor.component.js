@@ -12,28 +12,27 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 require("rxjs/add/operator/switchMap");
-var pelicula_service_1 = require("./../pelicula.service");
+var actor_service_1 = require("./../actor.service");
 var ActorComponent = (function () {
-    function ActorComponent(peliculaService, route, location) {
-        this.peliculaService = peliculaService;
+    function ActorComponent(actorService, route, location) {
+        this.actorService = actorService;
         this.route = route;
         this.location = location;
     }
     ActorComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
-            .switchMap(function (params) { return _this.peliculaService.getMovie(+params['id']); })
-            .subscribe(function (pelicula) { _this.movie = pelicula; console.log("Pelicula: " + JSON.stringify(_this.movie)); });
-        //    this.route.params.switchMap((params: Params) => { this.parametros = (+params['id']) });
+            .switchMap(function (params) { return _this.actorService.getActor(+params['id']); })
+            .subscribe(function (actorRes) { _this.actor = actorRes; });
     };
     return ActorComponent;
 }());
 ActorComponent = __decorate([
     core_1.Component({
         selector: 'actor',
-        template: "\n    <div *ngIf=\"actor\" class=\"center-align\">\n      <div class=\"card-panel teal lighten-2 black-text\">\n        <h2>{{actor.nombre}}</h2>\n        <img src=\"{{actor.imagePath}}\"/><br/>\n\n        <span>{{actor.biography}}</span>\n      </div>\n\n      <div class=\"card-panel teal lighten-2 black-text\">\n        <h3>Actores:</h3>\n        <div class=\"container\">\n        <table class=\"centered\">\n        <thead>\n        <tr>\n          <th>Nombre</th>\n          <th>Personaje</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr *ngFor=\"let actor of movie.cast\">\n          <td>{{actor.name}}</td>\n          <td>{{actor.character}}</td>\n        </tr>\n        </tbody>\n        </table>\n        </div>\n      </div>\n\n      <div class=\"card-panel teal lighten-2 black-text\">\n      <h3>Rese\u00F1as:</h3>\n      <ul class=\"resenas\">\n      <li *ngFor=\"let review of movie.reviews\">\n        <h5>{{review.author}} dice:</h5>\n        <span>{{review.content}}</span>\n      </li>\n      </ul>\n      </div>\n    </div>\n  "
+        template: "\n    <div *ngIf=\"actor\" class=\"center-align\">\n      <div class=\"card-panel teal lighten-2 black-text\">\n        <h2>{{actor.nombre}}</h2>\n        <img src=\"{{actor.imagePath}}\"/><br/>\n        <h4>Lugar y fecha de nacimiento: {{actor.fechaNac}} en {{actor.lugarNac}}</h4><br/>\n        <h4>Biografia:</h4><br/>\n        <span>{{actor.biography}}</span>\n      </div>\n\n      <div class=\"card-panel teal lighten-2 black-text\">\n        <h3>Peliculas en las que aparece:</h3>\n        <div class=\"container\">\n        <table class=\"centered\">\n        <thead>\n        <tr>\n          <th>Pelicula</th>\n          <th>Personaje</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr *ngFor=\"let pelicula of actor.listaPeliculas\">\n          <td><a class=\"blue-text text-darken-4\" [routerLink]=\"['/pelicula', pelicula.id]\">{{pelicula.original_title}}</a></td>\n          <td>{{pelicula.character}}</td>\n        </tr>\n        </tbody>\n        </table>\n        </div>\n      </div>\n    </div>\n  "
     }),
-    __metadata("design:paramtypes", [pelicula_service_1.PeliculaService, router_1.ActivatedRoute, common_1.Location])
+    __metadata("design:paramtypes", [actor_service_1.ActorService, router_1.ActivatedRoute, common_1.Location])
 ], ActorComponent);
 exports.ActorComponent = ActorComponent;
 //# sourceMappingURL=actor.component.js.map

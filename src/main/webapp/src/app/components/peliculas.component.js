@@ -15,8 +15,6 @@ var PeliculasComponent = (function () {
     function PeliculasComponent(peliculaService, actorService) {
         this.peliculaService = peliculaService;
         this.actorService = actorService;
-        this.mostrarPelis = true;
-        this.mostrarActores = false;
     }
     PeliculasComponent.prototype.getPeliculas = function () {
         var _this = this;
@@ -39,9 +37,6 @@ var PeliculasComponent = (function () {
         this.movies = this.baseMovies;
         this.actores = null;
         this.searchString = "";
-    };
-    PeliculasComponent.prototype.testClick = function () {
-        console.log("1: " + this.queBuscarRadio);
     };
     PeliculasComponent.prototype.ngOnInit = function () {
         this.getPeliculas();

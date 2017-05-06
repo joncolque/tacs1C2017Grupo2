@@ -16,8 +16,6 @@ export class PeliculasComponent implements OnInit {
   searchString: string;
 
   queBuscarRadio: number;
-  mostrarPelis = true;
-  mostrarActores = false;
 
   getPeliculas(): void {
     this.peliculaService.getMovies().then(movies => {this.movies = movies; this.baseMovies = movies;});
@@ -38,10 +36,6 @@ export class PeliculasComponent implements OnInit {
     this.movies = this.baseMovies;
     this.actores = null;
     this.searchString = "";
-  }
-
-  testClick():void {
-    console.log("1: " + this.queBuscarRadio);
   }
 
   ngOnInit(): void {

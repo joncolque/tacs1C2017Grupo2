@@ -27,7 +27,7 @@ import { PeliculaService } from './../pelicula.service';
         </thead>
         <tbody>
         <tr *ngFor="let actor of movie.cast">
-          <td>{{actor.name}}</td>
+          <td><a class="blue-text text-darken-4" [routerLink]="['/actor', actor.id]">{{actor.name}}</a></td>
           <td>{{actor.character}}</td>
         </tr>
         </tbody>
@@ -50,13 +50,11 @@ import { PeliculaService } from './../pelicula.service';
 
 export class MovieDetailComponent implements OnInit {
   movie: MovieDetail;
-  parametros: number;
 
   ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => this.peliculaService.getMovie(+params['id']))
-      .subscribe(pelicula => {this.movie = pelicula; console.log("Pelicula: " + JSON.stringify(this.movie));});
-//    this.route.params.switchMap((params: Params) => { this.parametros = (+params['id']) });
+      .subscribe(pelicula => {this.movie = pelicula;});
   }
 
   constructor(private peliculaService: PeliculaService, private route: ActivatedRoute, private location: Location) {}
