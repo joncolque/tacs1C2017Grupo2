@@ -23,7 +23,12 @@ public class MovieResult {
 	protected int vote_average;
 	
 	public Pelicula toMovie() {
-		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + poster_path;
+		String path;
+		if (poster_path == null) {
+			path = null;
+		} else {
+			path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + poster_path;
+		}
 		return new Pelicula(id, title, original_language, release_date, overview, path);
 	}
 	

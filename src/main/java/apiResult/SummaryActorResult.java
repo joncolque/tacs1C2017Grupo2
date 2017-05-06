@@ -19,7 +19,12 @@ public class SummaryActorResult {
 	}
 	
 	public SummaryActor toSumActor() {
-		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
+		String path;
+		if (profile_path == null) {
+			path = null;
+		} else {
+			path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
+		}
 		return new SummaryActor(id, path, name);
 	}
 	

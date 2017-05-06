@@ -118,7 +118,12 @@ public class ActorResult {
 	}
 	
 	public Actor toActor(){
-		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
+		String path;
+		if (profile_path == null) {
+			path = null;
+		} else {
+			path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
+		}
 		return new Actor(name, biography, place_of_birth, birthday, path);
 	}
 }

@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var pelicula_service_1 = require("./../pelicula.service");
+var actor_service_1 = require("./../actor.service");
 var PeliculasComponent = (function () {
-    function PeliculasComponent(peliculaService) {
+    function PeliculasComponent(peliculaService, actorService) {
         this.peliculaService = peliculaService;
+        this.actorService = actorService;
+        this.mostrarPelis = true;
+        this.mostrarActores = false;
     }
     PeliculasComponent.prototype.getPeliculas = function () {
         var _this = this;
@@ -20,11 +24,24 @@ var PeliculasComponent = (function () {
     };
     PeliculasComponent.prototype.searchClick = function () {
         var _this = this;
-        this.peliculaService.getMoviesByString(this.searchString).then(function (movies) { return _this.movies = movies; });
+        if (this.queBuscarRadio == 1) {
+            this.peliculaService.getMoviesByString(this.searchString).then(function (movies) { _this.movies = movies; _this.actores = null; });
+        }
+        else if (this.queBuscarRadio == 2) {
+            this.actorService.getActorByString(this.searchString).then(function (actores) { _this.actores = actores; _this.movies = null; });
+        }
+        else {
+            this.peliculaService.getMoviesByString(this.searchString).then(function (movies) { return _this.movies = movies; });
+            this.actorService.getActorByString(this.searchString).then(function (actores) { _this.actores = actores; });
+        }
     };
     PeliculasComponent.prototype.searchReset = function () {
         this.movies = this.baseMovies;
+        this.actores = null;
         this.searchString = "";
+    };
+    PeliculasComponent.prototype.testClick = function () {
+        console.log("1: " + this.queBuscarRadio);
     };
     PeliculasComponent.prototype.ngOnInit = function () {
         this.getPeliculas();
@@ -36,7 +53,7 @@ PeliculasComponent = __decorate([
         selector: 'listaPeliculas',
         templateUrl: './partials/peliculas.component.html',
     }),
-    __metadata("design:paramtypes", [pelicula_service_1.PeliculaService])
+    __metadata("design:paramtypes", [pelicula_service_1.PeliculaService, actor_service_1.ActorService])
 ], PeliculasComponent);
 exports.PeliculasComponent = PeliculasComponent;
 //# sourceMappingURL=peliculas.component.js.map

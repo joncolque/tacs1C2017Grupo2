@@ -11,6 +11,7 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_routing_module_1 = require("./app-routing.module");
 var pelicula_service_1 = require("./pelicula.service");
+var actor_service_1 = require("./actor.service");
 var app_component_1 = require("./app.component");
 var movie_detail_component_1 = require("./components/movie-detail.component");
 var peliculas_component_1 = require("./components/peliculas.component");
@@ -33,7 +34,8 @@ AppModule = __decorate([
             peliculas_component_1.PeliculasComponent
         ],
         providers: [
-            pelicula_service_1.PeliculaService
+            pelicula_service_1.PeliculaService,
+            actor_service_1.ActorService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

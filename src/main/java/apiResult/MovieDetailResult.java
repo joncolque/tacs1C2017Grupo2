@@ -9,7 +9,12 @@ public class MovieDetailResult extends MovieResult {
 	private ReviewListResult reviews;
 	
 	public MovieDetail toFullMovie() {
-		String path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + poster_path;
+		String path;
+		if (poster_path == null) {
+			path = null;
+		} else {
+			path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + poster_path;
+		}
 		return new MovieDetail(id, title, original_language, release_date, overview, path, credits.getCast(), reviews.getResults());
 	}
 	

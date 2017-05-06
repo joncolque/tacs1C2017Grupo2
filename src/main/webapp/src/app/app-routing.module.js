@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var movie_detail_component_1 = require("./components/movie-detail.component");
 var peliculas_component_1 = require("./components/peliculas.component");
+var actor_component_1 = require("./components/actor.component");
 var routes = [
     {
         path: '',
@@ -21,6 +22,10 @@ var routes = [
     {
         path: 'pelicula/:id',
         component: movie_detail_component_1.MovieDetailComponent
+    },
+    {
+        path: 'actor/:id',
+        component: actor_component_1.ActorComponent
     }
 ];
 var AppRoutingModule = (function () {
