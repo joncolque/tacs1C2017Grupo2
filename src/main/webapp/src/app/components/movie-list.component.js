@@ -15,7 +15,7 @@ var MovieListComponent = (function () {
         this.movieListService = movieListService;
     }
     MovieListComponent.prototype.crearClick = function () {
-        //this.movieListService.createMovieList(this.nombreLista, 2);
+        this.movieListService.createMovieList();
         //this.nombreLista = "Lista creada exitosamente";
     };
     MovieListComponent.prototype.textReset = function () {
@@ -24,6 +24,9 @@ var MovieListComponent = (function () {
     MovieListComponent.prototype.verListas = function () {
         var _this = this;
         this.movieListService.getMovieLists().then(function (movieLists) { _this.movieLists = movieLists; });
+    };
+    MovieListComponent.prototype.verInterseccion = function () {
+        this.movieListService.getInterseccion(this.nombreLista1, this.nombreLista2);
     };
     MovieListComponent.prototype.ngOnInit = function () {
     };

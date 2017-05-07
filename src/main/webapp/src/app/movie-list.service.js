@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-var http_2 = require("@angular/http");
 var MovieListService = (function () {
     function MovieListService(http) {
         this.http = http;
+        this.results = [];
+        this.loading = false;
     }
     MovieListService.prototype.getMovieLists = function () {
         return this.http.get('http://localhost:8080/movielists')
@@ -22,19 +23,14 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    MovieListService.prototype.getMovies = function () {
-        return this.http.get('http://localhost:8080/peliculas')
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    MovieListService.prototype.createMovieList = function (nombre, id) {
-        var url = "http://localhost:8080/movielists";
+    MovieListService.prototype.createMovieList = function (body) {
+        var url = 'http://localhost:8080/movielists';
+        var bodyString = JSON.stringify(body);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this.http.post(url, { nombre: nombre }, options)
-            .map(this.extractData)
-            .catch(this.handleError);
+        var options = new RequestOptions({ headers: headers });
+        return this.http.post(this.commentsUrl, body, options) // ...using post request
+            .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
+            .catch(function (error) { return Observable.throw(error.json().error || 'Server error'); }); //...errors if any
     };
     MovieListService.prototype.getMovieList = function (id) {
         var url = "http://localhost:8080/movielists/" + id;
@@ -43,15 +39,23 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    MovieListService.prototype.getMoviesByString = function (query) {
-        var url = "http://localhost:8080/peliculas?query=" + query;
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
+    MovieListService.prototype.getInterseccion = function (list1, list2) {
+        var _this = this;
+        var promise = new Promise(function (resolve, reject) {
+            var url = "http://localhost:8080/movielists/compare?list1=" + list1 + "&list2=" + list2;
+            _this.http.get(url)
+                .toPromise()
+                .then(function (res) {
+                _this.results = res.json();
+                resolve();
+            }, function (msg) {
+                reject(msg);
+            });
+        });
+        return promise;
     };
     MovieListService.prototype.handleError = function (error) {
-        console.error('Error creando lista', error);
+        console.error('Error', error);
         return Promise.reject(error.message || error);
     };
     return MovieListService;

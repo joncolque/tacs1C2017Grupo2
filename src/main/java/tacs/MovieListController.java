@@ -53,6 +53,8 @@ public class MovieListController extends AbstractController{
 		return new Response(200, "Pelicula agregada correctamente");
 	}
 	
+	
+	
 	// Consultar MovieList
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
 	public MovieList getMovieList(@PathVariable("movielist") long movielist){
