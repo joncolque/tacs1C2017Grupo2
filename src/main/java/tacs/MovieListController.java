@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import apiResult.MovieResult;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +25,17 @@ import util.LongsWrapper;
 import util.Sort;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/movielists")
 public class MovieListController extends AbstractController{
 
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
-	public void createMovielist(@RequestBody MovieList aMovieList){
+	public void createMovielist(@RequestBody String nombre){
 		logger.info("createMovieList()");
+		//Esto se borrara cuando se avance con persistencia
+		long ownerId = 2;
+		MovieList aMovieList = new MovieList(nombre, ownerId);
 		RepoMoviesLists.getInstance().addMovieList(aMovieList);
 	}
 
@@ -49,7 +55,7 @@ public class MovieListController extends AbstractController{
 	
 	// Consultar MovieList
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
-	public MovieList getMovielistById(@PathVariable("movielist") long movielist){
+	public MovieList getMovieList(@PathVariable("movielist") long movielist){
 		logger.info("getMoviesForMoviesListId()");
 		
 		return RepoMoviesLists.getInstance().getMovieList(movielist);
@@ -60,7 +66,6 @@ public class MovieListController extends AbstractController{
 	@RequestMapping(method=RequestMethod.GET)
 	public List<MovieList> getList(){
 		logger.info("getAllMoviesLists()");
-
 		return RepoMoviesLists.getInstance().getAllMovieLists();
 	}
 		

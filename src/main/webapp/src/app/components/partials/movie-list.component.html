@@ -1,0 +1,26 @@
+<h1>Crear lista: </h1>
+
+<div class="row">
+  <input name="nombre" [(ngModel)]="nombreLista" required placeholder="Ingrese nombre de la lista" class=""/>
+</div>
+
+
+<button (click)="crearClick()" class="btn waves-effect black-text">Crear Lista</button>
+<button (click)="textReset()" class="btn waves-effect black-text">Limpiar nombre</button>
+<button (click)="verListas()" class="btn waves-effect black-text">Ver listas</button>
+
+<div class="container" *ngIf="movieLists">
+<ul class="movies black-text">
+  <li *ngFor="let movieList of movieLists">
+  <div class="row">
+    <div class="card horizontal teal lighten-2">
+      <div class="card-stacked">
+      <div class="card-content">
+        <span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/movielists/', movieList.id]">{{movieList.nombre}}</a></span>
+      </div>
+      </div>
+    </div>
+  </div>
+  </li>
+</ul>
+</div>

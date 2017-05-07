@@ -11,33 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-var ActorService = (function () {
-    function ActorService(http) {
+var MovieListsService = (function () {
+    function MovieListsService(http) {
         this.http = http;
     }
-    ActorService.prototype.getActor = function (id) {
-        var url = "http://localhost:8080/actores/" + id;
+    MovieListsService.prototype.getMovies = function () {
+        return this.http.get('http://localhost:8080/peliculas')
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    MovieListsService.prototype.getMovie = function (id) {
+        var url = "http://localhost:8080/peliculas/" + id;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ActorService.prototype.getActorByString = function (query) {
-        var url = "http://localhost:8080/actores?query=" + query;
+    MovieListsService.prototype.getMoviesByString = function (query) {
+        var url = "http://localhost:8080/peliculas?query=" + query;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ActorService.prototype.handleError = function (error) {
+    MovieListsService.prototype.handleError = function (error) {
         console.error('Error retrieving movies', error);
         return Promise.reject(error.message || error);
     };
-    return ActorService;
+    return MovieListsService;
 }());
-ActorService = __decorate([
+MovieListsService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], ActorService);
-exports.ActorService = ActorService;
-//# sourceMappingURL=actor.service.js.map
+], MovieListsService);
+exports.MovieListsService = MovieListsService;
+//# sourceMappingURL=movie-lists.service.js.map

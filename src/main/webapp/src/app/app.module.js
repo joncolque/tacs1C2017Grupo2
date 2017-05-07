@@ -16,6 +16,9 @@ var app_component_1 = require("./app.component");
 var movie_detail_component_1 = require("./components/movie-detail.component");
 var peliculas_component_1 = require("./components/peliculas.component");
 var actor_component_1 = require("./components/actor.component");
+var movie_list_component_1 = require("./components/movie-list.component");
+var movie_list_service_1 = require("./movie-list.service");
+var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -33,11 +36,14 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             movie_detail_component_1.MovieDetailComponent,
             peliculas_component_1.PeliculasComponent,
-            actor_component_1.ActorComponent
+            actor_component_1.ActorComponent,
+            movie_list_component_1.MovieListComponent,
+            movie_list_detail_component_1.MovieListDetailComponent
         ],
         providers: [
             pelicula_service_1.PeliculaService,
-            actor_service_1.ActorService
+            actor_service_1.ActorService,
+            movie_list_service_1.MovieListService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

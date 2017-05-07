@@ -12,8 +12,8 @@ import { PeliculaService } from './pelicula.service';
        <a href="#" class="brand-logo black-text right" style="margin-right:10%">Show Must Go On</a>
        <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left:5%;">
          <li><a class="black-text" routerLink="/">Inicio</a></li>
-         <li><a class="black-text" routerLink="/crearLista">Crear lista de peliculas</a></li>
-         <li><a class="black-text" routerLink="/listaPeliculas">Ver mis listas de peliculas</a></li>
+         <li><a class="black-text" routerLink="/crearLista">Mis Listas</a></li>
+         <li><a class="black-text" routerLink="/listaPeliculas">algo</a></li>
        </ul>
     </div>
     </nav>

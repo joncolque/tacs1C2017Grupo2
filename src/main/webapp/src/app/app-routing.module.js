@@ -10,6 +10,8 @@ var router_1 = require("@angular/router");
 var movie_detail_component_1 = require("./components/movie-detail.component");
 var peliculas_component_1 = require("./components/peliculas.component");
 var actor_component_1 = require("./components/actor.component");
+var movie_list_component_1 = require("./components/movie-list.component");
+var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
 var routes = [
     {
         path: '',
@@ -26,6 +28,14 @@ var routes = [
     {
         path: 'actor/:id',
         component: actor_component_1.ActorComponent
+    },
+    {
+        path: 'crearLista',
+        component: movie_list_component_1.MovieListComponent
+    },
+    {
+        path: 'movielists/:id',
+        component: movie_list_detail_component_1.MovieListDetailComponent
     }
 ];
 var AppRoutingModule = (function () {

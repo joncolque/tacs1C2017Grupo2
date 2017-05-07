@@ -18,7 +18,7 @@ export class PeliculasComponent implements OnInit {
   queBuscarRadio: number;
 
   getPeliculas(): void {
-    this.peliculaService.getMovies().then(movies => {this.movies = movies; this.baseMovies = movies;});
+    this.peliculaService.getMovies().then(movies => {this.movies = movies;});
   }
 
   searchClick(): void {

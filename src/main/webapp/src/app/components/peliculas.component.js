@@ -18,7 +18,7 @@ var PeliculasComponent = (function () {
     }
     PeliculasComponent.prototype.getPeliculas = function () {
         var _this = this;
-        this.peliculaService.getMovies().then(function (movies) { _this.movies = movies; _this.baseMovies = movies; });
+        this.peliculaService.getMovies().then(function (movies) { _this.movies = movies; });
     };
     PeliculasComponent.prototype.searchClick = function () {
         var _this = this;

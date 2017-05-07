@@ -11,39 +11,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-var PeliculaService = (function () {
-    function PeliculaService(http) {
+var http_2 = require("@angular/http");
+var MovieListService = (function () {
+    function MovieListService(http) {
         this.http = http;
     }
-    PeliculaService.prototype.getMovies = function () {
+    MovieListService.prototype.getMovieLists = function () {
+        return this.http.get('http://localhost:8080/movielists')
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    MovieListService.prototype.getMovies = function () {
         return this.http.get('http://localhost:8080/peliculas')
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    PeliculaService.prototype.getMovie = function (id) {
-        var url = "http://localhost:8080/peliculas/" + id;
+    MovieListService.prototype.createMovieList = function (nombre, id) {
+        var url = "http://localhost:8080/movielists";
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_2.RequestOptions({ headers: headers });
+        return this.http.post(url, { nombre: nombre }, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    MovieListService.prototype.getMovieList = function (id) {
+        var url = "http://localhost:8080/movielists/" + id;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    PeliculaService.prototype.getMoviesByString = function (query) {
+    MovieListService.prototype.getMoviesByString = function (query) {
         var url = "http://localhost:8080/peliculas?query=" + query;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    PeliculaService.prototype.handleError = function (error) {
-        console.error('Error retrieving movies', error);
+    MovieListService.prototype.handleError = function (error) {
+        console.error('Error creando lista', error);
         return Promise.reject(error.message || error);
     };
-    return PeliculaService;
+    return MovieListService;
 }());
-PeliculaService = __decorate([
+MovieListService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], PeliculaService);
-exports.PeliculaService = PeliculaService;
-//# sourceMappingURL=pelicula.service.js.map
+], MovieListService);
+exports.MovieListService = MovieListService;
+//# sourceMappingURL=movie-list.service.js.map

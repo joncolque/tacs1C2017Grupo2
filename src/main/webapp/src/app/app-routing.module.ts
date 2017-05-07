@@ -6,6 +6,9 @@ import { MovieDetailComponent } from './components/movie-detail.component';
 import { PeliculasComponent } from './components/peliculas.component';
 import { ActorComponent } from './components/actor.component';
 
+import { MovieListComponent } from './components/movie-list.component';
+import { MovieListDetailComponent } from './components/movie-list-detail.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +25,14 @@ const routes: Routes = [
   {
     path: 'actor/:id',
     component: ActorComponent
+  },
+  {
+    path: 'crearLista',
+    component: MovieListComponent
+  },
+  {
+    path: 'movielists/:id',
+    component: MovieListDetailComponent  
   }
 ];
 
