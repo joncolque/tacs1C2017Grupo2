@@ -45,9 +45,7 @@ export class MovieListService {
 		      .toPromise()
 		      .then(
 		        res => { // Success
-		        
 		          this.results = res.json() as Pelicula[];
-		          
 		          resolve();
 		        },
 		        msg =>{ //Error
