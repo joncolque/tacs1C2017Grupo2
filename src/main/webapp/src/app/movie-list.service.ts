@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Pelicula } from './model/pelicula';
 import { MovieDetail } from './model/movie-detail';
-import { MovieList } from './model/movie-list'
+import { MovieList } from './model/movie-list';
 
 @Injectable()
 export class MovieListService {
@@ -18,15 +18,8 @@ export class MovieListService {
 	      .catch(this.handleError);
 	}	
   
-  createMovieList(body: Object): void{
-	  let url = 'http://localhost:8080/movielists';
-	  let bodyString = JSON.stringify(body);
-		  let headers = new Headers({ 'Content-Type': 'application/json' });
-	    let options = new RequestOptions({ headers: headers });
+  createMovieList(nombre: string): void{
 
-	    return this.http.post(this.commentsUrl, body, options) // ...using post request
-                .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }   
 	    	        
 

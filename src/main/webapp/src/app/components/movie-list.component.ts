@@ -10,13 +10,13 @@ import { MovieList } from './../model/movie-list';
 })
 export class MovieListComponent implements OnInit {
 	nombreLista: string;
-	nombreLista1: string;
-	nombreLista2: string;
+	nombreLista1: number;
+	nombreLista2: number;
 	movieLists: MovieList[];
 	
 
 crearClick(): void {
-	this.movieListService.createMovieList();
+	this.movieListService.createMovieList(this.nombreLista);
 	//this.nombreLista = "Lista creada exitosamente";
 }
 

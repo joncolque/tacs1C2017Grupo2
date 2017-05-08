@@ -23,14 +23,7 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    MovieListService.prototype.createMovieList = function (body) {
-        var url = 'http://localhost:8080/movielists';
-        var bodyString = JSON.stringify(body);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new RequestOptions({ headers: headers });
-        return this.http.post(this.commentsUrl, body, options) // ...using post request
-            .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
-            .catch(function (error) { return Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+    MovieListService.prototype.createMovieList = function (nombre) {
     };
     MovieListService.prototype.getMovieList = function (id) {
         var url = "http://localhost:8080/movielists/" + id;
