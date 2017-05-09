@@ -14,7 +14,8 @@ export class ActorService {
     let url = `http://localhost:8080/actores/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Actor)
+      .then(response =>   
+                        response.json() as Actor)
       .catch(this.handleError);
   }
 

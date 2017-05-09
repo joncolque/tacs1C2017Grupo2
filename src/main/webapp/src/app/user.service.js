@@ -11,35 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-var ActorService = (function () {
-    function ActorService(http) {
+var UserService = (function () {
+    function UserService(http) {
         this.http = http;
+        this.resp = false;
     }
-    ActorService.prototype.getActor = function (id) {
-        var url = "http://localhost:8080/actores/" + id;
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) {
-            return response.json();
-        })
-            .catch(this.handleError);
+    UserService.prototype.actorFavorito = function (idActor) {
+        var _this = this;
+        var url = "http://localhost:8080/usuarios/2/actorFavorito/" + idActor;
+        this.http.get(url).
+            subscribe(function (response) {
+            _this.resp = response.json();
+            console.log(response.json());
+        });
+        return this.resp;
     };
-    ActorService.prototype.getActorByString = function (query) {
-        var url = "http://localhost:8080/actores?query=" + query;
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
+    UserService.prototype.marcarFavorito = function (idActor) {
+        var headers = new http_1.Headers;
+        headers.append('Content-Type', 'application/json');
+        var url = "http://localhost:8080/usuarios/2/favorito/" + idActor;
+        this.http.put(url, "");
+        console.log("macarFavorito: " + idActor);
     };
-    ActorService.prototype.handleError = function (error) {
-        console.error('Error retrieving movies', error);
+    UserService.prototype.handleError = function (error) {
+        console.error('Error retrieving favorite', error);
         return Promise.reject(error.message || error);
     };
-    return ActorService;
+    return UserService;
 }());
-ActorService = __decorate([
+UserService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], ActorService);
-exports.ActorService = ActorService;
-//# sourceMappingURL=actor.service.js.map
+], UserService);
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

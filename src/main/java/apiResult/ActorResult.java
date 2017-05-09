@@ -124,6 +124,8 @@ public class ActorResult {
 		} else {
 			path = ConfigHolder.getInstance().getConfig().getImages().getBase_url() + "w300/" + profile_path;
 		}
-		return new Actor(name, biography, place_of_birth, birthday, path);
+		Actor ac = new Actor(name, biography, place_of_birth, birthday, path);
+		ac.setId(this.getId());
+		return ac;
 	}
 }

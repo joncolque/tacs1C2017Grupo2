@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.JsonObject;
+
 import hierarchyOfExceptions.UserNotFoundException;
 import model.Response;
 import model.SummaryActor;
@@ -45,6 +47,19 @@ public class UserController extends AbstractController{
 		RepoUsuarios.getInstance().addUsuario(user);
 		return new Response(201, "El usuario " + user.getUsername() + " ha sido creado");
 	}
+
+	
+	
+	// es mi actor favorito
+	@RequestMapping(value = "/{usuario}/actorFavorito/{idActor}", method = RequestMethod.GET)
+	public String esActorFavorito(@PathVariable("usuario") long id, @PathVariable("idActor") long idActor) throws UserNotFoundException {
+		logger.info("esActorFacvorito()");
+		Usuario user;
+		user = RepoUsuarios.getInstance().getUserById(id);
+		return Boolean.toString(user.getIdsActoresFavoritos().stream().anyMatch(actor -> actor.getId() == (int)idActor ));
+	}		
+	
+	
 	
 	// Lista de actores favoritos
 	@RequestMapping(value = "/{usuario}/actoresFavoritos", method = RequestMethod.GET)
@@ -64,8 +79,9 @@ public class UserController extends AbstractController{
 	// Marcar como favorito a un actor
 	@RequestMapping(value = "/{usuario}/favorito/{actor}", method = RequestMethod.PUT)
 	public Response addActorFavorito(@PathVariable("usuario") long usuario, @PathVariable("actor") long actor) {
-		logger.info("addActorFavorito()");
+		logger.info("addActorFavorito()"+ String.valueOf(actor));
 		
+		System.out.println("addActorFavorito()"+ String.valueOf(actor));
 		try {
 			RepoUsuarios.getInstance().getUserById(usuario).addIdActorFavorito(controladorActores.getSumActorById(actor));
 		} catch(UserNotFoundException e) {
