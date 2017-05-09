@@ -40,8 +40,7 @@ import { UsuarioDetailComponent } from './components/usuario-detail.component';
   providers: [
     PeliculaService,
     ActorService,
-    MovieListService,
-    UsuarioService
+    UsuarioService,
     MovieListService,
     UserService
   ],
