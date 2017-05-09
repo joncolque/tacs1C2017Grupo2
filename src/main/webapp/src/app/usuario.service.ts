@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Usuario } from './model/usuario';
 import { UsuarioDetail } from './model/usuario-detail';
-import { SummaryActor } from '../model/summary-actor';
+import { SummaryActor } from './model/summary-actor';
 
 @Injectable()
 export class UsuarioService {

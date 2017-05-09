@@ -34,7 +34,7 @@ const routes: Routes = [
     component: ActorComponent
   },
   {
-    path: 'crearLista',
+    path: 'misListas',
     component: MovieListComponent
   },
   {

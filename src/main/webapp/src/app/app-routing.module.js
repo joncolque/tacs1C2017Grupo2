@@ -37,7 +37,7 @@ var routes = [
         component: actor_component_1.ActorComponent
     },
     {
-        path: 'crearLista',
+        path: 'misListas',
         component: movie_list_component_1.MovieListComponent
     },
     {

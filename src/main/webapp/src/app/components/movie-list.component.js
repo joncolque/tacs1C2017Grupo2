@@ -15,7 +15,8 @@ var MovieListComponent = (function () {
         this.movieListService = movieListService;
     }
     MovieListComponent.prototype.crearClick = function () {
-        this.movieListService.createMovieList(this.nombreLista);
+        this.nombreLista = "La creacion de listas esta en constuccion, disculpe las molestias.";
+        //this.movieListService.createMovieList(this.nombreLista);
         //this.nombreLista = "Lista creada exitosamente";
     };
     MovieListComponent.prototype.textReset = function () {
