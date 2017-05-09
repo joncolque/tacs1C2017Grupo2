@@ -19,6 +19,7 @@ var actor_component_1 = require("./components/actor.component");
 var movie_list_component_1 = require("./components/movie-list.component");
 var movie_list_service_1 = require("./movie-list.service");
 var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
+var login_component_1 = require("./components/login.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -34,6 +35,7 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
+            login_component_1.LoginComponent,
             movie_detail_component_1.MovieDetailComponent,
             peliculas_component_1.PeliculasComponent,
             actor_component_1.ActorComponent,
