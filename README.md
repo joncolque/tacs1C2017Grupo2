@@ -32,3 +32,12 @@ Cuentas:
 	
 	user: Jon
 	password: 1234
+
+FrontEnd, Setup:
+
+1. Tener instalado el node.js
+2. Abrir la terminal
+3. Ubicarse en "src/main/webapp/"
+4. Ejecutar "npm install"
+5. Ejecutar "npm start"
+6. Abrira automaticamente el frontend en el browser, sino ir a la siguiente ruta: *http://localhost:3000*
