@@ -51,7 +51,6 @@ AppModule = __decorate([
         providers: [
             pelicula_service_1.PeliculaService,
             actor_service_1.ActorService,
-            movie_list_service_1.MovieListService,
             usuario_service_1.UsuarioService,
             movie_list_service_1.MovieListService,
             user_service_1.UserService
