@@ -14,6 +14,9 @@ import { MovieListComponent } from './components/movie-list.component';
 import { MovieListService } from './movie-list.service';
 import { MovieListDetailComponent } from './components/movie-list-detail.component';
 import { LoginComponent } from './components/login.component';
+import { UsuariosComponent } from './components/usuarios.component';
+import { UsuarioService } from './usuario.service';
+import { UsuarioDetailComponent } from './components/usuario-detail.component';
 
 @NgModule({
   imports:      [
@@ -29,12 +32,15 @@ import { LoginComponent } from './components/login.component';
     PeliculasComponent,
     ActorComponent,
     MovieListComponent,
-    MovieListDetailComponent
+    MovieListDetailComponent,
+    UsuariosComponent,
+    UsuarioDetailComponent,
   ],
   providers: [
     PeliculaService,
     ActorService,
-    MovieListService
+    MovieListService,
+    UsuarioService
   ],
   bootstrap:    [ AppComponent ]
 })

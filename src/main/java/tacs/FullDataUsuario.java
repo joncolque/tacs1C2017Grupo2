@@ -21,6 +21,7 @@ public class FullDataUsuario {
     private String password;
     private Rol rol;
     private List<SummaryActor> actoresFavoritos;
+    private int cantidad;
 
     public FullDataUsuario(Usuario user) {
         listaMovieList = RepoMoviesLists.getInstance().getAllMovieLists().stream().filter(movieList -> movieList.getOwnerId()==user.getId()).collect(Collectors.toList());
@@ -29,6 +30,7 @@ public class FullDataUsuario {
         password = user.getPassword();
         rol = user.getRol();
         actoresFavoritos = user.getIdsActoresFavoritos();
+        cantidad = listaMovieList.size();
     }
 
 
@@ -51,4 +53,10 @@ public class FullDataUsuario {
     public List<SummaryActor> getActoresFavoritos() {
         return actoresFavoritos;
     }
+
+	public int getCantidad() {
+		return cantidad;
+	}
+    
+    
 }

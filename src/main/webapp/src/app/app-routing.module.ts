@@ -1,7 +1,7 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { MovieDetailComponent } from './components/movie-detail.component';
 import { PeliculasComponent } from './components/peliculas.component';
 import { ActorComponent } from './components/actor.component';
@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login.component';
 
 import { MovieListComponent } from './components/movie-list.component';
 import { MovieListDetailComponent } from './components/movie-list-detail.component';
+import { UsuariosComponent } from './components/usuarios.component'
+import { UsuarioDetailComponent } from './components/usuario-detail.component';
 
 const routes: Routes = [
   {
@@ -37,13 +39,21 @@ const routes: Routes = [
   },
   {
     path: 'movielists/:id',
-    component: MovieListDetailComponent  
-  }
+    component: MovieListDetailComponent
+  },
+  {
+    path: 'listaUsuarios',
+    component: UsuariosComponent
+  },
+  { 
+    path: 'detail/:id', 
+    component: UsuarioDetailComponent 
+  },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

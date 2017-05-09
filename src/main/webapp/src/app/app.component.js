@@ -14,7 +14,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n    <div class=\"navbar-fixed\">\n    <nav class=\"teal lighten-2\">\n    <div class=\"nav-wrapper\">\n       <a href=\"#\" class=\"brand-logo black-text right\" style=\"margin-right:10%\">Show Must Go On</a>\n       <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\" style=\"margin-left:5%;\">\n         <li><a class=\"black-text\" routerLink=\"/\">Inicio</a></li>\n         <li><a class=\"black-text\" routerLink=\"/crearLista\">Mis Listas</a></li>\n         <li><a class=\"black-text\" routerLink=\"/listaPeliculas\">algo</a></li>\n         <li><a class=\"black-text\" routerLink=\"/login\">Iniciar sesion</a></li>\n       </ul>\n    </div>\n    </nav>\n    </div>\n    \n    <router-outlet></router-outlet>\n  "
+        template: "\n    <div class=\"navbar-fixed\">\n    <nav class=\"teal lighten-2\">\n    <div class=\"nav-wrapper\">\n       <a href=\"#\" class=\"brand-logo black-text right\" style=\"margin-right:10%\">Show Must Go On</a>\n       <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\" style=\"margin-left:5%;\">\n         <li><a class=\"black-text\" routerLink=\"/\">Inicio</a></li>\n         <li><a class=\"black-text\" routerLink=\"/crearLista\">Mis Listas</a></li>\n         <li><a class=\"black-text\" routerLink=\"/listaPeliculas\">algo</a></li>\n         <li><a class=\"black-text\" routerLink=\"/login\">Iniciar sesion</a></li>\n         <li><a class=\"black-text\" routerLink=\"/listaUsuarios\">Usuarios</a></li>\n       </ul>\n    </div>\n    </nav>\n    </div>\n    \n    <router-outlet></router-outlet>\n  "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

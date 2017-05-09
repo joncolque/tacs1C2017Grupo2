@@ -13,6 +13,8 @@ var actor_component_1 = require("./components/actor.component");
 var login_component_1 = require("./components/login.component");
 var movie_list_component_1 = require("./components/movie-list.component");
 var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
+var usuarios_component_1 = require("./components/usuarios.component");
+var usuario_detail_component_1 = require("./components/usuario-detail.component");
 var routes = [
     {
         path: '',
@@ -41,7 +43,15 @@ var routes = [
     {
         path: 'movielists/:id',
         component: movie_list_detail_component_1.MovieListDetailComponent
-    }
+    },
+    {
+        path: 'listaUsuarios',
+        component: usuarios_component_1.UsuariosComponent
+    },
+    {
+        path: 'detail/:id',
+        component: usuario_detail_component_1.UsuarioDetailComponent
+    },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

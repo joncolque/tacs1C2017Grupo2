@@ -20,6 +20,9 @@ var movie_list_component_1 = require("./components/movie-list.component");
 var movie_list_service_1 = require("./movie-list.service");
 var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
 var login_component_1 = require("./components/login.component");
+var usuarios_component_1 = require("./components/usuarios.component");
+var usuario_service_1 = require("./usuario.service");
+var usuario_detail_component_1 = require("./components/usuario-detail.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,12 +43,15 @@ AppModule = __decorate([
             peliculas_component_1.PeliculasComponent,
             actor_component_1.ActorComponent,
             movie_list_component_1.MovieListComponent,
-            movie_list_detail_component_1.MovieListDetailComponent
+            movie_list_detail_component_1.MovieListDetailComponent,
+            usuarios_component_1.UsuariosComponent,
+            usuario_detail_component_1.UsuarioDetailComponent,
         ],
         providers: [
             pelicula_service_1.PeliculaService,
             actor_service_1.ActorService,
-            movie_list_service_1.MovieListService
+            movie_list_service_1.MovieListService,
+            usuario_service_1.UsuarioService
         ],
         bootstrap: [app_component_1.AppComponent]
     })
