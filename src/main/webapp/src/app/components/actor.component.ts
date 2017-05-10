@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 import { Actor } from './../model/actor';
 import { MovieCastResult } from './../model/movie-cast-result';
 import { ActorService } from './../actor.service';
-import { UserService } from './../user.service';
+import { UsuarioService } from './../usuario.service';
 
 @Component({
   selector:'actor',
@@ -53,37 +53,32 @@ export class ActorComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.actorService.getActor(+params['id'])                                    )
       .subscribe(actorRes => {this.actor = actorRes;
-                              let resp = this.userService.actorFavorito(this.actor.id);
-                              this.favorite(!resp, actorRes.id );
-                              console.log("id del actor: "+actorRes.id)
-                              });
+                              this.usuarioService.actorFavorito(actorRes.id).then(
+                                  resp => {console.log("se recibe como respuesta: "+resp.bool);
+                                    this.favorite(!resp.bool,actorRes.id);
+                                  console.log("id del actor: "+actorRes.id+ "is favorite debe ser: "+resp.bool);
+                                })
+                            });
   }
 
 
-  constructor(private userService: UserService, private actorService: ActorService, private route: ActivatedRoute, private location: Location) {}
+  constructor(private usuarioService: UsuarioService, private actorService: ActorService, private route: ActivatedRoute, private location: Location) {}
 
   favorite(isFav: boolean, id: number){
     if(this.isFavorite == null){
-      if(isFav){
-        this.imgUrl = "./app/image/star-off.png";
-        this.isFavorite = !isFav;
-      }else{
-        this.imgUrl = "./app/image/star-on.png";
-        this.isFavorite = !isFav;
-        this.userService.marcarFavorito(id);
-      }
+      (isFav) ? this.imgUrl = "./app/image/star-off.png" :  this.imgUrl = "./app/image/star-on.png";
+      console.log("cargar var in null "+this.isFavorite+" Resp service: "+isFav);
     }else{
       if(isFav){
         this.imgUrl = "./app/image/star-off.png";
-        this.isFavorite = !isFav;
+        this.usuarioService.desmarcarFavorito(id);
+        console.log("desmarcar "+isFav+" actor con id: "+id);
       }else{
         this.imgUrl = "./app/image/star-on.png";
-        this.isFavorite = !isFav;
-        this.userService.marcarFavorito(id);
-        console.log("add como favorito actor con id: "+id);
+        this.usuarioService.marcarFavorito(id);
+        console.log("marcar "+isFav+" actor con id: "+id);
       }
     }
+    this.isFavorite = !isFav;
   }
-
-
 }

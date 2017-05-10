@@ -36,6 +36,25 @@ var UsuarioService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    UsuarioService.prototype.actorFavorito = function (idActor) {
+        var url = "http://localhost:8080/usuarios/2/actorFavorito/" + idActor;
+        return this.http.get(url).toPromise()
+            .then(function (response) { return response.json(); }).catch(this.handleError);
+    };
+    UsuarioService.prototype.marcarFavorito = function (idActor) {
+        var headers = new http_1.Headers;
+        headers.append('Content-Type', 'application/json');
+        var url = "http://localhost:8080/usuarios/2/favorito/" + idActor;
+        this.http.put(url, null, headers).toPromise().then()
+            .catch(this.handleError);
+        console.log("macarFavorito: " + idActor);
+    };
+    UsuarioService.prototype.desmarcarFavorito = function (idActor) {
+        var url = "http://localhost:8080/usuarios/2/favorito/" + idActor;
+        this.http.delete(url).toPromise().then()
+            .catch(this.handleError);
+        console.log("desmacarFavorito: " + idActor);
+    };
     UsuarioService.prototype.handleError = function (error) {
         console.error('Error retrieving usuarios', error);
         return Promise.reject(error.message || error);

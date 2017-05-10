@@ -18,6 +18,8 @@ import model.Response;
 import model.SummaryActor;
 import model.Usuario;
 import repos.RepoUsuarios;
+import util.BooleanObj;
+
 
 @RestController
 @RequestMapping("/usuarios")
@@ -53,11 +55,12 @@ public class UserController extends AbstractController{
 	
 	// es mi actor favorito
 	@RequestMapping(value = "/{usuario}/actorFavorito/{idActor}", method = RequestMethod.GET)
-	public String esActorFavorito(@PathVariable("usuario") long id, @PathVariable("idActor") long idActor) throws UserNotFoundException {
+	public BooleanObj esActorFavorito(@PathVariable("usuario") long id, @PathVariable("idActor") long idActor) throws UserNotFoundException {
 		logger.info("esActorFacvorito()");
 		Usuario user;
 		user = RepoUsuarios.getInstance().getUserById(id);
-		return Boolean.toString(user.getIdsActoresFavoritos().stream().anyMatch(actor -> actor.getId() == (int)idActor ));
+		BooleanObj bool = new BooleanObj(user.getIdsActoresFavoritos().stream().anyMatch(actor -> actor.getId() == (int)idActor ));
+		return bool;
 	}		
 	
 	

@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { BooleanObj } from './model/booleanObj';
 import { Usuario } from './model/usuario';
 import { UsuarioDetail } from './model/usuario-detail';
 import { SummaryActor } from './model/summary-actor';
@@ -34,6 +35,30 @@ export class UsuarioService {
             .then(response => response.json() as SummaryActor[])
             .catch(this.handleError);
     }
+
+    actorFavorito(idActor: number): Promise<BooleanObj>{
+        let url = `http://localhost:8080/usuarios/2/actorFavorito/${idActor}`;
+        return this.http.get(url).toPromise()
+        .then(response => response.json() as BooleanObj).catch(this.handleError);
+    }
+
+    marcarFavorito(idActor: number){
+        let headers = new Headers;
+        headers.append('Content-Type', 'application/json');
+
+        let url = `http://localhost:8080/usuarios/2/favorito/${idActor}`;
+        this.http.put(url, null, headers ).toPromise().then()
+        .catch(this.handleError);
+        console.log("macarFavorito: "+idActor);
+    }
+
+    desmarcarFavorito(idActor: number){
+        let url = `http://localhost:8080/usuarios/2/favorito/${idActor}`;
+        this.http.delete(url).toPromise().then()
+        .catch(this.handleError);
+        console.log("desmacarFavorito: "+idActor);
+    }
+
     handleError(error: any): Promise<any> {
         console.error('Error retrieving usuarios', error);
         return Promise.reject(error.message || error);
