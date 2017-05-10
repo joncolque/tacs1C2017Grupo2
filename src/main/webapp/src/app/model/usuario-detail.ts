@@ -9,6 +9,6 @@ export class UsuarioDetail {
     password: string;
     rol: Rol;
     actoresFavoritos: SummaryActor[];
-    cantidad:number;
+    ultimaSesion: number;
 }
 

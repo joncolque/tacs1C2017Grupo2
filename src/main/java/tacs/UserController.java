@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.JsonObject;
 
 import hierarchyOfExceptions.UserNotFoundException;
+import model.FullDataUsuario;
 import model.Response;
 import model.SummaryActor;
 import model.Usuario;

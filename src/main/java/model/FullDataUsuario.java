@@ -1,12 +1,9 @@
-package tacs;
+package model;
 
-import model.MovieList;
-import model.Rol;
-import model.SummaryActor;
-import model.Usuario;
 import repos.RepoMoviesLists;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +18,7 @@ public class FullDataUsuario {
     private String password;
     private Rol rol;
     private List<SummaryActor> actoresFavoritos;
-    private int cantidad;
+    private Date ultimaSesion;
 
     public FullDataUsuario(Usuario user) {
         listaMovieList = RepoMoviesLists.getInstance().getAllMovieLists().stream().filter(movieList -> movieList.getOwnerId()==user.getId()).collect(Collectors.toList());
@@ -30,7 +27,8 @@ public class FullDataUsuario {
         password = user.getPassword();
         rol = user.getRol();
         actoresFavoritos = user.getIdsActoresFavoritos();
-        cantidad = listaMovieList.size();
+        ultimaSesion = new Date();
+        System.out.println(ultimaSesion);
     }
 
 
@@ -54,9 +52,10 @@ public class FullDataUsuario {
         return actoresFavoritos;
     }
 
-	public int getCantidad() {
-		return cantidad;
+
+	public Date getUltimaSesion() {
+		return ultimaSesion;
 	}
-    
+   
     
 }

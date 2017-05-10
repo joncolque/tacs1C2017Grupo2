@@ -19,12 +19,28 @@ import { SummaryActor } from '../model/summary-actor';
         <div>
             <label>Nombre: </label> {{usuario.username}}
         </div>
+
         <div>
-            <label>Cantidad de Listas: </label> {{usuario.cantidad}}
+            <label>Cantidad de Listas: </label> {{usuario.listaMovieList.length}}
         </div>
-            <div *ngFor="let SummaryActor of listaFavoritos">
-               <span>{{SummaryActor.nombre}}</span> 
+
+        <div>
+            <label> Cantidad de Actores Favoritos: </label> {{usuario.actoresFavoritos.length}}
+        </div>
+
+        <div>
+            <label> Ultima Sesion: </label> {{usuario.ultimaSesion | date:'medium' }}
+        </div>
+        <div>
+            <div *ngFor="let movieList of usuario.listaMovieList">
+            <label> Detalle de Lista: </label> 
+            <span>{{movieList.nombre}}</span>
+                <li *ngFor="let pelicula of movieList.listaPeliculas">
+                <label> Detalle de Pelicula: </label> 
+                <span>{{pelicula.nombre}}</span>
+                </li>
             </div>
+        </div>
     </div>
     `,
     styles: [`
@@ -34,7 +50,6 @@ import { SummaryActor } from '../model/summary-actor';
 
 export class UsuarioDetailComponent implements OnInit {
     usuario: UsuarioDetail;
-    listaFavoritos:SummaryActor[];
 
     constructor(
         private usuarioService: UsuarioService,
@@ -46,9 +61,6 @@ export class UsuarioDetailComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => this.usuarioService.getHero(+params['id']))
             .subscribe(usuario => this.usuario = usuario);
-        this.route.params
-            .switchMap((params: Params) => this.usuarioService.getFavoritos(+params['id']))
-            .subscribe(listaFavoritos => this.listaFavoritos = listaFavoritos);
     }
 
     goBack(): void {
