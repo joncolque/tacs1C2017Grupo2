@@ -31,12 +31,17 @@ public class MovieListController extends AbstractController{
 
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
-	public void createMovielist(@RequestBody String nombre){
+	public Response  createMovielist(@RequestBody String nombre){
 		logger.info("createMovieList()");
 		//Esto se borrara cuando se avance con persistencia
 		long ownerId = 2;
-		MovieList aMovieList = new MovieList(nombre, ownerId);
-		RepoMoviesLists.getInstance().addMovieList(aMovieList);
+		try {
+			MovieList aMovieList = new MovieList(nombre, ownerId);
+			RepoMoviesLists.getInstance().addMovieList(aMovieList);
+		}catch (Exception e){
+			logger.error("Error al crear lista");
+		}
+		return new Response(200, "Lista creada correctamente");
 	}
 
 	// Agregar pelicula a la lista

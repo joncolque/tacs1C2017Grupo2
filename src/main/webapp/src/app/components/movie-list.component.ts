@@ -12,13 +12,19 @@ export class MovieListComponent implements OnInit {
 	nombreLista: string;
 	nombreLista1: number;
 	nombreLista2: number;
+	idLista: number;
+	idPelicula: number;
 	movieLists: MovieList[];
 	
 
 crearClick(): void {
-	this.nombreLista = "La creacion de listas esta en constuccion, disculpe las molestias.";
-	//this.movieListService.createMovieList(this.nombreLista);
-	//this.nombreLista = "Lista creada exitosamente";
+	this.movieListService.createMovieList(this.nombreLista);
+	
+	this.nombreLista = "Lista creada exitosamente";
+}
+
+agregarPeliculaClick():void{
+	this.movieListService.addMovieToList(this.idLista,this.idPelicula);
 }
 
 textReset(): void {

@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
+require("rxjs/add/operator/catch");
+require("rxjs/add/operator/map");
 var MovieListService = (function () {
     function MovieListService(http) {
         this.http = http;
@@ -24,6 +26,20 @@ var MovieListService = (function () {
             .catch(this.handleError);
     };
     MovieListService.prototype.createMovieList = function (nombre) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var url = "http://localhost:8080/movielists";
+        this.http.post(url, nombre, options)
+            .toPromise()
+            .catch(this.handleError);
+    };
+    MovieListService.prototype.addMovieToList = function (idList, idMovie) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var url = "http://localhost:8080/movielists/" + idList + "/" + idMovie;
+        this.http.put(url, options)
+            .toPromise()
+            .catch(this.handleError);
     };
     MovieListService.prototype.getMovieList = function (id) {
         var url = "http://localhost:8080/movielists/" + id;
@@ -48,8 +64,17 @@ var MovieListService = (function () {
         return promise;
     };
     MovieListService.prototype.handleError = function (error) {
-        console.error('Error', error);
-        return Promise.reject(error.message || error);
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Promise.reject(errMsg);
     };
     return MovieListService;
 }());

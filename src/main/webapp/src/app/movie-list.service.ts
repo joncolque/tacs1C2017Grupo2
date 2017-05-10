@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers } from '@angular/http';
+import { Http,Headers,RequestOptions,Response  } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { Pelicula } from './model/pelicula';
 import { MovieDetail } from './model/movie-detail';
@@ -18,10 +20,24 @@ export class MovieListService {
 	      .catch(this.handleError);
 	}	
   
-  createMovieList(nombre: string): void{
-
-  }   
-	    	        
+  createMovieList(nombre: string){
+	  let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+	  let options = new RequestOptions({ headers: headers });
+	  let url = `http://localhost:8080/movielists`;
+	  this.http.post(url, nombre , options)
+		  .toPromise()
+	      .catch(this.handleError);
+  }
+  
+  addMovieToList(idList: number, idMovie:number){
+	  let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+	  let options = new RequestOptions({ headers: headers });
+	  let url = `http://localhost:8080/movielists/${idList}/${idMovie}`;
+	  this.http.put(url, options)
+		  .toPromise()
+	      .catch(this.handleError);
+  }
+  	    	        
 
   getMovieList(id: number): Promise<MovieList> {
     let url = `http://localhost:8080/movielists/${id}`;
@@ -50,10 +66,18 @@ export class MovieListService {
   }
   
   
-  handleError(error: any): Promise<any> {
-    console.error('Error', error);
-    return Promise.reject(error.message || error);
-  }
+  private handleError (error: Response | any) {
+	  let errMsg: string;
+	  if (error instanceof Response) {
+	    const body = error.json() || '';
+	    const err = body.error || JSON.stringify(body);
+	    errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+	  } else {
+	    errMsg = error.message ? error.message : error.toString();
+	  }
+	  console.error(errMsg);
+	  return Promise.reject(errMsg);
+	}
 
   constructor(private http: Http) {
 	  this.results = [];

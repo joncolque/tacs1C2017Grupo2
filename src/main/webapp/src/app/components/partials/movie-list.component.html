@@ -1,11 +1,16 @@
 <div>
-	<form name="movieListForm">
-		<h1>Crear lista: </h1>
-		<input name="nombre" [(ngModel)]="nombreLista" required placeholder="Ingrese nombre de la lista" class=""/>
+	<h1>Crear lista: </h1>
+	<input name="nombre" [(ngModel)]="nombreLista" required placeholder="Ingrese nombre de la lista" class=""/>
 
-		<button (click)="crearClick()" class="btn waves-effect black-text">Crear Lista</button>
-		<button (click)="textReset()" class="btn waves-effect black-text">Limpiar nombre</button>
-	</form>
+	<button (click)="crearClick()" class="btn waves-effect black-text">Crear Lista</button>
+	<button (click)="textReset()" class="btn waves-effect black-text">Limpiar nombre</button>
+</div> 
+<hr style="color: #0056b2;" />
+<div>
+	<h1>Agregar pelicula a lista: </h1>
+	<input name="nombre" [(ngModel)]="idLista" required placeholder="Ingrese id de la lista" class=""/>
+	<input name="nombre" [(ngModel)]="idPelicula" required placeholder="Ingrese id de la pelicula" class=""/>
+	<button (click)="agregarPeliculaClick()" class="btn waves-effect black-text">Agregar pelicula</button>
 </div> 
 
 <hr style="color: #0056b2;" />
