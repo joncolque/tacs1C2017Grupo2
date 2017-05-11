@@ -18,13 +18,16 @@ export class MovieListComponent implements OnInit {
 	
 
 crearClick(): void {
-	this.movieListService.createMovieList(this.nombreLista);
+	let user = 1;
+	this.movieListService.createMovieList(this.nombreLista, user);
 	
 	this.nombreLista = "Lista creada exitosamente";
 }
 
 agregarPeliculaClick():void{
 	this.movieListService.addMovieToList(this.idLista,this.idPelicula);
+	this.idLista=null;
+	this.idPelicula=null;
 }
 
 textReset(): void {

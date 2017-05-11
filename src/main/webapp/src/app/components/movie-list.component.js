@@ -15,11 +15,14 @@ var MovieListComponent = (function () {
         this.movieListService = movieListService;
     }
     MovieListComponent.prototype.crearClick = function () {
-        this.movieListService.createMovieList(this.nombreLista);
+        var user = 1;
+        this.movieListService.createMovieList(this.nombreLista, user);
         this.nombreLista = "Lista creada exitosamente";
     };
     MovieListComponent.prototype.agregarPeliculaClick = function () {
         this.movieListService.addMovieToList(this.idLista, this.idPelicula);
+        this.idLista = null;
+        this.idPelicula = null;
     };
     MovieListComponent.prototype.textReset = function () {
         this.nombreLista = "";

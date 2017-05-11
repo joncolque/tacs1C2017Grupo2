@@ -25,10 +25,10 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    MovieListService.prototype.createMovieList = function (nombre) {
+    MovieListService.prototype.createMovieList = function (nombre, user) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         var options = new http_1.RequestOptions({ headers: headers });
-        var url = "http://localhost:8080/movielists";
+        var url = "http://localhost:8080/movielists?user=" + user;
         this.http.post(url, nombre, options)
             .toPromise()
             .catch(this.handleError);

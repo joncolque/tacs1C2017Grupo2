@@ -20,10 +20,10 @@ export class MovieListService {
 	      .catch(this.handleError);
 	}	
   
-  createMovieList(nombre: string){
+  createMovieList(nombre: string, user: number){
 	  let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
 	  let options = new RequestOptions({ headers: headers });
-	  let url = `http://localhost:8080/movielists`;
+	  let url = `http://localhost:8080/movielists?user=${user}`;
 	  this.http.post(url, nombre , options)
 		  .toPromise()
 	      .catch(this.handleError);

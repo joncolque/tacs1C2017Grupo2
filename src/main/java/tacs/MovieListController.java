@@ -31,10 +31,9 @@ public class MovieListController extends AbstractController{
 
 	// Crear lista
 	@RequestMapping(method=RequestMethod.POST)
-	public Response  createMovielist(@RequestBody String nombre){
+	public Response  createMovielist(@RequestBody String nombre, @RequestParam("user") long ownerId){
 		logger.info("createMovieList()");
-		//Esto se borrara cuando se avance con persistencia
-		long ownerId = 2;
+		
 		try {
 			MovieList aMovieList = new MovieList(nombre, ownerId);
 			RepoMoviesLists.getInstance().addMovieList(aMovieList);
