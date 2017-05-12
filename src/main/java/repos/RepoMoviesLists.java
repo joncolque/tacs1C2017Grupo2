@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import hierarchyOfExceptions.UserNotFoundException;
 import model.MovieList;
 
 public class RepoMoviesLists {
@@ -30,6 +29,11 @@ public class RepoMoviesLists {
 	public  MovieList getMovieList(Long idMovieList){
 		Optional<MovieList> lista = moviesLists.stream().filter(ml -> ml.getId()==idMovieList).findFirst();
 		return lista.isPresent() ? lista.get() : null;
+	}
+	
+	public  List<MovieList> getMovieListByUser(Long ownerId){
+		List<MovieList> listas = moviesLists.stream().filter(ml -> ml.getOwnerId()==ownerId).collect(Collectors.toList());;
+		return listas;
 	}
 	
 	public List<MovieList> getAllMovieLists() {

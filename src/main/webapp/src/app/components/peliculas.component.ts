@@ -1,9 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import { Pelicula } from './../model/pelicula';
+import { MovieList } from './../model/movie-list';
 import { SummaryActor } from './../model/summary-actor';
 import { MovieDetailComponent} from './movie-detail.component';
 import { PeliculaService } from './../pelicula.service';
 import { ActorService } from './../actor.service';
+import { MovieListService } from './../movie-list.service';
 
 @Component({
   selector: 'listaPeliculas',
@@ -14,6 +16,7 @@ export class PeliculasComponent implements OnInit {
   baseMovies: Pelicula[]; //para el "cacheo" de peliculas populares del inicio
   actores: SummaryActor[];
   searchString: string;
+  movieLists: MovieList[];
 
   queBuscarRadio: number;
 
@@ -31,6 +34,18 @@ export class PeliculasComponent implements OnInit {
       this.actorService.getActorByString(this.searchString).then(actores => {this.actores = actores;});
     }
   }
+  
+  verListas(): void {
+	  //TEMPORAL
+	  let user = 1;
+	  
+	  this.movieListService.getMovieListsByUser(user).then(movieLists => {this.movieLists = movieLists;});
+  }
+  
+  addToMovieList(idMovieList: number, idMovie: number): void {
+	  this.movieListService.addMovieToList(idMovieList ,idMovie);
+	  //Materialize.toast('Pelicula agregada', 2000) // 4000 is the duration of the toast
+  }
 
   searchReset(): void {
     this.movies = this.baseMovies;
@@ -40,7 +55,8 @@ export class PeliculasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPeliculas();
+    
   }
 
-  constructor(private peliculaService: PeliculaService, private actorService: ActorService) { }
+  constructor(private peliculaService: PeliculaService, private actorService: ActorService, private movieListService: MovieListService) { }
 }

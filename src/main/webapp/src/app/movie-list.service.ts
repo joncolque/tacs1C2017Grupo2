@@ -12,13 +12,6 @@ import { MovieList } from './model/movie-list';
 export class MovieListService {
 	results:Object[];
 	loading:boolean;
-
-	getMovieLists(): Promise<MovieList[]> {
-		return this.http.get('http://localhost:8080/movielists')
-	      .toPromise()
-	      .then(response => response.json() as MovieList[])
-	      .catch(this.handleError);
-	}	
   
   createMovieList(nombre: string, user: number){
 	  let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
@@ -29,10 +22,11 @@ export class MovieListService {
 	      .catch(this.handleError);
   }
   
-  addMovieToList(idList: number, idMovie:number){
+  addMovieToList(idList: number, idMovie: number){
 	  let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
 	  let options = new RequestOptions({ headers: headers });
 	  let url = `http://localhost:8080/movielists/${idList}/${idMovie}`;
+		  
 	  this.http.put(url, options)
 		  .toPromise()
 	      .catch(this.handleError);
@@ -45,6 +39,21 @@ export class MovieListService {
       .toPromise()
       .then(response => response.json() as MovieList)
       .catch(this.handleError);
+  }
+  
+  getMovieLists(): Promise<MovieList[]> {
+	return this.http.get('http://localhost:8080/movielists')
+      .toPromise()
+      .then(response => response.json() as MovieList[])
+      .catch(this.handleError);
+  }
+	
+  getMovieListsByUser(ownerId: number){
+	let url = `http://localhost:8080/movielists/search?ownerId=${ownerId}`;
+		return this.http.get(url)
+			      .toPromise()
+			      .then(response => response.json() as MovieList[])
+			      .catch(this.handleError);
   }
 
   getInterseccion(list1: number, list2: number) {

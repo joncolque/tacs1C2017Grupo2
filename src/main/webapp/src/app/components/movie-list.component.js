@@ -28,8 +28,12 @@ var MovieListComponent = (function () {
         this.nombreLista = "";
     };
     MovieListComponent.prototype.verListas = function () {
+        //Para Admin(ve todas)
+        //this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
         var _this = this;
-        this.movieListService.getMovieLists().then(function (movieLists) { _this.movieLists = movieLists; });
+        //Para user: asignar user logueado
+        var user = 1;
+        this.movieListService.getMovieListsByUser(user).then(function (movieLists) { _this.movieLists = movieLists; });
     };
     MovieListComponent.prototype.verInterseccion = function () {
         this.movieListService.getInterseccion(this.nombreLista1, this.nombreLista2);

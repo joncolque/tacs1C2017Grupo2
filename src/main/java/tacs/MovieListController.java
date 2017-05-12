@@ -57,9 +57,7 @@ public class MovieListController extends AbstractController{
 		return new Response(200, "Pelicula agregada correctamente");
 	}
 	
-	
-	
-	// Consultar MovieList
+	// Obtener lista por id
 	@RequestMapping(value="/{movielist}", method=RequestMethod.GET)
 	public MovieList getMovieList(@PathVariable("movielist") long movielist){
 		logger.info("getMoviesForMoviesListId()");
@@ -67,8 +65,15 @@ public class MovieListController extends AbstractController{
 		return RepoMoviesLists.getInstance().getMovieList(movielist);
 	}
 
+	// Obtener listas de un usuario
+	@RequestMapping(value="/search",method=RequestMethod.GET)
+	public List<MovieList> getMovieListsByUser(@RequestParam("ownerId") long ownerId){
+		logger.info("getMovieListsByUser()");
+		
+		return RepoMoviesLists.getInstance().getMovieListByUser(ownerId);
+	}
 	
-	// Consultar listas
+//	// Obtener todas las listas
 	@RequestMapping(method=RequestMethod.GET)
 	public List<MovieList> getList(){
 		logger.info("getAllMoviesLists()");

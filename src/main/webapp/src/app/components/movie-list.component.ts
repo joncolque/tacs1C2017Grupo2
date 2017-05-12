@@ -35,7 +35,12 @@ textReset(): void {
 }
 
 verListas(): void {
-    this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
+    //Para Admin(ve todas)
+	//this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
+    
+	//Para user: asignar user logueado
+	let user = 1;
+	this.movieListService.getMovieListsByUser(user).then(movieLists => {this.movieLists = movieLists;});
 }
 
 verInterseccion(): void {

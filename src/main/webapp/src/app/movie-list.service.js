@@ -19,12 +19,6 @@ var MovieListService = (function () {
         this.results = [];
         this.loading = false;
     }
-    MovieListService.prototype.getMovieLists = function () {
-        return this.http.get('http://localhost:8080/movielists')
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
     MovieListService.prototype.createMovieList = function (nombre, user) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         var options = new http_1.RequestOptions({ headers: headers });
@@ -43,6 +37,19 @@ var MovieListService = (function () {
     };
     MovieListService.prototype.getMovieList = function (id) {
         var url = "http://localhost:8080/movielists/" + id;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    MovieListService.prototype.getMovieLists = function () {
+        return this.http.get('http://localhost:8080/movielists')
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    MovieListService.prototype.getMovieListsByUser = function (ownerId) {
+        var url = "http://localhost:8080/movielists/search?ownerId=" + ownerId;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })

@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var pelicula_service_1 = require("./../pelicula.service");
 var actor_service_1 = require("./../actor.service");
+var movie_list_service_1 = require("./../movie-list.service");
 var PeliculasComponent = (function () {
-    function PeliculasComponent(peliculaService, actorService) {
+    function PeliculasComponent(peliculaService, actorService, movieListService) {
         this.peliculaService = peliculaService;
         this.actorService = actorService;
+        this.movieListService = movieListService;
     }
     PeliculasComponent.prototype.getPeliculas = function () {
         var _this = this;
@@ -33,6 +35,16 @@ var PeliculasComponent = (function () {
             this.actorService.getActorByString(this.searchString).then(function (actores) { _this.actores = actores; });
         }
     };
+    PeliculasComponent.prototype.verListas = function () {
+        var _this = this;
+        //TEMPORAL
+        var user = 1;
+        this.movieListService.getMovieListsByUser(user).then(function (movieLists) { _this.movieLists = movieLists; });
+    };
+    PeliculasComponent.prototype.addToMovieList = function (idMovieList, idMovie) {
+        this.movieListService.addMovieToList(idMovieList, idMovie);
+        //Materialize.toast('Pelicula agregada', 2000) // 4000 is the duration of the toast
+    };
     PeliculasComponent.prototype.searchReset = function () {
         this.movies = this.baseMovies;
         this.actores = null;
@@ -48,7 +60,7 @@ PeliculasComponent = __decorate([
         selector: 'listaPeliculas',
         templateUrl: './partials/peliculas.component.html',
     }),
-    __metadata("design:paramtypes", [pelicula_service_1.PeliculaService, actor_service_1.ActorService])
+    __metadata("design:paramtypes", [pelicula_service_1.PeliculaService, actor_service_1.ActorService, movie_list_service_1.MovieListService])
 ], PeliculasComponent);
 exports.PeliculasComponent = PeliculasComponent;
 //# sourceMappingURL=peliculas.component.js.map
