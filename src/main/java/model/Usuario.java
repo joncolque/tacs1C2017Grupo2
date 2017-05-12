@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class Usuario {
 	
@@ -70,14 +71,24 @@ public class Usuario {
 	public void addIdActorFavorito(SummaryActor unId) {
 		this.actoresFavoritos.add(unId);
 	}
-	public void removeIdActorFavorito(SummaryActor unId) {
-		for (SummaryActor actor : actoresFavoritos) {
+	public void removeIdActorFavorito(SummaryActor unActor) {
+/*		for (SummaryActor actor : actoresFavoritos) {
 			if (actor.equals(unId)) {
 				actoresFavoritos.remove(actor);
 			}
-		}
-	}
+		}*/	
+		
+		List<SummaryActor> aclist = new ArrayList<>();
+		aclist.addAll(this.actoresFavoritos);
+		aclist.stream().forEach(ac -> {
+			if (ac.getId() == unActor.getId())
+				actoresFavoritos.remove(ac);						
+		});
 
+//		if (this.actoresFavoritos.stream().anyMatch(ac -> ac.getId()== unActor.getId())){
+//			actoresFavoritos.remove(unActor);
+		
+	}
 
 //	public List<SummaryActor> getActoresFavoritos() {
 //		return actoresFavoritos;

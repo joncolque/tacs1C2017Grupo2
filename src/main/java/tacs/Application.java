@@ -31,6 +31,8 @@ public class Application {
 		SummaryActor actorFavorito = new SummaryActor(1,"algo","Tom Hanks");
 		Usuario guille = new UsuarioBuilder("Guille").pass("1234").rol(usr).build();
 		guille.addIdActorFavorito(actorFavorito);
+		guille.removeIdActorFavorito(actorFavorito);
+		guille.addIdActorFavorito(actorFavorito);
 		Pelicula peli1 = new Pelicula("Matrix", "eeuu", "1997");
 		Pelicula peli2 = new Pelicula("Matrix2", "eeuu", "2002");
 		MovieList movielist1 = new MovieList("Lista A", 2l);
