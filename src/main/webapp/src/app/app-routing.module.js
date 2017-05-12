@@ -15,6 +15,7 @@ var movie_list_component_1 = require("./components/movie-list.component");
 var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
 var usuarios_component_1 = require("./components/usuarios.component");
 var usuario_detail_component_1 = require("./components/usuario-detail.component");
+var ranking_favoritos_component_1 = require("./components/ranking-favoritos.component");
 var routes = [
     {
         path: '',
@@ -52,6 +53,10 @@ var routes = [
         path: 'detail/:id',
         component: usuario_detail_component_1.UsuarioDetailComponent
     },
+    {
+        path: 'actoresFavoritos',
+        component: ranking_favoritos_component_1.RankingFavoritosComponent
+    }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

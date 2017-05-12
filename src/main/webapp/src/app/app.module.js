@@ -23,6 +23,7 @@ var login_component_1 = require("./components/login.component");
 var usuarios_component_1 = require("./components/usuarios.component");
 var usuario_service_1 = require("./usuario.service");
 var usuario_detail_component_1 = require("./components/usuario-detail.component");
+var ranking_favoritos_component_1 = require("./components/ranking-favoritos.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -46,6 +47,7 @@ AppModule = __decorate([
             movie_list_detail_component_1.MovieListDetailComponent,
             usuarios_component_1.UsuariosComponent,
             usuario_detail_component_1.UsuarioDetailComponent,
+            ranking_favoritos_component_1.RankingFavoritosComponent
         ],
         providers: [
             pelicula_service_1.PeliculaService,

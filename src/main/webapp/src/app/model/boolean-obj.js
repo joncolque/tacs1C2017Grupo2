@@ -5,4 +5,4 @@ var BooleanObj = (function () {
     return BooleanObj;
 }());
 exports.BooleanObj = BooleanObj;
-//# sourceMappingURL=BooleanObj.js.map
+//# sourceMappingURL=boolean-obj.js.map

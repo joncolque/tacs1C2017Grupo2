@@ -3,7 +3,7 @@ import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { BooleanObj } from './model/booleanObj';
+import { BooleanObj } from './model/boolean-obj';
 import { Usuario } from './model/usuario';
 import { UsuarioDetail } from './model/usuario-detail';
 import { SummaryActor } from './model/summary-actor';

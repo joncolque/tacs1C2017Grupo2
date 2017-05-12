@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login.component';
 import { UsuariosComponent } from './components/usuarios.component';
 import { UsuarioService } from './usuario.service';
 import { UsuarioDetailComponent } from './components/usuario-detail.component';
+import { RankingFavoritosComponent } from './components/ranking-favoritos.component';
 
 @NgModule({
   imports:      [
@@ -35,6 +36,7 @@ import { UsuarioDetailComponent } from './components/usuario-detail.component';
     MovieListDetailComponent,
     UsuariosComponent,
     UsuarioDetailComponent,
+    RankingFavoritosComponent
   ],
   providers: [
     PeliculaService,

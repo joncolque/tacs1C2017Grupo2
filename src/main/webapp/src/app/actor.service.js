@@ -31,6 +31,13 @@ var ActorService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    ActorService.prototype.getActoresFavoritos = function () {
+        var url = "http://localhost:8080/actores/rankingFavoritos";
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     ActorService.prototype.handleError = function (error) {
         console.error('Error retrieving movies', error);
         return Promise.reject(error.message || error);

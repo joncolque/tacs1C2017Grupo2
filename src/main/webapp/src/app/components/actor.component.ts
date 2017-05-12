@@ -23,7 +23,7 @@ import { UsuarioService } from './../usuario.service';
       <div class="card-panel teal lighten-2 black-text">
         <h3>Peliculas en las que aparece:</h3>
         <div class="container">
-        <table class="centered">
+        <table class="centered highlight">
         <thead>
         <tr>
           <th>Pelicula</th>
@@ -51,7 +51,7 @@ export class ActorComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => this.actorService.getActor(+params['id'])                                    )
+      .switchMap((params: Params) => this.actorService.getActor(+params['id']))
       .subscribe(actorRes => {this.actor = actorRes;
                               this.usuarioService.actorFavorito(actorRes.id).then(
                                   resp => {console.log("se recibe como respuesta: "+resp.bool);

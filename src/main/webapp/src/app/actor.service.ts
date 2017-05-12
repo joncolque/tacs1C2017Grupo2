@@ -6,6 +6,7 @@ import { Pelicula } from './model/pelicula';
 import { MovieDetail } from './model/movie-detail';
 import { Actor } from './model/actor';
 import { SummaryActor } from './model/summary-actor';
+import { ActorFavorito } from './model/actor-favorito';
 
 @Injectable()
 export class ActorService {
@@ -14,7 +15,7 @@ export class ActorService {
     let url = `http://localhost:8080/actores/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response =>   
+      .then(response =>
                         response.json() as Actor)
       .catch(this.handleError);
   }
@@ -24,6 +25,14 @@ export class ActorService {
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as SummaryActor[])
+      .catch(this.handleError);
+  }
+
+  getActoresFavoritos(): Promise<ActorFavorito[]> {
+    let url = `http://localhost:8080/actores/rankingFavoritos`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json() as ActorFavorito[])
       .catch(this.handleError);
   }
 
