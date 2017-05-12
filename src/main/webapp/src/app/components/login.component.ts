@@ -12,28 +12,22 @@ export class Login{
 @Component({
   selector: 'my-login',
   template: `
-    <h2>Acceda a mas funcionalidades :)</h2>
-
-    <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Spring Security</title>
-    </head>
-    <body>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </body>
-</html>
+      <h2>Ingrese su usuario y contraseña:</h2>
+      <form>
+          <div><label> User Name : <input type="text" name="username" [(ngModel)]="username"/> </label></div>
+          <div><label> Password: <input type="password" name="password" [(ngModel)]="password"/> </label></div>
+          <button (click)="doLogin()" class="btn waves-effect black-text">Log in</button>
+      </form>
     `
-    
+
 })
 export class LoginComponent {
   login: Login = {
     username: '',
     password: ''
   };
+
+  doLogin(): void {
+
+  }
 }

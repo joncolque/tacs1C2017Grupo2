@@ -13,27 +13,26 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import model.Actor;
-import tacs.Application;
+//import tacs.Application;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes=Application.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes=Application.class)
 public class TestActores {
 
-	@Autowired
-	private WebApplicationContext wac;
-	
-	protected MockMvc mockMvc;
-	
-	@Before
-	public void setup(){
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
-
-	@After
-	public void liberarRecursos(){
-		
-	}
+//	@Autowired
+//	private WebApplicationContext wac;
+//	
+//	protected MockMvc mockMvc;
+//	
+//	@Before
+//	public void setup(){
+//		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+//	}
+//
+//	@After
+//	public void liberarRecursos(){
+//		
+//	}
 	
 }

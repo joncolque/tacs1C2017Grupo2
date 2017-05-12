@@ -3,11 +3,18 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class Usuario {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class Usuario implements UserDetails {
 	
 	private Long id;
 	private String username;
@@ -51,31 +58,53 @@ public class Usuario {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-//	public List<MovieList> getListaMovieList() {
-//		return listaMovieList;
-//	}
-	
-//	public void setListaPeliculas(List<MovieList> listaPeliculas) {
-//		this.listaMovieList = listaPeliculas;
-//	}
-//	public void addPeliculaToList(Long idLista, Pelicula unaPeli) {
-//		getListaPeliculas(idLista).addPelicula(unaPeli);
-//	}
-//	public void addMovieList(MovieList unMovieList){
-//		listaMovieList.add(unMovieList);
-//	}
+
 	public List<SummaryActor> getIdsActoresFavoritos() {
 		return this.actoresFavoritos;
 	}
+	
 	public void addIdActorFavorito(SummaryActor unId) {
 		this.actoresFavoritos.add(unId);
 	}
+	
 	public void removeIdActorFavorito(SummaryActor unId) {
 		for (SummaryActor actor : actoresFavoritos) {
 			if (actor.equals(unId)) {
 				actoresFavoritos.remove(actor);
 			}
 		}
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> auths = 
+				new HashSet<GrantedAuthority>(1);
+		auths.add(new SimpleGrantedAuthority("ROLE_USER"));
+		return auths;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 

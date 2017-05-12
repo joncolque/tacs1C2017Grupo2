@@ -20,12 +20,14 @@ var LoginComponent = (function () {
             password: ''
         };
     }
+    LoginComponent.prototype.doLogin = function () {
+    };
     return LoginComponent;
 }());
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'my-login',
-        template: "\n    <h2>Acceda a mas funcionalidades :)</h2>\n\n    <!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.thymeleaf.org\"\n      xmlns:sec=\"http://www.thymeleaf.org/thymeleaf-extras-springsecurity3\">\n    <head>\n        <title>Spring Security</title>\n    </head>\n    <body>\n        <form th:action=\"@{/login}\" method=\"post\">\n            <div><label> User Name : <input type=\"text\" name=\"username\"/> </label></div>\n            <div><label> Password: <input type=\"password\" name=\"password\"/> </label></div>\n            <div><input type=\"submit\" value=\"Sign In\"/></div>\n        </form>\n    </body>\n</html>\n    "
+        template: "\n      <h2>Ingrese su usuario y contrase\u00F1a:</h2>\n      <form>\n          <div><label> User Name : <input type=\"text\" name=\"username\" [(ngModel)]=\"username\"/> </label></div>\n          <div><label> Password: <input type=\"password\" name=\"password\" [(ngModel)]=\"password\"/> </label></div>\n          <button (click)=\"doLogin()\" class=\"btn waves-effect black-text\">Log in</button>\n      </form>\n    "
     })
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;

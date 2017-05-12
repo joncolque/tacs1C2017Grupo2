@@ -1,42 +1,24 @@
 package tacs;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import apiResult.ActorCastResult;
 import apiResult.ActorListResult;
 import apiResult.ActorResult;
-import apiResult.MovieListResult;
-import apiResult.MovieResult;
 import apiResult.SummaryActorResult;
 import model.Actor;
 import model.FavoritoActor;
-import model.Pelicula;
-import model.Response;
 import model.SummaryActor;
 import model.Usuario;
 import repos.RepoUsuarios;
