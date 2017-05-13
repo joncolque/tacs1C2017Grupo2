@@ -5,22 +5,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
 require("rxjs/add/operator/switchMap");
-var Login = (function () {
-    function Login() {
-    }
-    return Login;
-}());
-exports.Login = Login;
+var usuario_service_1 = require("./../usuario.service");
 var LoginComponent = (function () {
-    function LoginComponent() {
-        this.login = {
-            username: '',
-            password: ''
-        };
+    function LoginComponent(usuarioService, route, location) {
+        this.usuarioService = usuarioService;
+        this.route = route;
+        this.location = location;
     }
     LoginComponent.prototype.doLogin = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) { return _this.usuarioService.authenticate(_this.username, _this.password); })
+            .subscribe(function (unString) { _this.token = unString; console.log('El token es ' + unString); _this.usuarioService.setToken(unString); });
     };
     return LoginComponent;
 }());
@@ -28,7 +31,8 @@ LoginComponent = __decorate([
     core_1.Component({
         selector: 'my-login',
         template: "\n      <h2>Ingrese su usuario y contrase\u00F1a:</h2>\n      <form>\n          <div><label> User Name : <input type=\"text\" name=\"username\" [(ngModel)]=\"username\"/> </label></div>\n          <div><label> Password: <input type=\"password\" name=\"password\" [(ngModel)]=\"password\"/> </label></div>\n          <button (click)=\"doLogin()\" class=\"btn waves-effect black-text\">Log in</button>\n      </form>\n    "
-    })
+    }),
+    __metadata("design:paramtypes", [usuario_service_1.UsuarioService, router_1.ActivatedRoute, common_1.Location])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

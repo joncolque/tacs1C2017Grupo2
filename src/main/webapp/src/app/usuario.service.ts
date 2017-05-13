@@ -12,6 +12,22 @@ import { SummaryActor } from './model/summary-actor';
 export class UsuarioService {
     constructor(private http: Http) { }
 
+    token: string = "";
+
+    authenticate(username: string, password: string): Promise<string> {
+      let url = 'http://localhost:8080/auth';
+      let headers = new Headers;
+      headers.append('Content-Type', 'application/json');
+      let body = {
+        "username": username,
+        "password": password
+      }
+      return this.http.post(url, body, headers)
+        .toPromise()
+        .then(response => response.json().token as String)
+        .catch(this.handleError);
+    }
+
     getUsuarios(): Promise<Usuario[]> {
         let url = `http://localhost:8080/usuarios`;
         return this.http.get(url)
@@ -62,5 +78,13 @@ export class UsuarioService {
     handleError(error: any): Promise<any> {
         console.error('Error retrieving usuarios', error);
         return Promise.reject(error.message || error);
+    }
+
+    setToken(unToken: string): void {
+      this.token = 'Bearer ' + unToken;
+    }
+
+    getToken(): string {
+      return this.token;
     }
 }

@@ -2,12 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
-
-
-export class Login{
-  username: string;
-  password: string;
-}
+import { UsuarioService } from './../usuario.service';
 
 @Component({
   selector: 'my-login',
@@ -22,12 +17,15 @@ export class Login{
 
 })
 export class LoginComponent {
-  login: Login = {
-    username: '',
-    password: ''
-  };
+  username: string;
+  password: string;
+  token: string;
 
   doLogin(): void {
-
+    this.route.params
+      .switchMap((params: Params) => this.usuarioService.authenticate(this.username, this.password))
+      .subscribe(unString => {this.token = unString; console.log('El token es ' + unString); this.usuarioService.setToken(unString);});
   }
+
+  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute, private location: Location) {}
 }

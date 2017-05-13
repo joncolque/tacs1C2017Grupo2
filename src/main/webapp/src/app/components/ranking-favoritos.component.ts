@@ -5,6 +5,7 @@ import 'rxjs/add/operator/switchMap';
 import { SummaryActor } from './../model/summary-actor';
 import { ActorFavorito } from './../model/actor-favorito';
 import { ActorService } from './../actor.service';
+import { UsuarioService } from './../usuario.service';
 
 @Component({
   selector: 'ranking-favoritos',
@@ -35,9 +36,9 @@ export class RankingFavoritosComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => this.actorService.getActoresFavoritos())
+      .switchMap((params: Params) => this.actorService.getActoresFavoritos(this.usuarioService.getToken()))
       .subscribe(listaActores => this.listaFavoritos = listaActores);
   }
 
-  constructor(private actorService: ActorService, private route: ActivatedRoute, private location: Location) {}
+  constructor(private actorService: ActorService, private route: ActivatedRoute, private location: Location, private usuarioService: UsuarioService) {}
 }

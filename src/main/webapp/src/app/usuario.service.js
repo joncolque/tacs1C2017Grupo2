@@ -14,7 +14,21 @@ require("rxjs/add/operator/toPromise");
 var UsuarioService = (function () {
     function UsuarioService(http) {
         this.http = http;
+        this.token = "";
     }
+    UsuarioService.prototype.authenticate = function (username, password) {
+        var url = 'http://localhost:8080/auth';
+        var headers = new http_1.Headers;
+        headers.append('Content-Type', 'application/json');
+        var body = {
+            "username": username,
+            "password": password
+        };
+        return this.http.post(url, body, headers)
+            .toPromise()
+            .then(function (response) { return response.json().token; })
+            .catch(this.handleError);
+    };
     UsuarioService.prototype.getUsuarios = function () {
         var url = "http://localhost:8080/usuarios";
         return this.http.get(url)
@@ -58,6 +72,12 @@ var UsuarioService = (function () {
     UsuarioService.prototype.handleError = function (error) {
         console.error('Error retrieving usuarios', error);
         return Promise.reject(error.message || error);
+    };
+    UsuarioService.prototype.setToken = function (unToken) {
+        this.token = 'Bearer ' + unToken;
+    };
+    UsuarioService.prototype.getToken = function () {
+        return this.token;
     };
     return UsuarioService;
 }());

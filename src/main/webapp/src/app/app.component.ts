@@ -15,6 +15,7 @@ import { PeliculaService } from './pelicula.service';
          <li><a class="black-text" routerLink="/misListas">Mis Listas</a></li>
          <li><a class="black-text" routerLink="/login">Iniciar sesion</a></li>
          <li><a class="black-text" routerLink="/listaUsuarios">Usuarios</a></li>
+         <li><a class="black-text" routerLink="/actoresFavoritos">Ranking de actores favoritos</a></li>
        </ul>
     </div>
     </nav>
