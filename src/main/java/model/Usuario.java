@@ -69,12 +69,13 @@ public class Usuario implements UserDetails {
 		this.actoresFavoritos.add(unId);
 	}
 	
-	public void removeIdActorFavorito(SummaryActor unId) {
-		for (SummaryActor actor : actoresFavoritos) {
-			if (actor.equals(unId)) {
-				actoresFavoritos.remove(actor);
-			}
-		}
+	public void removeIdActorFavorito(SummaryActor unActor) {
+		List<SummaryActor> aclist = new ArrayList<>();
+		aclist.addAll(this.actoresFavoritos);
+		aclist.stream().forEach(ac -> {
+			if (ac.getId() == unActor.getId())
+				actoresFavoritos.remove(ac);						
+		});
 	}
 
 	@Override
