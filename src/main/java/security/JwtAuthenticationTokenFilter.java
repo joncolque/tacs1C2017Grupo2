@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import tacs.JwtTokenUtil;
+
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -42,8 +44,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         String username = jwtTokenUtil.getUsernameFromToken(authToken);
-
-        logger.info("checking authentication für user " + username);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 

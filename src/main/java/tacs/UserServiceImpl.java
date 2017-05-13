@@ -1,5 +1,7 @@
 package tacs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,13 +13,15 @@ import repos.RepoUsuarios;
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
+	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		Usuario user = RepoUsuarios.getInstance().buscarUsuario(userName);
-		if(user == null)
+		Usuario usuario = RepoUsuarios.getInstance().buscarUsuario(userName);
+		if(usuario == null)
 			throw new UsernameNotFoundException(userName);
 		
-		return new UserDetailsImpl(user);
+		return usuario;
 	}
 
 }

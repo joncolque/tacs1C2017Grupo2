@@ -32,29 +32,10 @@ import model.Usuario;
 import repos.RepoUsuarios;
 import security.JwtAuthenticationRequest;
 import security.JwtAuthenticationResponse;
-import security.JwtTokenUtil;
 
 
 @RestController
 public class LoginController extends AbstractController {
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public Response ingresar(@RequestParam(value = "name", required = true) String name,@RequestParam(value = "pass", required = true) String pass) {
-//		logger.info("ingresar()");
-//		try{
-//			Usuario user = RepoUsuarios.getInstance().buscarUsuario(name, pass);
-//			return new Response(200, String.format("Usario: %s, con rol: %s logueado" , user.getUsername(),user.getRol().getName()));
-//		}catch (Exception e) {
-//			logger.error("ingresar().catch");
-//			return new Response(401, e.getMessage());
-//		}
-//	}
-//	
-//	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
-//	public Response salir(){
-//		logger.info("salir()");
-//		return new Response(200, "Logout, Exitosamente!");
-//	}
 	
 	@Value("${jwt.header}")
     private String tokenHeader;
@@ -68,11 +49,8 @@ public class LoginController extends AbstractController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
-
-    	logger.debug("Se intenta autenticar un usuario");
-    	
         // Perform the security
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

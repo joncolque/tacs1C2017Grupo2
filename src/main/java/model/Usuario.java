@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import util.PassEncoder;
+
 public class Usuario implements UserDetails {
 	
 	private Long id;
@@ -25,7 +27,7 @@ public class Usuario implements UserDetails {
 	public Usuario(long unId, String unUser, String unaPass) {
 		id = unId;
 		username = unUser;
-		password = unaPass;
+		password = PassEncoder.encriptarPassword(unaPass);
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 	
@@ -49,7 +51,7 @@ public class Usuario implements UserDetails {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = PassEncoder.encriptarPassword(password);
 	}
 	public Rol getRol() {
 		return rol;
@@ -79,7 +81,11 @@ public class Usuario implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> auths = 
 				new HashSet<GrantedAuthority>(1);
-		auths.add(new SimpleGrantedAuthority("ROLE_USER"));
+		if (rol.equals("Administrador")) {
+			auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else {
+			auths.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
 		return auths;
 	}
 

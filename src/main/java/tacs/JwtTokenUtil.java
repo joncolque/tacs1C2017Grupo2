@@ -1,4 +1,4 @@
-package security;
+package tacs;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -99,10 +99,6 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
-        return (lastPasswordReset != null && created.before(lastPasswordReset));
-    }
-
     private Boolean ignoreTokenExpiration(String token) {
         String audience = getAudienceFromToken(token);
         return (AUDIENCE_TABLET.equals(audience) || AUDIENCE_MOBILE.equals(audience));
@@ -126,8 +122,7 @@ public class JwtTokenUtil implements Serializable {
 
     public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
         final Date created = getCreatedDateFromToken(token);
-        return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset)
-                && (!isTokenExpired(token) || ignoreTokenExpiration(token));
+        return (!isTokenExpired(token) || ignoreTokenExpiration(token));
     }
 
     public String refreshToken(String token) {

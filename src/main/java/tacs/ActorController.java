@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +60,7 @@ public class ActorController extends AbstractController {
 	}
 	
 	// Ranking de actores favoriteados
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/rankingFavoritos", method = RequestMethod.GET)
 	public List<FavoritoActor> rankingActores(){
 		logger.info("rankingActores()");

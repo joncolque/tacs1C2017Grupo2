@@ -40,7 +40,7 @@ public class Application {
 		
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Alvaro").pass("1234").rol(adm).build());
 		RepoUsuarios.getInstance().addUsuario(guille);
-		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Martin").pass("1234").rol(usr).build());
+		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("martin").pass("1234").rol(adm).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Julio").pass("1234").rol(usr).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Jon").pass("1234").rol(usr).build());
 		
