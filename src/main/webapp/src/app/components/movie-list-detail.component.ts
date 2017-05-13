@@ -32,7 +32,8 @@ import { MovieListService } from './../movie-list.service';
         <tr *ngFor="let pelicula of movieList.listaPeliculas">
           <td><a class="blue-text text-darken-4" [routerLink]="['/pelicula', pelicula.id]">{{pelicula.nombre}}</a></td>
           <td>{{pelicula.anioEstreno}}</td>
-        </tr>
+          <a button (click)="deleteMovieFromList(movieList.id, pelicula.id)" class="btn-floating waves-effect waves-light red"><i class="material-icons">-</i></a>
+          </tr>
         </tbody>
         </table>
         </div>
@@ -51,5 +52,9 @@ export class MovieListDetailComponent implements OnInit {
       .subscribe(movielist => {this.movieList = movielist;});
   }
 
+  deleteMovieFromList(movielistId:number, movieId: number){
+	  this.movieListService.deleteMovieFromList(movielistId, movieId).then(res => {this.ngOnInit()});
+  }
+  
   constructor(private movieListService: MovieListService, private route: ActivatedRoute, private location: Location) {}
 }

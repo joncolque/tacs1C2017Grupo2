@@ -31,8 +31,18 @@ export class MovieListService {
 		  .toPromise()
 	      .catch(this.handleError);
   }
-  	    	        
+  
+  deleteMovieFromList(movielistId: number, movieId: number): Promise<number>{
+	  let headers = new Headers({ 'Content-Type': 'application/json' });
+	  let url = `http://localhost:8080/movielists/${movielistId}`;
+	  let body= JSON.stringify({
+		    ids: [movieId]
+	  });
+	  let options = new RequestOptions({ headers: headers, body: body });
 
+	  return this.http.delete(url, options).toPromise().then(res => res.status).catch(this.handleError);
+  }
+  	    	        
   getMovieList(id: number): Promise<MovieList> {
     let url = `http://localhost:8080/movielists/${id}`;
     return this.http.get(url)

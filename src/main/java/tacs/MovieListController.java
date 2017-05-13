@@ -82,12 +82,13 @@ public class MovieListController extends AbstractController{
 		
 	// Eliminar varias peliculas de la lista
 	@RequestMapping(value="/{movieListId}", method=RequestMethod.DELETE)
-	public void deleteMovieFromUserListById(@PathVariable("movieListId") long movieListId, @RequestBody LongsWrapper idMovies) {
+	public Response deleteMovieFromUserListById(@PathVariable("movieListId") long movieListId, @RequestBody LongsWrapper idMovies) {
 		logger.info("deleteMoviesFromUserListbyId()");
 		
 		idMovies.getIds().stream().forEach(mId ->
 		RepoMoviesLists.getInstance().getMovieList(movieListId).getListaPeliculas().removeIf(mv -> mv.getId()==mId));
-		
+	
+		return new Response(200, "Pelicula eliminada de la lista");
 	}
 	
 	// Comparar dos listas de peliculas

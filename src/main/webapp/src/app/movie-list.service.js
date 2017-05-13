@@ -35,6 +35,15 @@ var MovieListService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
+    MovieListService.prototype.deleteMovieFromList = function (movielistId, movieId) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var url = "http://localhost:8080/movielists/" + movielistId;
+        var body = JSON.stringify({
+            ids: [movieId]
+        });
+        var options = new http_1.RequestOptions({ headers: headers, body: body });
+        return this.http.delete(url, options).toPromise().then(function (res) { return res.status; }).catch(this.handleError);
+    };
     MovieListService.prototype.getMovieList = function (id) {
         var url = "http://localhost:8080/movielists/" + id;
         return this.http.get(url)
