@@ -1,5 +1,7 @@
 package tacs;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +13,11 @@ import hierarchyOfExceptions.UserNotFoundException;
 import model.Actor;
 import model.MovieList;
 import model.Pelicula;
+import model.RankingActor;
 import model.Rol;
 import model.SummaryActor;
 import model.Usuario;
+import net.minidev.json.JSONObject;
 import repos.RepoMoviesLists;
 import repos.RepoUsuarios;
 
@@ -35,9 +39,23 @@ public class Application {
 		guille.addIdActorFavorito(actorFavorito);
 		Pelicula peli1 = new Pelicula("Matrix", "eeuu", "1997");
 		Pelicula peli2 = new Pelicula("Matrix2", "eeuu", "2002");
-		MovieList movielist1 = new MovieList("Lista A", 2l);
+
+		MovieList rankingMovies = new MovieList("Lista A", guille.getId());
+		MovieController mc = new MovieController();
+		rankingMovies.addPelicula(mc.getPeliculaById((long)120));
+		rankingMovies.addPelicula(mc.getPeliculaById((long)121));
+		rankingMovies.addPelicula(mc.getPeliculaById((long)122));
+		MovieListController mcl = new MovieListController();
+
+		RepoMoviesLists.getInstance().addMovieList(rankingMovies);
+		RepoUsuarios.getInstance().addUsuario(guille);
+		
+		List<RankingActor> ranking = mcl.getRankingFromActorsByMovies(rankingMovies.getId());
+		ranking.forEach(ac -> System.out.println("ID: "+ ac.getMovieActor() + " -- value: "+ ac.getCantRepeticiones()));			
+		
+		MovieList movielist1 = new MovieList("Lista A", guille.getId());
 		movielist1.addPelicula(peli1);
-		MovieList movielist2 = new MovieList("Lista B", 2l);
+		MovieList movielist2 = new MovieList("Lista B", guille.getId());
 		movielist2.addPelicula(peli2);
 		
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Alvaro").pass("1234").rol(adm).build());

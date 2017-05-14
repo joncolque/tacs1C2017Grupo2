@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { MovieDetail } from './../model/movie-detail';
 import { PeliculaService } from './../pelicula.service';
+import { MovieListService } from './../movie-list.service';
 
 @Component({
   selector:'movie-detail',
@@ -57,5 +58,5 @@ export class MovieDetailComponent implements OnInit {
       .subscribe(pelicula => {this.movie = pelicula;});
   }
 
-  constructor(private peliculaService: PeliculaService, private route: ActivatedRoute, private location: Location) {}
+  constructor(private peliculaService: PeliculaService, private movieListService: MovieListService, private route: ActivatedRoute, private location: Location) {}
 }

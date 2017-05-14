@@ -70,6 +70,11 @@ var MovieListService = (function () {
         });
         return promise;
     };
+    MovieListService.prototype.getRankingMovieList = function (idML) {
+        var url = "http://localhost:8080/movielists/actoresRepetidos/" + idML;
+        return this.http.get(url).toPromise().then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
     MovieListService.prototype.handleError = function (error) {
         var errMsg;
         if (error instanceof http_1.Response) {

@@ -27,7 +27,7 @@ public class Usuario {
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
