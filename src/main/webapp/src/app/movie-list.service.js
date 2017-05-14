@@ -71,6 +71,13 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    MovieListService.prototype.getPeliculasVariosActoresFavoritos = function (userId) {
+        var url = "http://localhost:8080/peliculas/actoresFavoritos/" + userId;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     MovieListService.prototype.getInterseccion = function (list1, list2) {
         var _this = this;
         var promise = new Promise(function (resolve, reject) {

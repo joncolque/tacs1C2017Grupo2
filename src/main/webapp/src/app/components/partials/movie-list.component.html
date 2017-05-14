@@ -22,6 +22,7 @@
 <h1>Listas</h1>
 <button (click)="verListas()" class="btn waves-effect black-text">Ver listas de peliculas</button>  
 <button (click)="verActoresFavoritos()" class="btn waves-effect black-text">Ver actores favoritos</button> 
+<button (click)="verPeliculasVariosActoresFavoritos()" class="btn waves-effect black-text">Ver peliculas con varios actores favoritos</button>
 
 <div class="container" *ngIf="movieLists">
 	<ul class="movieLists black-text">
@@ -47,6 +48,22 @@
 				  <div class="card-stacked">
 					<div class="card-content">
 						<span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/actor', actor.id]">{{actor.nombre}}</a></span>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</li>
+	</ul>	
+</div>
+
+<div class="container" *ngIf="peliculasActoresFavoritos">
+	<ul class="peliculasFavoritos black-text">
+		<li *ngFor="let pelicula of peliculasActoresFavoritos">
+			<div class="row">
+				<div class="card horizontal teal lighten-2">
+				  <div class="card-stacked">
+					<div class="card-content">
+						<span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/pelicula', pelicula.id]">{{pelicula.nombre}}</a></span>
 					</div>
 				  </div>
 				</div>

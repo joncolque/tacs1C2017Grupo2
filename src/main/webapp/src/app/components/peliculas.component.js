@@ -38,7 +38,7 @@ var PeliculasComponent = (function () {
     PeliculasComponent.prototype.verListas = function () {
         var _this = this;
         //TEMPORAL
-        var user = 1;
+        var user = 2;
         this.movieListService.getMovieListsByUser(user).then(function (movieLists) { _this.movieLists = movieLists; });
     };
     PeliculasComponent.prototype.addToMovieList = function (idMovieList, idMovie) {

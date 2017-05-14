@@ -37,7 +37,7 @@ export class PeliculasComponent implements OnInit {
   
   verListas(): void {
 	  //TEMPORAL
-	  let user = 1;
+	  let user = 2;
 	  
 	  this.movieListService.getMovieListsByUser(user).then(movieLists => {this.movieLists = movieLists;});
   }

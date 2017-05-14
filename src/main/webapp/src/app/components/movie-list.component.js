@@ -15,7 +15,7 @@ var MovieListComponent = (function () {
         this.movieListService = movieListService;
     }
     MovieListComponent.prototype.crearClick = function () {
-        var user = 1;
+        var user = 2;
         this.movieListService.createMovieList(this.nombreLista, user);
         this.nombreLista = "Lista creada exitosamente";
     };
@@ -30,18 +30,29 @@ var MovieListComponent = (function () {
     MovieListComponent.prototype.verListas = function () {
         var _this = this;
         this.actoresFavoritos = null;
+        this.peliculasActoresFavoritos = null;
         //Para Admin(ve todas)
         //this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
         //Para user: asignar user logueado
-        var user = 1;
+        var user = 2;
         this.movieListService.getMovieListsByUser(user).then(function (movieLists) { _this.movieLists = movieLists; });
     };
     MovieListComponent.prototype.verActoresFavoritos = function () {
         var _this = this;
         this.movieLists = null;
+        this.peliculasActoresFavoritos = null;
         //Para user: asignar user logueado
         var user = 2;
         this.movieListService.getActoresFavoritos(user).then(function (actores) { _this.actoresFavoritos = actores; });
+    };
+    MovieListComponent.prototype.verPeliculasVariosActoresFavoritos = function () {
+        var _this = this;
+        this.movieLists = null;
+        this.actoresFavoritos = null;
+        var user = 2;
+        console.log('lista de peliculas con mas de un actor favorito');
+        console.log(this.movieListService.getPeliculasVariosActoresFavoritos(user)
+            .then(function (peliculas) { _this.peliculasActoresFavoritos = peliculas; }));
     };
     MovieListComponent.prototype.verInterseccion = function () {
         this.movieListService.getInterseccion(this.nombreLista1, this.nombreLista2);

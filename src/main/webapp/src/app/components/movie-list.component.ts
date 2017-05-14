@@ -3,6 +3,7 @@ import { Component,OnInit } from '@angular/core';
 import { MovieListService } from './../movie-list.service';
 import { MovieList } from './../model/movie-list';
 import { ActorFavorito } from './../model/actor-favorito';
+import { Pelicula } from './../model/pelicula';
 
 
 
@@ -18,10 +19,11 @@ export class MovieListComponent implements OnInit {
 	idPelicula: number;
 	movieLists: MovieList[];
 	actoresFavoritos: ActorFavorito[];
+	peliculasActoresFavoritos: Pelicula[];
 	
 
 crearClick(): void {
-	let user = 1;
+	let user = 2;
 	this.movieListService.createMovieList(this.nombreLista, user);
 	
 	this.nombreLista = "Lista creada exitosamente";
@@ -39,21 +41,34 @@ textReset(): void {
 
 verListas(): void {
 	this.actoresFavoritos = null;
+	this.peliculasActoresFavoritos = null;
 	
 	//Para Admin(ve todas)
 	//this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
     
 	//Para user: asignar user logueado
-	let user = 1;
+	let user = 2;
 	this.movieListService.getMovieListsByUser(user).then(movieLists => {this.movieLists = movieLists;});
 }
 
 verActoresFavoritos(): void {
 	this.movieLists = null;
+	this.peliculasActoresFavoritos = null;
 	
 	//Para user: asignar user logueado
 	let user = 2;
 	this.movieListService.getActoresFavoritos(user).then(actores => {this.actoresFavoritos = actores;});
+}
+
+verPeliculasVariosActoresFavoritos(): void{
+	this.movieLists = null;
+	this.actoresFavoritos = null;
+	
+	let user = 2;
+
+	console.log('lista de peliculas con mas de un actor favorito');
+	console.log(this.movieListService.getPeliculasVariosActoresFavoritos(user)
+		.then(peliculas => {this.peliculasActoresFavoritos = peliculas;}));
 }
 
 verInterseccion(): void {

@@ -59,7 +59,7 @@ export class MovieListService {
       .catch(this.handleError);
   }
 	
-  getMovieListsByUser(ownerId: number){
+  getMovieListsByUser(ownerId: number): Promise<MovieList[]>{
 	let url = `http://localhost:8080/movielists/search?ownerId=${ownerId}`;
 		return this.http.get(url)
 			      .toPromise()
@@ -73,6 +73,14 @@ export class MovieListService {
 			      .toPromise()
 			      .then(response => response.json() as ActorFavorito[])
 			      .catch(this.handleError);
+  }
+  
+  getPeliculasVariosActoresFavoritos(userId: number): Promise<Pelicula[]>{
+	  let url = `http://localhost:8080/peliculas/actoresFavoritos/${userId}`;
+			return this.http.get(url)
+				      .toPromise()
+				      .then(response => response.json() as Pelicula[])
+				      .catch(this.handleError);
   }
 
   getInterseccion(list1: number, list2: number) {
