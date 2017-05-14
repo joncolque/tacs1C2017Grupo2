@@ -1,12 +1,3 @@
-      <!-- Dropdown Trigger -->
-  <a class='dropdown-button btn' data-activates='dropdown1'>Drop Me!</a>
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="misListas!">one</a></li>
-    <li><a href="misListas!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="misListas!">three</a></li>
-  </ul>
 
 <div>
 	<h1>Crear lista: </h1>
@@ -70,6 +61,19 @@
 			</div>
 		</li>
 	</ul>	
+</div>
+
+<div class="container" *ngIf="!encontro">
+	<br>
+	<div class="row">
+		<div class="card horizontal teal lighten-2">
+		  <div class="card-stacked">
+			<div class="card-content">
+				<span class="card-title center-align"><a class="blue-text text-darken-4">No se encontraron resultados</a></span>
+			</div>
+		  </div>
+		</div>
+	</div>
 </div>
 			
 <hr style="color: #0056b2;" />

@@ -14,50 +14,84 @@ var MovieListComponent = (function () {
     function MovieListComponent(movieListService) {
         this.movieListService = movieListService;
     }
+    //crear lista de peliculas 
     MovieListComponent.prototype.crearClick = function () {
         var user = 2;
         this.movieListService.createMovieList(this.nombreLista, user);
         this.nombreLista = "Lista creada exitosamente";
     };
-    MovieListComponent.prototype.agregarPeliculaClick = function () {
-        this.movieListService.addMovieToList(this.idLista, this.idPelicula);
-        this.idLista = null;
-        this.idPelicula = null;
-    };
     MovieListComponent.prototype.textReset = function () {
         this.nombreLista = "";
     };
+    //movielists de un user o de todos si es admin
     MovieListComponent.prototype.verListas = function () {
         var _this = this;
         this.actoresFavoritos = null;
         this.peliculasActoresFavoritos = null;
         //Para Admin(ve todas)
-        //this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
+        /*
+          this.movieListService.getMovieLists()
+            .then(movieLists => {if(movieLists.length==0){
+                                    this.encontro=false;
+                                }else{
+                                    this.movieLists = movieLists;
+                                    this.encontro=true;
+                                });
+        */
         //Para user: asignar user logueado
         var user = 2;
-        this.movieListService.getMovieListsByUser(user).then(function (movieLists) { _this.movieLists = movieLists; });
+        this.movieListService.getMovieListsByUser(user)
+            .then(function (movieLists) {
+            if (movieLists.length == 0) {
+                _this.encontro = false;
+            }
+            else {
+                _this.movieLists = movieLists;
+                _this.encontro = true;
+            }
+        });
     };
+    //actores favoritos del usuario
     MovieListComponent.prototype.verActoresFavoritos = function () {
         var _this = this;
         this.movieLists = null;
         this.peliculasActoresFavoritos = null;
         //Para user: asignar user logueado
         var user = 2;
-        this.movieListService.getActoresFavoritos(user).then(function (actores) { _this.actoresFavoritos = actores; });
+        this.movieListService.getActoresFavoritos(user)
+            .then(function (actores) {
+            if (actores.length == 0) {
+                _this.encontro = false;
+            }
+            else {
+                _this.actoresFavoritos = actores;
+                _this.encontro = true;
+            }
+        });
     };
+    //peliculas con mas de un actor favorito
     MovieListComponent.prototype.verPeliculasVariosActoresFavoritos = function () {
         var _this = this;
         this.movieLists = null;
         this.actoresFavoritos = null;
         var user = 2;
-        console.log('lista de peliculas con mas de un actor favorito');
-        console.log(this.movieListService.getPeliculasVariosActoresFavoritos(user)
-            .then(function (peliculas) { _this.peliculasActoresFavoritos = peliculas; }));
+        this.movieListService.getPeliculasVariosActoresFavoritos(user)
+            .then(function (peliculas) {
+            if (peliculas.length == 0) {
+                _this.encontro = false;
+            }
+            else {
+                _this.peliculasActoresFavoritos = peliculas;
+                _this.encontro = true;
+            }
+        });
     };
+    //interseccion de peliculas entre dos listas
     MovieListComponent.prototype.verInterseccion = function () {
         this.movieListService.getInterseccion(this.nombreLista1, this.nombreLista2);
     };
     MovieListComponent.prototype.ngOnInit = function () {
+        this.encontro = true;
     };
     return MovieListComponent;
 }());

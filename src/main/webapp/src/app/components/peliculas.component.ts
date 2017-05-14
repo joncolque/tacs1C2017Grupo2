@@ -35,6 +35,7 @@ export class PeliculasComponent implements OnInit {
     }
   }
   
+  //muestra las listas de un usuario
   verListas(): void {
 	  //TEMPORAL
 	  let user = 2;

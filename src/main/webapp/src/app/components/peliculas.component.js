@@ -35,6 +35,7 @@ var PeliculasComponent = (function () {
             this.actorService.getActorByString(this.searchString).then(function (actores) { _this.actores = actores; });
         }
     };
+    //muestra las listas de un usuario
     PeliculasComponent.prototype.verListas = function () {
         var _this = this;
         //TEMPORAL

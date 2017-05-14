@@ -44,6 +44,7 @@ var MovieListService = (function () {
         var options = new http_1.RequestOptions({ headers: headers, body: body });
         return this.http.delete(url, options).toPromise().then(function (res) { return res.status; }).catch(this.handleError);
     };
+    //devuelve una movielist por id
     MovieListService.prototype.getMovieList = function (id) {
         var url = "http://localhost:8080/movielists/" + id;
         return this.http.get(url)
@@ -51,12 +52,14 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //devuelve todas las movielists
     MovieListService.prototype.getMovieLists = function () {
         return this.http.get('http://localhost:8080/movielists')
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //devuelve las movielists de un user
     MovieListService.prototype.getMovieListsByUser = function (ownerId) {
         var url = "http://localhost:8080/movielists/search?ownerId=" + ownerId;
         return this.http.get(url)
@@ -64,6 +67,7 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //devuelve los actores favoritos de un user
     MovieListService.prototype.getActoresFavoritos = function (userId) {
         var url = "http://localhost:8080/usuarios/" + userId + "/actoresFavoritos";
         return this.http.get(url)
@@ -71,6 +75,7 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //devuelve las peliculas con mas de un actor favorito de un user
     MovieListService.prototype.getPeliculasVariosActoresFavoritos = function (userId) {
         var url = "http://localhost:8080/peliculas/actoresFavoritos/" + userId;
         return this.http.get(url)
@@ -78,6 +83,7 @@ var MovieListService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //devuelve la interseccion de peliculas entre dos listas
     MovieListService.prototype.getInterseccion = function (list1, list2) {
         var _this = this;
         var promise = new Promise(function (resolve, reject) {
