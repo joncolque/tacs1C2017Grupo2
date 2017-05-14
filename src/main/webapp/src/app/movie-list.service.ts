@@ -8,7 +8,7 @@ import { Pelicula } from './model/pelicula';
 import { MovieDetail } from './model/movie-detail';
 import { MovieList } from './model/movie-list';
 import { ActorFavorito } from './model/actor-favorito';
-
+import { RankingActor } from './model/RankingActor';
 @Injectable()
 export class MovieListService {
 	results:Object[];
@@ -106,6 +106,12 @@ export class MovieListService {
 		  });
 	  return promise;
   }
+
+	getRankingMovieList(idML: number): Promise<RankingActor[]>{
+		let url = `http://localhost:8080/movielists/actoresRepetidos/${idML}`;
+		return this.http.get(url).toPromise().then( res => res.json() as RankingActor[])
+						.catch(this.handleError);
+	}
   
   
   private handleError (error: Response | any) {

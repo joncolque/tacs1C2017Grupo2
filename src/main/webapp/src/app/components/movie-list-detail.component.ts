@@ -8,6 +8,7 @@ import { PeliculaService } from './../pelicula.service';
 
 import { MovieList } from './../model/movie-list';
 import { MovieListService } from './../movie-list.service';
+import { RankingActor } from './../model/RankingActor';
 
 @Component({
   selector:'movie-list-detail',
@@ -18,6 +19,18 @@ import { MovieListService } from './../movie-list.service';
         <span>Propietario: {{movieList.ownerId}}</span>
       </div>
 
+      <button (click)="verRankingMovieList(movieList.id)" class="btn waves-effect black-text">Ver Ranking Actores</button>  
+      <li *ngFor="let arank of ranking">
+        <div class="row">
+          <div class="card horizontal teal lighten-2">
+            <div class="card-stacked">
+            <div class="card-content">
+      				<span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/actor/', arank.movieActor.id]">{{arank.movieActor.name}}:  {{arank.cantRepeticiones}}</a></span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </li>			
       <div class="card-panel teal lighten-2 black-text">
         <h3>Peliculas:</h3>
         <div class="container">
@@ -45,6 +58,7 @@ import { MovieListService } from './../movie-list.service';
 
 export class MovieListDetailComponent implements OnInit {
   movieList: MovieList;
+  ranking: RankingActor[];
 
   ngOnInit(): void {
     this.route.params
@@ -55,6 +69,12 @@ export class MovieListDetailComponent implements OnInit {
   deleteMovieFromList(movielistId:number, movieId: number){
 	  this.movieListService.deleteMovieFromList(movielistId, movieId).then(res => {this.ngOnInit()});
   }
+  
+ 	verRankingMovieList(idML: number){
+		this.movieListService.getRankingMovieList(1).then(resp => {this.ranking = resp;
+ 		});
+ 	}
+  
   
   constructor(private movieListService: MovieListService, private route: ActivatedRoute, private location: Location) {}
 }

@@ -1,9 +1,11 @@
 package tacs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import apiResult.MovieResult;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import model.MovieList;
 import model.Pelicula;
 import model.Ranking;
+import model.RankingActor;
 import model.Response;
 import repos.RepoMoviesLists;
 import repos.RepoUsuarios;
@@ -101,7 +104,7 @@ public class MovieListController extends AbstractController{
 	
 	// Ranking de actores que se repiten en las peliculas de una lista
 	@RequestMapping(value="/actoresRepetidos/{movieListId}", method=RequestMethod.GET)
-	public Map<String,Integer> getRankingFromActorsByMovies(@PathVariable("movieListId") long movieListId) {
+	public List<RankingActor> getRankingFromActorsByMovies(@PathVariable("movieListId") long movieListId) {
 		logger.info("getRankingFromMovie()");
 
 		List<Pelicula> ml = RepoMoviesLists.getInstance().getMovieList(movieListId).getListaPeliculas();
@@ -110,12 +113,14 @@ public class MovieListController extends AbstractController{
 			rk.processRankingFromActorByMovieList(Connection.getActorsMovie(Long.toString(p.getId())));
 		} );
 		
-		Map<String,Integer> ran = new HashMap<String,Integer>();
+		List<RankingActor> rankingActores = new ArrayList<>();
 		
 		rk.getRankingFromActorsByMovies().forEach((k,v)-> {
-			ran.put(v.getName(),v.getCount());
+			rankingActores.add(new RankingActor(v, v.getCount()));
 		});
 
-		return Sort.sortByValue(ran);
+		return rankingActores.stream().sorted((u1,u2)-> {
+            return Integer.valueOf(u2.getCantRepeticiones()).compareTo(Integer.valueOf(u1.getCantRepeticiones()));})
+            .collect(Collectors.toList());
 	}
 }
