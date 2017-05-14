@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 
 import { MovieListService } from './../movie-list.service';
 import { MovieList } from './../model/movie-list';
+import { ActorFavorito } from './../model/actor-favorito';
+
 
 
 @Component({
@@ -15,6 +17,7 @@ export class MovieListComponent implements OnInit {
 	idLista: number;
 	idPelicula: number;
 	movieLists: MovieList[];
+	actoresFavoritos: ActorFavorito[];
 	
 
 crearClick(): void {
@@ -35,12 +38,22 @@ textReset(): void {
 }
 
 verListas(): void {
-    //Para Admin(ve todas)
+	this.actoresFavoritos = null;
+	
+	//Para Admin(ve todas)
 	//this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
     
 	//Para user: asignar user logueado
 	let user = 1;
 	this.movieListService.getMovieListsByUser(user).then(movieLists => {this.movieLists = movieLists;});
+}
+
+verActoresFavoritos(): void {
+	this.movieLists = null;
+	
+	//Para user: asignar user logueado
+	let user = 2;
+	this.movieListService.getActoresFavoritos(user).then(actores => {this.actoresFavoritos = actores;});
 }
 
 verInterseccion(): void {

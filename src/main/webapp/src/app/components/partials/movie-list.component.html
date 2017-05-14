@@ -20,19 +20,41 @@
 <hr style="color: #0056b2;" />	
 
 <h1>Listas</h1>
-<button (click)="verListas()" class="btn waves-effect black-text">Ver listas</button>  
-<li *ngFor="let movieList of movieLists">
-	<div class="row">
-		<div class="card horizontal teal lighten-2">
-		  <div class="card-stacked">
-			<div class="card-content">
-				<span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/movielists/', movieList.id]">{{movieList.nombre}}</a></span>
-			</div>
-		  </div>
-		</div>
-	</div>
-</li>			
+<button (click)="verListas()" class="btn waves-effect black-text">Ver listas de peliculas</button>  
+<button (click)="verActoresFavoritos()" class="btn waves-effect black-text">Ver actores favoritos</button> 
 
+<div class="container" *ngIf="movieLists">
+	<ul class="movieLists black-text">
+		<li *ngFor="let movieList of movieLists">
+			<div class="row">
+				<div class="card horizontal teal lighten-2">
+				  <div class="card-stacked">
+					<div class="card-content">
+						<span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/movielists/', movieList.id]">{{movieList.nombre}}</a></span>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="container" *ngIf="actoresFavoritos">
+	<ul class="actoresFavoritos black-text">
+		<li *ngFor="let actor of actoresFavoritos">
+			<div class="row">
+				<div class="card horizontal teal lighten-2">
+				  <div class="card-stacked">
+					<div class="card-content">
+						<span class="card-title center-align"><a class="blue-text text-darken-4" [routerLink]="['/actor', actor.id]">{{actor.nombre}}</a></span>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</li>
+	</ul>	
+</div>
+			
 <hr style="color: #0056b2;" />
 <hr style="color: #0056b2;" />	
 

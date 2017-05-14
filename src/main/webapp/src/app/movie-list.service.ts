@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { Pelicula } from './model/pelicula';
 import { MovieDetail } from './model/movie-detail';
 import { MovieList } from './model/movie-list';
+import { ActorFavorito } from './model/actor-favorito';
 
 @Injectable()
 export class MovieListService {
@@ -63,6 +64,14 @@ export class MovieListService {
 		return this.http.get(url)
 			      .toPromise()
 			      .then(response => response.json() as MovieList[])
+			      .catch(this.handleError);
+  }
+  
+  getActoresFavoritos(userId: number): Promise<ActorFavorito[]>{
+	let url = `http://localhost:8080/usuarios/${userId}/actoresFavoritos`;
+		return this.http.get(url)
+			      .toPromise()
+			      .then(response => response.json() as ActorFavorito[])
 			      .catch(this.handleError);
   }
 

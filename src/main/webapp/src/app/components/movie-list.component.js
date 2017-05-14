@@ -28,12 +28,20 @@ var MovieListComponent = (function () {
         this.nombreLista = "";
     };
     MovieListComponent.prototype.verListas = function () {
+        var _this = this;
+        this.actoresFavoritos = null;
         //Para Admin(ve todas)
         //this.movieListService.getMovieLists().then(movieLists => {this.movieLists = movieLists;});
-        var _this = this;
         //Para user: asignar user logueado
         var user = 1;
         this.movieListService.getMovieListsByUser(user).then(function (movieLists) { _this.movieLists = movieLists; });
+    };
+    MovieListComponent.prototype.verActoresFavoritos = function () {
+        var _this = this;
+        this.movieLists = null;
+        //Para user: asignar user logueado
+        var user = 2;
+        this.movieListService.getActoresFavoritos(user).then(function (actores) { _this.actoresFavoritos = actores; });
     };
     MovieListComponent.prototype.verInterseccion = function () {
         this.movieListService.getInterseccion(this.nombreLista1, this.nombreLista2);

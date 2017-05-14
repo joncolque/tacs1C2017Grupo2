@@ -51,8 +51,6 @@ public class UserController extends AbstractController{
 		return new Response(201, "El usuario " + user.getUsername() + " ha sido creado");
 	}
 
-	
-	
 	// es mi actor favorito
 	@RequestMapping(value = "/{usuario}/actorFavorito/{idActor}", method = RequestMethod.GET)
 	public BooleanObj esActorFavorito(@PathVariable("usuario") long id, @PathVariable("idActor") long idActor) throws UserNotFoundException {
@@ -62,8 +60,6 @@ public class UserController extends AbstractController{
 		BooleanObj bool = new BooleanObj(user.getIdsActoresFavoritos().stream().anyMatch(actor -> actor.getId() == (int)idActor ));
 		return bool;
 	}		
-	
-	
 	
 	// Lista de actores favoritos
 	@RequestMapping(value = "/{usuario}/actoresFavoritos", method = RequestMethod.GET)
