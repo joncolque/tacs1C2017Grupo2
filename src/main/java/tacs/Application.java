@@ -39,8 +39,6 @@ public class Application {
 		guille.addIdActorFavorito(actorFavorito);
 		guille.removeIdActorFavorito(actorFavorito);
 		guille.addIdActorFavorito(actorFavorito);
-		Pelicula peli1 = new Pelicula("Matrix", "eeuu", "1997");
-		Pelicula peli2 = new Pelicula("Matrix2", "eeuu", "2002");
 
 		MovieList rankingMovies = new MovieList("Lista A", Long.valueOf(guille.getId()));
 		MovieController mc = new MovieController();
@@ -56,9 +54,9 @@ public class Application {
 		ranking.forEach(ac -> System.out.println("ID: "+ ac.getMovieActor() + " -- value: "+ ac.getCantRepeticiones()));			
 		
 		MovieList movielist1 = new MovieList("Lista A", guille.getId());
-		movielist1.addPelicula(peli1);
+		movielist1.addPelicula(mc.getPeliculaById((long)120));
 		MovieList movielist2 = new MovieList("Lista B", guille.getId());
-		movielist2.addPelicula(peli2);
+		movielist2.addPelicula(mc.getPeliculaById((long)122));
 		
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("Alvaro").pass("1234").rol(adm).build());
 		RepoUsuarios.getInstance().addUsuario(new UsuarioBuilder("martin").pass("1234").rol(adm).build());

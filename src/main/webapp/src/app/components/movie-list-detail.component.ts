@@ -71,7 +71,7 @@ export class MovieListDetailComponent implements OnInit {
   }
   
  	verRankingMovieList(idML: number){
-		this.movieListService.getRankingMovieList(1).then(resp => {this.ranking = resp;
+		this.movieListService.getRankingMovieList(idML).then(resp => {this.ranking = resp;
  		});
  	}
   

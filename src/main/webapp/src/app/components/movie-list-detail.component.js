@@ -31,7 +31,7 @@ var MovieListDetailComponent = (function () {
     };
     MovieListDetailComponent.prototype.verRankingMovieList = function (idML) {
         var _this = this;
-        this.movieListService.getRankingMovieList(1).then(function (resp) {
+        this.movieListService.getRankingMovieList(idML).then(function (resp) {
             _this.ranking = resp;
         });
     };
