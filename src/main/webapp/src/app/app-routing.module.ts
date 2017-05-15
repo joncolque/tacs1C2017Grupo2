@@ -6,6 +6,7 @@ import { MovieDetailComponent } from './components/movie-detail.component';
 import { PeliculasComponent } from './components/peliculas.component';
 import { ActorComponent } from './components/actor.component';
 import { LoginComponent } from './components/login.component';
+import { RegisterComponent } from './components/register.component';
 
 import { MovieListComponent } from './components/movie-list.component';
 import { MovieListDetailComponent } from './components/movie-list-detail.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'listaPeliculas',

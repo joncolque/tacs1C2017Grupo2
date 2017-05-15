@@ -17,7 +17,6 @@ import model.RankingActor;
 import model.Rol;
 import model.SummaryActor;
 import model.Usuario;
-import net.minidev.json.JSONObject;
 import repos.RepoMoviesLists;
 import repos.RepoUsuarios;
 
