@@ -14,8 +14,8 @@ public class Actor {
 	private String fechaNac;
 	private String imagePath;
 	private List<MovieCastResult> listaPeliculas;
-	
-	
+
+
 	public Actor(String unNombre,String unBiography, String unLugar, String unaFecha, String unPath) {
 		nombre = unNombre;
 		biography = unBiography;
@@ -28,6 +28,7 @@ public class Actor {
 		// TODO Auto-generated constructor stub
 	}
 
+	//GETTERS and SETTERS
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -55,12 +56,15 @@ public class Actor {
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -68,16 +72,22 @@ public class Actor {
 	public String getLugarNac() {
 		return lugarNac;
 	}
+	
 	public void setLugarNac(String lugarNac) {
 		this.lugarNac = lugarNac;
 	}
+	
 	public String getFechaNac() {
 		return fechaNac;
 	}
+	
 	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 
+
+	
+	//METODOS
 	public void listMovie(ActorCastResult actorCastR) {
 		this.listaPeliculas = actorCastR.getCast();
 		

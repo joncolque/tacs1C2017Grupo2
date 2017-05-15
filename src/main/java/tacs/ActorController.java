@@ -45,6 +45,7 @@ public class ActorController extends AbstractController {
 		return resultadoRequest.toActorList();
 	}
 
+	//Detall de un actor
 	@RequestMapping(value="/{actor}", method = RequestMethod.GET)
 	public Actor getActorById(@PathVariable("actor") long idactor){
 		logger.info("getActor()");
@@ -60,7 +61,7 @@ public class ActorController extends AbstractController {
 	}
 	
 	// Ranking de actores favoriteados
-	@PreAuthorize("hasRole('ROLE_USER')")
+	//@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rankingFavoritos", method = RequestMethod.GET)
 	public List<FavoritoActor> rankingActores(){
 		logger.info("rankingActores()");

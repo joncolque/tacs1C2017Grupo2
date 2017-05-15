@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,9 @@ public class Usuario implements UserDetails {
 	private String password; //nota va a ser un salted hash a futuro?
 	private Rol rol;
 	private List<SummaryActor> actoresFavoritos;
+	private Date ultimaSesion;
 
+	//CONSTRUCTOR
 	public Usuario(long unId, String unUser, String unaPass) {
 		id = unId;
 		username = unUser;
@@ -35,24 +38,31 @@ public class Usuario implements UserDetails {
 		actoresFavoritos = new ArrayList<SummaryActor>();
 	}
 
+	//GETTERS and SETTERS
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = PassEncoder.encriptarPassword(password);
 	}
+	
 	public Rol getRol() {
 		return rol;
 	}
@@ -69,6 +79,19 @@ public class Usuario implements UserDetails {
 		this.actoresFavoritos.add(unId);
 	}
 	
+	public Date getUltimaSesion() {
+		return ultimaSesion;
+	}
+
+	public void setUltimaSesion(Date ultimaSesion) {
+		this.ultimaSesion = ultimaSesion;
+	}
+	
+	//METODOS
+	/**Metodo que elimina un actor favorito de la lista de actores favoritos
+	 * 
+	 * @param unActor
+	 */
 	public void removeIdActorFavorito(SummaryActor unActor) {
 		List<SummaryActor> aclist = new ArrayList<>();
 		aclist.addAll(this.actoresFavoritos);

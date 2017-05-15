@@ -4,7 +4,8 @@ import { Rol } from './rol';
 export class Usuario {
   id: number;
   username: string;
-  //password: string;
+  password: string;
   rol: Rol;
   actoresFavoritos: SummaryActor[];
+  ultimaSesion: number;
 }

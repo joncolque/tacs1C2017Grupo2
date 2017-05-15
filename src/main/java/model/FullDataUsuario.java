@@ -27,8 +27,7 @@ public class FullDataUsuario {
         password = user.getPassword();
         rol = user.getRol();
         actoresFavoritos = user.getIdsActoresFavoritos();
-        ultimaSesion = new Date();
-        System.out.println(ultimaSesion);
+        ultimaSesion = user.getUltimaSesion();
     }
 
 

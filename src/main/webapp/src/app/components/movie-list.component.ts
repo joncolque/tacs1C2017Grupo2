@@ -95,7 +95,7 @@ verInterseccion(): void {
 }
 
 ngOnInit(): void {
-  this.encontro=true;
+  this.encontro=true;	
 }
 
 constructor(private movieListService: MovieListService) {

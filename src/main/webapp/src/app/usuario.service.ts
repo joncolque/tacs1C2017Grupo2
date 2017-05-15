@@ -36,7 +36,7 @@ export class UsuarioService {
             .catch(this.handleError);
     }
 
-    getHero(id: number): Promise<UsuarioDetail> {
+    getUsuario(id: number): Promise<UsuarioDetail> {
         let url = `http://localhost:8080/usuarios/${id}`;
         return this.http.get(url)
             .toPromise()

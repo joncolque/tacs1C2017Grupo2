@@ -36,7 +36,7 @@ var UsuarioService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    UsuarioService.prototype.getHero = function (id) {
+    UsuarioService.prototype.getUsuario = function (id) {
         var url = "http://localhost:8080/usuarios/" + id;
         return this.http.get(url)
             .toPromise()

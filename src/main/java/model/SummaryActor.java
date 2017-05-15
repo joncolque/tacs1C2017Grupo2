@@ -14,6 +14,12 @@ public class SummaryActor {
 		
 	}
 	
+	/**
+	 * Constructor de SummaryActor
+	 * @param unId
+	 * @param unPath
+	 * @param unNombre
+	 */
 	public SummaryActor(int unId, String unPath, String unNombre) {
 		id = unId;
 		imagePath = unPath;
