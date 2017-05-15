@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { UsuarioService } from './../usuario.service';
 import { AlertService } from '../alert.service';
+import { UserData } from './../model/user-data';
+
 @Component({
   selector: 'my-login',
   templateUrl: './login.component.html'
@@ -22,8 +24,10 @@ export class LoginComponent {
       .subscribe(unString => {
         this.alertService.success("Logueo Satisfactorio");
         this.token = unString;
-        console.log('El token es ' + unString);
-        this.usuarioService.setToken(unString);
+        //console.log('El token es ' + unString);
+        //this.usuarioService.setToken(unString);
+        this.userData.setToken(unString);
+        this.userData.setUsername(this.username);
         this.router.navigate(["listaPeliculas"]);
         });
   }
@@ -32,5 +36,6 @@ export class LoginComponent {
     private alertService: AlertService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router) {}
+    private router: Router,
+    private userData: UserData) {}
 }

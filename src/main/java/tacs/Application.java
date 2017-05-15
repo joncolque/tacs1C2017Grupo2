@@ -31,7 +31,7 @@ public class Application {
 		
 		Usuario guille = new UsuarioBuilder("Guille").pass("1234").rol(usr).build();
 		Usuario alvaro = new UsuarioBuilder("Alvaro").pass("1234").rol(adm).build();
-		Usuario martin = new UsuarioBuilder("Martin").pass("1234").rol(adm).build();
+		Usuario martin = new UsuarioBuilder("martin").pass("1234").rol(adm).build();
 		Usuario julio = new UsuarioBuilder("Julio").pass("1234").rol(adm).build();
 		Usuario jon = new UsuarioBuilder("Jon").pass("1234").rol(adm).build();
 		

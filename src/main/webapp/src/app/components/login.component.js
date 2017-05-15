@@ -13,26 +13,44 @@ var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 require("rxjs/add/operator/switchMap");
 var usuario_service_1 = require("./../usuario.service");
+var alert_service_1 = require("../alert.service");
+var user_data_1 = require("./../model/user-data");
 var LoginComponent = (function () {
-    function LoginComponent(usuarioService, route, location) {
+    function LoginComponent(usuarioService, alertService, route, location, router, userData) {
         this.usuarioService = usuarioService;
+        this.alertService = alertService;
         this.route = route;
         this.location = location;
+        this.router = router;
+        this.userData = userData;
     }
     LoginComponent.prototype.doLogin = function () {
         var _this = this;
         this.route.params
             .switchMap(function (params) { return _this.usuarioService.authenticate(_this.username, _this.password); })
-            .subscribe(function (unString) { _this.token = unString; console.log('El token es ' + unString); _this.usuarioService.setToken(unString); });
+            .subscribe(function (unString) {
+            _this.alertService.success("Logueo Satisfactorio");
+            _this.token = unString;
+            //console.log('El token es ' + unString);
+            //this.usuarioService.setToken(unString);
+            _this.userData.setToken(unString);
+            _this.userData.setUsername(_this.username);
+            _this.router.navigate(["listaPeliculas"]);
+        });
     };
     return LoginComponent;
 }());
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'my-login',
-        template: "\n      <h2>Ingrese su usuario y contrase\u00F1a:</h2>\n      <form>\n          <div><label> User Name : <input type=\"text\" name=\"username\" [(ngModel)]=\"username\"/> </label></div>\n          <div><label> Password: <input type=\"password\" name=\"password\" [(ngModel)]=\"password\"/> </label></div>\n          <button (click)=\"doLogin()\" class=\"btn waves-effect black-text\">Log in</button>\n      </form>\n    "
+        templateUrl: './login.component.html'
     }),
-    __metadata("design:paramtypes", [usuario_service_1.UsuarioService, router_1.ActivatedRoute, common_1.Location])
+    __metadata("design:paramtypes", [usuario_service_1.UsuarioService,
+        alert_service_1.AlertService,
+        router_1.ActivatedRoute,
+        common_1.Location,
+        router_1.Router,
+        user_data_1.UserData])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

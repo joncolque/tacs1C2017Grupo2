@@ -21,6 +21,7 @@ import { UsuariosComponent } from './components/usuarios.component';
 import { UsuarioService } from './usuario.service';
 import { UsuarioDetailComponent } from './components/usuario-detail.component';
 import { RankingFavoritosComponent } from './components/ranking-favoritos.component';
+import { UserData } from './model/user-data';
 
 @NgModule({
   imports:      [
@@ -48,7 +49,8 @@ import { RankingFavoritosComponent } from './components/ranking-favoritos.compon
     ActorService,
     UsuarioService,
     MovieListService,
-    AlertService
+    AlertService,
+    UserData
   ],
   bootstrap:    [ AppComponent ]
 })

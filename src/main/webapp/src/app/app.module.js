@@ -20,10 +20,14 @@ var movie_list_component_1 = require("./components/movie-list.component");
 var movie_list_service_1 = require("./movie-list.service");
 var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
 var login_component_1 = require("./components/login.component");
+var register_component_1 = require("./components/register.component");
+var alert_component_1 = require("./components/alert.component");
+var alert_service_1 = require("./alert.service");
 var usuarios_component_1 = require("./components/usuarios.component");
 var usuario_service_1 = require("./usuario.service");
 var usuario_detail_component_1 = require("./components/usuario-detail.component");
 var ranking_favoritos_component_1 = require("./components/ranking-favoritos.component");
+var user_data_1 = require("./model/user-data");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,6 +44,8 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             login_component_1.LoginComponent,
+            register_component_1.RegisterComponent,
+            alert_component_1.AlertComponent,
             movie_detail_component_1.MovieDetailComponent,
             peliculas_component_1.PeliculasComponent,
             actor_component_1.ActorComponent,
@@ -53,7 +59,9 @@ AppModule = __decorate([
             pelicula_service_1.PeliculaService,
             actor_service_1.ActorService,
             usuario_service_1.UsuarioService,
-            movie_list_service_1.MovieListService
+            movie_list_service_1.MovieListService,
+            alert_service_1.AlertService,
+            user_data_1.UserData
         ],
         bootstrap: [app_component_1.AppComponent]
     })

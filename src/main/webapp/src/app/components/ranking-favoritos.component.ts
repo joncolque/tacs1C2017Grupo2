@@ -6,6 +6,7 @@ import { SummaryActor } from './../model/summary-actor';
 import { ActorFavorito } from './../model/actor-favorito';
 import { ActorService } from './../actor.service';
 import { UsuarioService } from './../usuario.service';
+import { UserData } from './../model/user-data';
 
 @Component({
   selector: 'ranking-favoritos',
@@ -35,10 +36,12 @@ export class RankingFavoritosComponent implements OnInit {
   listaFavoritos: ActorFavorito[];
 
   ngOnInit(): void {
+    console.log('El token es ' + this.userData.getToken() + ' con user: ' + this.userData.getUsername());
+
     this.route.params
-      .switchMap((params: Params) => this.actorService.getActoresFavoritos(this.usuarioService.getToken()))
+      .switchMap((params: Params) => this.actorService.getActoresFavoritos())
       .subscribe(listaActores => this.listaFavoritos = listaActores);
   }
 
-  constructor(private actorService: ActorService, private route: ActivatedRoute, private location: Location, private usuarioService: UsuarioService) {}
+  constructor(private actorService: ActorService, private route: ActivatedRoute, private location: Location, private usuarioService: UsuarioService, private userData: UserData) {}
 }

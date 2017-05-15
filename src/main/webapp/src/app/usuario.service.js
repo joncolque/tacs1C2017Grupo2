@@ -14,7 +14,6 @@ require("rxjs/add/operator/toPromise");
 var UsuarioService = (function () {
     function UsuarioService(http) {
         this.http = http;
-        this.token = "";
     }
     UsuarioService.prototype.authenticate = function (username, password) {
         var url = 'http://localhost:8080/auth';
@@ -72,12 +71,6 @@ var UsuarioService = (function () {
     UsuarioService.prototype.handleError = function (error) {
         console.error('Error retrieving usuarios', error);
         return Promise.reject(error.message || error);
-    };
-    UsuarioService.prototype.setToken = function (unToken) {
-        this.token = 'Bearer ' + unToken;
-    };
-    UsuarioService.prototype.getToken = function () {
-        return this.token;
     };
     return UsuarioService;
 }());

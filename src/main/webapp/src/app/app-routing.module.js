@@ -11,6 +11,7 @@ var movie_detail_component_1 = require("./components/movie-detail.component");
 var peliculas_component_1 = require("./components/peliculas.component");
 var actor_component_1 = require("./components/actor.component");
 var login_component_1 = require("./components/login.component");
+var register_component_1 = require("./components/register.component");
 var movie_list_component_1 = require("./components/movie-list.component");
 var movie_list_detail_component_1 = require("./components/movie-list-detail.component");
 var usuarios_component_1 = require("./components/usuarios.component");
@@ -24,6 +25,10 @@ var routes = [
     {
         path: 'login',
         component: login_component_1.LoginComponent
+    },
+    {
+        path: 'register',
+        component: register_component_1.RegisterComponent
     },
     {
         path: 'listaPeliculas',

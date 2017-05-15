@@ -12,10 +12,12 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
 var usuario_service_1 = require("./usuario.service");
+var user_data_1 = require("./model/user-data");
 var ActorService = (function () {
-    function ActorService(http, usuarioService) {
+    function ActorService(http, usuarioService, userData) {
         this.http = http;
         this.usuarioService = usuarioService;
+        this.userData = userData;
     }
     ActorService.prototype.getActor = function (id) {
         var url = "http://localhost:8080/actores/" + id;
@@ -33,11 +35,10 @@ var ActorService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ActorService.prototype.getActoresFavoritos = function (token) {
-        var headers = new http_1.Headers;
-        headers.append('Authorization', '' + token);
+    ActorService.prototype.getActoresFavoritos = function () {
+        var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + this.userData.getToken() });
         var url = "http://localhost:8080/actores/rankingFavoritos";
-        return this.http.get(url, headers)
+        return this.http.get(url, { headers: headers })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -50,7 +51,7 @@ var ActorService = (function () {
 }());
 ActorService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, usuario_service_1.UsuarioService])
+    __metadata("design:paramtypes", [http_1.Http, usuario_service_1.UsuarioService, user_data_1.UserData])
 ], ActorService);
 exports.ActorService = ActorService;
 //# sourceMappingURL=actor.service.js.map

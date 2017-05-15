@@ -5,14 +5,16 @@ import { PeliculaService } from './pelicula.service';
 import { UsuarioService } from './usuario.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
-import { HttpModule} from '@angular/http'
+import { HttpModule} from '@angular/http';
+import { UserData } from './model/user-data';
+
 @Component({
   selector: 'my-app',
   template: `
     <div class="navbar-fixed">
     <nav class="teal lighten-2">
     <div class="nav-wrapper">
-       <a href="#" class="brand-logo black-text right" style="margin-right:10%">{{name}} Show Must Go On</a>
+       <a href="#" class="brand-logo black-text right" style="margin-right:10%">{{userData.getUsername()}} - Show Must Go On</a>
        <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left:5%;">
          <li><a class="black-text" routerLink="/">Inicio</a></li>
          <li><a class="black-text" routerLink="/misListas">Mis Listas</a></li>
@@ -25,14 +27,12 @@ import { HttpModule} from '@angular/http'
     </div>
     <router-outlet></router-outlet>
   `
-
 })
 export class AppComponent {
   name: string;
-  us: UsuarioService;
     ngOnInit() {
-      this.name="User.";
+      this.name = this.userData.getUsername();
     }
 
-    constructor(us : UsuarioService, private route: ActivatedRoute){this.us=us}
+    constructor(private us : UsuarioService, private route: ActivatedRoute, private userData: UserData){}
 }

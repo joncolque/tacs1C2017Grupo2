@@ -61,7 +61,7 @@ public class ActorController extends AbstractController {
 	}
 	
 	// Ranking de actores favoriteados
-	//@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/rankingFavoritos", method = RequestMethod.GET)
 	public List<FavoritoActor> rankingActores(){
 		logger.info("rankingActores()");
