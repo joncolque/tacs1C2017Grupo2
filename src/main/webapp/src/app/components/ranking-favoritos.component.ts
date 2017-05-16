@@ -11,8 +11,8 @@ import { UserData } from './../model/user-data';
 @Component({
   selector: 'ranking-favoritos',
   template: `
+    <h4 *ngIf="error">No tiene los permisos para acceder a esta sección.</h4>
     <div class="card-panel teal lighten-2 black-text">
-    <span class="black-text" *ngIf="error">No tiene los permisos para acceder a esta sección.</span>
     <div class="container">
     <table class="centered">
       <thead>
@@ -42,7 +42,8 @@ export class RankingFavoritosComponent implements OnInit {
 
     this.route.params
       .switchMap((params: Params) => this.actorService.getActoresFavoritos())
-      .subscribe(listaActores => { this.listaFavoritos = listaActores; });
+      .subscribe(listaActores => { this.listaFavoritos = listaActores; },
+        error => this.error = error);
   }
 
   constructor(private actorService: ActorService, private route: ActivatedRoute, private location: Location, private usuarioService: UsuarioService, private userData: UserData) {}

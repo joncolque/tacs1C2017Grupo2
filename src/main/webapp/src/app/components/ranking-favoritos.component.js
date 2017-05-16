@@ -28,14 +28,14 @@ var RankingFavoritosComponent = (function () {
         console.log('El token es ' + this.userData.getToken() + ' con user: ' + this.userData.getUsername());
         this.route.params
             .switchMap(function (params) { return _this.actorService.getActoresFavoritos(); })
-            .subscribe(function (listaActores) { _this.listaFavoritos = listaActores; });
+            .subscribe(function (listaActores) { _this.listaFavoritos = listaActores; }, function (error) { return _this.error = error; });
     };
     return RankingFavoritosComponent;
 }());
 RankingFavoritosComponent = __decorate([
     core_1.Component({
         selector: 'ranking-favoritos',
-        template: "\n    <div class=\"card-panel teal lighten-2 black-text\">\n    <span class=\"black-text\" *ngIf=\"error\">No tiene los permisos para acceder a esta secci\u00F3n.</span>\n    <div class=\"container\">\n    <table class=\"centered\">\n      <thead>\n      <tr>\n        <th>Actor</th>\n        <th>Cantidad de favoritos</th>\n      </tr>\n      </thead>\n      <tbody>\n      <tr *ngFor=\"let actorFav of listaFavoritos\">\n        <td>{{actorFav.actor.nombre}}</td>\n        <td>{{actorFav.cantidadFavoritos}}</td>\n      </tr>\n      </tbody>\n    </table>\n    </div>\n    </div>\n  "
+        template: "\n    <h4 *ngIf=\"error\">No tiene los permisos para acceder a esta secci\u00F3n.</h4>\n    <div class=\"card-panel teal lighten-2 black-text\">\n    <div class=\"container\">\n    <table class=\"centered\">\n      <thead>\n      <tr>\n        <th>Actor</th>\n        <th>Cantidad de favoritos</th>\n      </tr>\n      </thead>\n      <tbody>\n      <tr *ngFor=\"let actorFav of listaFavoritos\">\n        <td>{{actorFav.actor.nombre}}</td>\n        <td>{{actorFav.cantidadFavoritos}}</td>\n      </tr>\n      </tbody>\n    </table>\n    </div>\n    </div>\n  "
     }),
     __metadata("design:paramtypes", [actor_service_1.ActorService, router_1.ActivatedRoute, common_1.Location, usuario_service_1.UsuarioService, user_data_1.UserData])
 ], RankingFavoritosComponent);

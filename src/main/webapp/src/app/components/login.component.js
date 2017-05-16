@@ -28,19 +28,23 @@ var LoginComponent = (function () {
         var _this = this;
         this.route.params
             .switchMap(function (params) { return _this.usuarioService.authenticate(_this.username, _this.password); })
-            .subscribe(function (unString) {
-            _this.alertService.success("Logueo Satisfactorio");
-            _this.userData.setToken(unString);
-            _this.userData.setUsername(_this.username);
-            _this.router.navigate(["listaPeliculas"]);
-        });
+            .subscribe(function (result) {
+            if (result) {
+                _this.alertService.success("Logueo Satisfactorio");
+                _this.userData.setUsername(_this.username);
+                _this.router.navigate(["listaPeliculas"]);
+            }
+            else {
+                _this.error = "Usuario o contraseña incorrecta.";
+            }
+        }, function (error) { return _this.error = "Usuario o contraseña incorrecta."; });
     };
     return LoginComponent;
 }());
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'my-login',
-        templateUrl: './login.component.html'
+        templateUrl: './partials/login.component.html'
     }),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService,
         alert_service_1.AlertService,

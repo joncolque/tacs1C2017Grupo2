@@ -8,23 +8,28 @@ import { UserData } from './../model/user-data';
 
 @Component({
   selector: 'my-login',
-  templateUrl: './login.component.html'
+  templateUrl: './partials/login.component.html'
 })
 
 export class LoginComponent {
   username: string;
   password: string;
+  error: string;
+  message: string;
 
   doLogin(): void {
 
     this.route.params
       .switchMap((params: Params) => this.usuarioService.authenticate(this.username, this.password))
-      .subscribe(unString => {
-        this.alertService.success("Logueo Satisfactorio");
-        this.userData.setToken(unString);
-        this.userData.setUsername(this.username);
-        this.router.navigate(["listaPeliculas"]);
-        });
+      .subscribe(result => {
+        if (result) {
+          this.alertService.success("Logueo Satisfactorio");
+          this.userData.setUsername(this.username);
+          this.router.navigate(["listaPeliculas"]);
+        } else {
+          this.error = "Usuario o contraseña incorrecta.";
+        }
+      }, error => this.error = "Usuario o contraseña incorrecta.");
   }
    constructor(
     private usuarioService: UsuarioService,

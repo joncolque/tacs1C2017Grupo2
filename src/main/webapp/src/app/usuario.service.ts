@@ -7,12 +7,13 @@ import { BooleanObj } from './model/boolean-obj';
 import { Usuario } from './model/usuario';
 import { UsuarioDetail } from './model/usuario-detail';
 import { SummaryActor } from './model/summary-actor';
+import { UserData } from './model/user-data';
 
 @Injectable()
 export class UsuarioService {
-    constructor(private http: Http) { }
+    constructor(private http: Http, private userData: UserData) { }
 
-    authenticate(username: string, password: string): Promise<string> {
+    authenticate(username: string, password: string): Promise<boolean> {
       let url = 'http://localhost:8080/auth';
       let headers = new Headers;
       headers.append('Content-Type', 'application/json');
@@ -22,7 +23,15 @@ export class UsuarioService {
       }
       return this.http.post(url, body, headers)
         .toPromise()
-        .then(response => response.json().token as String)
+        .then(response => {
+          let respuesta = response.json() && response.json().token;
+          if (respuesta) {
+            this.userData.setToken(respuesta);
+            return true;
+          } else {
+            return false;
+          }
+        })
         .catch(this.handleError);
     }
 

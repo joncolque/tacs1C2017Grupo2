@@ -11,11 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
+var user_data_1 = require("./model/user-data");
 var UsuarioService = (function () {
-    function UsuarioService(http) {
+    function UsuarioService(http, userData) {
         this.http = http;
+        this.userData = userData;
     }
     UsuarioService.prototype.authenticate = function (username, password) {
+        var _this = this;
         var url = 'http://localhost:8080/auth';
         var headers = new http_1.Headers;
         headers.append('Content-Type', 'application/json');
@@ -25,7 +28,16 @@ var UsuarioService = (function () {
         };
         return this.http.post(url, body, headers)
             .toPromise()
-            .then(function (response) { return response.json().token; })
+            .then(function (response) {
+            var respuesta = response.json() && response.json().token;
+            if (respuesta) {
+                _this.userData.setToken(respuesta);
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
             .catch(this.handleError);
     };
     UsuarioService.prototype.getUsuarios = function () {
@@ -76,7 +88,7 @@ var UsuarioService = (function () {
 }());
 UsuarioService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, user_data_1.UserData])
 ], UsuarioService);
 exports.UsuarioService = UsuarioService;
 //# sourceMappingURL=usuario.service.js.map
