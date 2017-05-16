@@ -3,7 +3,7 @@ import { PeliculasComponent } from './components/peliculas.component';
 import { MovieDetailComponent} from './components/movie-detail.component';
 import { PeliculaService } from './pelicula.service';
 import { UsuarioService } from './usuario.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 import { HttpModule} from '@angular/http';
 import { UserData } from './model/user-data';
@@ -20,7 +20,8 @@ import { UserData } from './model/user-data';
          <li><a class="black-text" routerLink="/misListas">Mis Listas</a></li>
          <li><a class="black-text" routerLink="/listaUsuarios">Usuarios</a></li>
          <li><a class="black-text" routerLink="/actoresFavoritos">Ranking de actores favoritos</a></li>
-         <li><a class="black-text" routerLink="/login">Iniciar sesion</a></li>
+         <li *ngIf="!userData.getUsername()"><a class="black-text" routerLink="/login">Iniciar sesion</a></li>
+         <li *ngIf="userData.getUsername()"><a class="black-text" (click)="doLogout()">Cerrar sesión</a></li>
        </ul>
     </div>
     </nav>
@@ -34,5 +35,10 @@ export class AppComponent {
       this.name = this.userData.getUsername();
     }
 
-    constructor(private us : UsuarioService, private route: ActivatedRoute, private userData: UserData){}
+    doLogout(): void {
+      this.userData.clear();
+      this.router.navigate(["listaPeliculas"]);
+    }
+
+    constructor(private us : UsuarioService, private route: ActivatedRoute, private userData: UserData, private router: Router){}
 }

@@ -21,6 +21,10 @@ var UserData = (function () {
     UserData.prototype.getUsername = function () {
         return this.username;
     };
+    UserData.prototype.clear = function () {
+        this.token = null;
+        this.username = null;
+    };
     return UserData;
 }());
 UserData = __decorate([

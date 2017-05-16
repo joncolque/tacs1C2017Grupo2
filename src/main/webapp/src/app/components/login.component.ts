@@ -9,13 +9,11 @@ import { UserData } from './../model/user-data';
 @Component({
   selector: 'my-login',
   templateUrl: './login.component.html'
-
 })
+
 export class LoginComponent {
   username: string;
   password: string;
-  token: string;
-
 
   doLogin(): void {
 
@@ -23,9 +21,6 @@ export class LoginComponent {
       .switchMap((params: Params) => this.usuarioService.authenticate(this.username, this.password))
       .subscribe(unString => {
         this.alertService.success("Logueo Satisfactorio");
-        this.token = unString;
-        //console.log('El token es ' + unString);
-        //this.usuarioService.setToken(unString);
         this.userData.setToken(unString);
         this.userData.setUsername(this.username);
         this.router.navigate(["listaPeliculas"]);

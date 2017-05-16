@@ -45,6 +45,7 @@ var ActorService = (function () {
     };
     ActorService.prototype.handleError = function (error) {
         console.error('Error retrieving movies', error);
+        console.log('Error es ' + error);
         return Promise.reject(error.message || error);
     };
     return ActorService;

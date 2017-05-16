@@ -12,6 +12,7 @@ import { UserData } from './../model/user-data';
   selector: 'ranking-favoritos',
   template: `
     <div class="card-panel teal lighten-2 black-text">
+    <span class="black-text" *ngIf="error">No tiene los permisos para acceder a esta sección.</span>
     <div class="container">
     <table class="centered">
       <thead>
@@ -34,13 +35,14 @@ import { UserData } from './../model/user-data';
 
 export class RankingFavoritosComponent implements OnInit {
   listaFavoritos: ActorFavorito[];
+  error: string;
 
   ngOnInit(): void {
     console.log('El token es ' + this.userData.getToken() + ' con user: ' + this.userData.getUsername());
 
     this.route.params
       .switchMap((params: Params) => this.actorService.getActoresFavoritos())
-      .subscribe(listaActores => this.listaFavoritos = listaActores);
+      .subscribe(listaActores => { this.listaFavoritos = listaActores; });
   }
 
   constructor(private actorService: ActorService, private route: ActivatedRoute, private location: Location, private usuarioService: UsuarioService, private userData: UserData) {}

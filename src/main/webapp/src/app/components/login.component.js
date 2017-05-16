@@ -30,9 +30,6 @@ var LoginComponent = (function () {
             .switchMap(function (params) { return _this.usuarioService.authenticate(_this.username, _this.password); })
             .subscribe(function (unString) {
             _this.alertService.success("Logueo Satisfactorio");
-            _this.token = unString;
-            //console.log('El token es ' + unString);
-            //this.usuarioService.setToken(unString);
             _this.userData.setToken(unString);
             _this.userData.setUsername(_this.username);
             _this.router.navigate(["listaPeliculas"]);

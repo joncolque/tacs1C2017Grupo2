@@ -41,6 +41,7 @@ export class ActorService {
 
   handleError(error: any): Promise<any> {
     console.error('Error retrieving movies', error);
+    console.log('Error es ' + error);
     return Promise.reject(error.message || error);
   }
 

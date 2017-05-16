@@ -20,4 +20,9 @@ export class UserData {
   getUsername(): string {
     return this.username;
   }
+
+  clear(): void {
+    this.token = null;
+    this.username = null;
+  }
 }
