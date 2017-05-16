@@ -65,7 +65,7 @@ public class Application {
 		
 		MovieListController mcl = new MovieListController();
 		List<RankingActor> ranking = mcl.getRankingFromActorsByMovies(rankingMovies.getId());
-		ranking.forEach(ac -> System.out.println("ID: "+ ac.getMovieActor() + " -- value: "+ ac.getCantRepeticiones()));			
+		//ranking.forEach(ac -> System.out.println("ID: "+ ac.getMovieActor() + " -- value: "+ ac.getCantRepeticiones()));			
 		
 		MovieList movielist1 = new MovieList("Lista A", guille.getId());
 		movielist1.addPelicula(mc.getPeliculaById((long)120));

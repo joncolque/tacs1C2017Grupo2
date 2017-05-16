@@ -105,7 +105,7 @@ public class Usuario implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> auths = 
 				new HashSet<GrantedAuthority>(1);
-		if (rol.equals("Administrador")) {
+		if (rol.getName().equals("Administrador")) {
 			auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		} else {
 			auths.add(new SimpleGrantedAuthority("ROLE_USER"));
