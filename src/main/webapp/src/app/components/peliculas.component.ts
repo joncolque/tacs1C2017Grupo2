@@ -38,7 +38,7 @@ export class PeliculasComponent implements OnInit {
   //muestra las listas de un usuario
   verListas(): void {
 	  //TEMPORAL
-	  let user = 2;
+	  let user = 1;
 	  
 	  this.movieListService.getMovieListsByUser(user).then(movieLists => {this.movieLists = movieLists;});
   }

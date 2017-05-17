@@ -1,4 +1,6 @@
 
+
+
 <div>
 	<h1>Crear lista: </h1>
 	<input name="nombre" [(ngModel)]="nombreLista" required placeholder="Ingrese nombre de la lista" class=""/>
@@ -82,11 +84,18 @@
 <h1>Peliculas en comun</h1>
 <div class="well">
 	<p>Lista 1</p>
-	<input type="text" name="lista1" [(ngModel)]="nombreLista1" required class="form-control" placeholder="ID lista 1"/>
+	<select class="browser-default">
+		<option (click)="setLista1(null)">Seleccione una lista</option>
+		<option (click)="setLista1(movielist.id)" *ngFor="let movielist of dropDownMovieLists">{{movielist.nombre}}</option>
+	</select> 
+
 </div>
 <div class="well">
 	<p>Lista 2</p>
-	<input type="text" name="lista2" [(ngModel)]="nombreLista2" required class="form-control" placeholder="ID lista 2"/>
+	<select class="browser-default">
+		<option (click)="setLista2(null)">Seleccione una lista</option>
+		<option (click)="setLista2(movielist.id)" *ngFor="let movielist of dropDownMovieLists">{{movielist.nombre}}</option>
+	</select> 
 </div>
 
 <button (click)="verInterseccion()" class="btn waves-effect black-text">Ver peliculas en comun</button>

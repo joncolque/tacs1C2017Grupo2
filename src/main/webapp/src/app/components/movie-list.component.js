@@ -16,7 +16,7 @@ var MovieListComponent = (function () {
     }
     //crear lista de peliculas 
     MovieListComponent.prototype.crearClick = function () {
-        var user = 2;
+        var user = 1;
         this.movieListService.createMovieList(this.nombreLista, user);
         this.nombreLista = "Lista creada exitosamente";
     };
@@ -39,7 +39,7 @@ var MovieListComponent = (function () {
                                 });
         */
         //Para user: asignar user logueado
-        var user = 2;
+        var user = 1;
         this.movieListService.getMovieListsByUser(user)
             .then(function (movieLists) {
             if (movieLists.length == 0) {
@@ -57,7 +57,7 @@ var MovieListComponent = (function () {
         this.movieLists = null;
         this.peliculasActoresFavoritos = null;
         //Para user: asignar user logueado
-        var user = 2;
+        var user = 1;
         this.movieListService.getActoresFavoritos(user)
             .then(function (actores) {
             if (actores.length == 0) {
@@ -74,7 +74,7 @@ var MovieListComponent = (function () {
         var _this = this;
         this.movieLists = null;
         this.actoresFavoritos = null;
-        var user = 2;
+        var user = 1;
         this.movieListService.getPeliculasVariosActoresFavoritos(user)
             .then(function (peliculas) {
             if (peliculas.length == 0) {
@@ -88,10 +88,29 @@ var MovieListComponent = (function () {
     };
     //interseccion de peliculas entre dos listas
     MovieListComponent.prototype.verInterseccion = function () {
-        this.movieListService.getInterseccion(this.nombreLista1, this.nombreLista2);
+        console.log(this.idLista1);
+        console.log(this.idLista2);
+        if (this.idLista1 == null || this.idLista2 == null) {
+            console.log('Seleccione una lista');
+        }
+        else {
+            this.movieListService.getInterseccion(this.idLista1, this.idLista2);
+        }
+    };
+    MovieListComponent.prototype.setLista1 = function (idMovie) {
+        this.idLista1 = idMovie;
+    };
+    MovieListComponent.prototype.setLista2 = function (idMovie) {
+        this.idLista2 = idMovie;
     };
     MovieListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.encontro = true;
+        this.idLista1 = null;
+        this.idLista2 = null;
+        var user = 1;
+        this.movieListService.getMovieListsByUser(user)
+            .then(function (movieLists) { _this.dropDownMovieLists = movieLists; });
     };
     return MovieListComponent;
 }());
