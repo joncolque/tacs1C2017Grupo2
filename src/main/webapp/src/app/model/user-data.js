@@ -15,15 +15,29 @@ var UserData = (function () {
     UserData.prototype.setUsername = function (unNombre) {
         this.username = unNombre;
     };
+    UserData.prototype.setId = function (numero) {
+        this.id = numero;
+    };
+    UserData.prototype.setAdmin = function (valor) {
+        this.admin = valor;
+    };
     UserData.prototype.getToken = function () {
         return this.token;
     };
     UserData.prototype.getUsername = function () {
         return this.username;
     };
+    UserData.prototype.getId = function () {
+        return this.id;
+    };
+    UserData.prototype.isAdmin = function () {
+        return this.admin;
+    };
     UserData.prototype.clear = function () {
         this.token = null;
         this.username = null;
+        this.admin = false;
+        this.id = null;
     };
     return UserData;
 }());

@@ -27,6 +27,8 @@ export class UsuarioService {
           let respuesta = response.json() && response.json().token;
           if (respuesta) {
             this.userData.setToken(respuesta);
+            this.userData.setId(response.json().id);
+            this.userData.setAdmin(response.json().admin);
             return true;
           } else {
             return false;

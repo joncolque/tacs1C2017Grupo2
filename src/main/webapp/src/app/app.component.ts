@@ -19,7 +19,7 @@ import { UserData } from './model/user-data';
          <li><a class="black-text" routerLink="/">Inicio</a></li>
          <li><a class="black-text" routerLink="/misListas">Mis Listas</a></li>
          <li><a class="black-text" routerLink="/listaUsuarios">Usuarios</a></li>
-         <li><a class="black-text" routerLink="/actoresFavoritos">Ranking de actores favoritos</a></li>
+         <li *ngIf="userData.isAdmin()"><a class="black-text" routerLink="/actoresFavoritos">Ranking de actores favoritos</a></li>
          <li *ngIf="!userData.getUsername()"><a class="black-text" routerLink="/login">Iniciar sesion</a></li>
          <li *ngIf="userData.getUsername()"><a class="black-text" (click)="doLogout()">Cerrar sesión</a></li>
        </ul>

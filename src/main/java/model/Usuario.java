@@ -136,6 +136,14 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
+	public boolean sosAdmin() {
+		if (rol.getName().equals("Administrador")) {
+			return true;
+		}
+		
+		return false;
+	}
 
 
 //	public List<SummaryActor> getActoresFavoritos() {

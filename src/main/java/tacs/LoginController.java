@@ -63,9 +63,10 @@ public class LoginController extends AbstractController {
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
+        Usuario user = (Usuario)userDetails;
 
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token, user.getId(), user.sosAdmin()));
     }
 
     @RequestMapping(value = "/authRefresh", method = RequestMethod.GET)
@@ -76,7 +77,7 @@ public class LoginController extends AbstractController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, new Date())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken, user.getId(), user.sosAdmin()));
         } else {
             return ResponseEntity.badRequest().body(null);
         }

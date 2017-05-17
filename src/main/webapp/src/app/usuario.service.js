@@ -32,6 +32,8 @@ var UsuarioService = (function () {
             var respuesta = response.json() && response.json().token;
             if (respuesta) {
                 _this.userData.setToken(respuesta);
+                _this.userData.setId(response.json().id);
+                _this.userData.setAdmin(response.json().admin);
                 return true;
             }
             else {
