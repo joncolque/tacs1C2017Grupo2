@@ -12,8 +12,8 @@ import { UserData } from './../model/user-data';
 export class RegisterComponent {
     model: any = {};
     loading = false;
-    username: string;
-    password: string;
+    usernamed: string;  //Tienen la ultima d a proposito. Parece que al parsear el html no logra diferenciar con las variables del mismo.
+    passwordd: string;  //
     error: string;
     message: string;
 
@@ -29,11 +29,10 @@ export class RegisterComponent {
     register() {
         this.loading = true;
         this.route.params
-      .switchMap((params: Params) => this.usuarioService.register(this.username, this.password))
+      .switchMap((params: Params) => this.usuarioService.register(this.usernamed, this.passwordd))
       .subscribe(result => {
         if (result) {
           this.alertService.success("Registrado satisfactoriamente");
-          this.userData.setUsername(this.username);
           this.router.navigate(["login"]);
         } else {
           this.error = "No se ha podido registrar. Intente mas tarde";
